@@ -1,0 +1,16 @@
+#!/bin/sh
+
+layoutfile=$XDG_DATA_HOME/layout
+layout=$(cat $layoutfile) 
+
+if [ $layout == 'us' ]
+then
+	setxkbmap es
+	echo "es" > $layoutfile
+	notify-send -t 900 "⌨️ ES 🇪🇸 " 
+
+else
+	setxkbmap us
+	echo "us" > $layoutfile
+	notify-send -t 900 "⌨️ US 🇬🇧 "
+fi

@@ -1,0 +1,11 @@
+#!/bin/sh 
+
+    touchpadId=$(xinput -list | grep Touchpad | awk '{print substr($6,4)}')
+    currentState=$(xinput --list-props $touchpadId | grep 'Device Enabled' | awk '{print $4}')
+    if [ $currentState -eq 1 ]
+    then
+        xinput --disable $touchpadId && notify-send -t 900 "🖱️ DISABLED"
+    else
+        xinput --enable $touchpadId && notify-send -t 900 "🖱️ ENABLED"
+    fi
+

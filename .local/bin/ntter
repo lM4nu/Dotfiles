@@ -1,0 +1,5 @@
+#!/bin/sh
+
+x=$(echo $1 | sed s/^https*/https/)
+
+echo $x

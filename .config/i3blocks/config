@@ -1,0 +1,70 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[cpu_usage]
+label=CPU:
+command=sb-cpu
+interval=10
+signal=1
+#separator=false
+
+[temperature]
+label=🌡️
+command=sensors | grep temp1 | awk '{print $2}'
+interval=30
+signal=2
+
+[memory]
+command=sb-ram
+interval=30
+signal=3
+
+[battery]
+command=sb-battery
+interval=30
+signal=4
+
+[volume]
+interval=once
+command=sb-audio
+signal=10
+
+[monero]
+label=XMR:
+interval=300
+command=monero
+signal=5
+
+[time]
+label=📅
+command=date '+%m-%d %a %H:%M'
+interval=30
+signal=6
+
+[wifi]
+label=📶
+command=sb-wifi
+interval=7

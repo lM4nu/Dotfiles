@@ -1,0 +1,15 @@
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+set hiddenfiles "*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+
+cmd open ${{
+    case $(file --mime-type $f -b) in
+	image/vnd.djvu|application/pdf|application/octet-stream) zathura $fx ;;
+        text/*) $EDITOR $fx;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv $f * ;;
+	audio/*) setsid -f mpv $f ;;
+	video/*) setsid -f mpv $f ;;
+	application/pdf|application/vnd*|application/epub*) zathura "$f" && notify-send "$fx" ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}

@@ -1,0 +1,1 @@
+pacman -S noto-fonts-emoji ncmpcpp mpd mpc sxhkd neovim vim pamixer pulsemixer maim xclip bc bat zathura zathura-pdf-mupdf ffmpegthumbnailer ueberzug imagemagick poppler perl-image-exiftool mpv lxappearance kvantum-qt5 arc-gtk-theme arc-icon-theme mesa xf86-video-intel vulkan-intel intel-media-driver 

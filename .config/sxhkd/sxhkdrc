@@ -1,0 +1,84 @@
+super + p
+	$TERMINAL -e pulsemixer
+
+super + Return
+	$TERMINAL
+
+super + shift + h
+	$TERMINAL -e htop
+
+super + Up
+	setbg ~/.config/wallpapers
+
+super + shift + p
+	keepassxc
+
+super + shift + c
+	$TERMINAL -e bc -q
+
+super + m
+	$TERMINAL -e ncmpcpp
+
+super + n
+	$TERMINAL -e newsboat
+
+super + shift + e
+	emojis h
+
+super + e
+	emojis
+
+super + shift + d
+	discord
+
+super + w
+	brave
+
+super + z
+	zoom
+
+XF86MonBrightnessDown
+	xbacklight -dec 5
+
+XF86MonBrightnessUp
+	xbacklight -inc 5
+
+XF86AudioMute
+	pamixer --toggle-mute & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+
+XF86AudioLowerVolume
+	pamixer -d 5 & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+
+XF86AudioRaiseVolume
+	pamixer -i 5 & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+
+XF86AudioPrev
+	mpc prev & pkill -RTMIN+9 dwmblocks
+
+XF86AudioPlay
+	mpc toggle & pkill -RTMIN+9 dwmblocks
+
+XF86AudioNext
+	mpc next & pkill -RTMIN+9 dwmblocks
+
+super + shift + minus
+	mpc volume -5 
+
+super + shift + equal
+	mpc volume +5 
+
+super + x
+	maim | tee ~/.local/share/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+
+super + shift + x
+	maim -s | tee ~/.local/share/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+
+super + F3
+	togglemouse
+
+super + F12
+	switchlayout
+
+super + r
+	qrclipboard
+

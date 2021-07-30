@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# to charge status (🔌 for plugged up, 🔋 for discharging on battery, etc.).
+
+case $BLOCK_BUTTON in
+	3) "$TERMINAL" -e nvim "$0" ;;
+	4) xbacklight -inc 5 ;;
+	5) xbacklight -dec 5 ;;
+esac
+
+
+case "$(cat "/sys/class/power_supply/BAT0/status")" in
+	"Full") status="⚡" ;;
+	"Discharging") status="🔋" ;;
+	"Charging") status="🔌" ;;
+	"Not charging") status="🛑" ;;
+	"Unknown") status="♻️" ;;
+esac
+capacity=$(cat "/sys/class/power_supply/BAT0/capacity")
+# Will make a warn variable if discharging and low
+[ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
+# Prints the info
+printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn

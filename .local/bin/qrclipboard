@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cbcontent=$(xclip -o)
+tempfile="${XDG_DATA_HOME:-$HOME/.local/share}/qrtemp"
+
+echo "$cbcontent" | qrencode -o - > $tempfile
+sxiv -b -f -z 800 $tempfile
+

@@ -1,0 +1,14 @@
+xrdb ~/.config/x11/Xresources &
+setbg ~/.config/wallpapers/ &
+picom &
+dunst &
+unclutter --timeout 1 --ignore-scrolling &
+touchpad &
+sxhkd &
+
+/*i3blocks &*/
+/*exec i3*/
+
+dwmblocks &
+exec dwm
+
