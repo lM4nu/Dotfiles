@@ -36,4 +36,5 @@ macro i set browser "setsid -f nwsbr %u image"
 macro v set browser "setsid -f mpv %u"
 macro r set browser "setsid -f nwsbr %u"
 macro w set browser brave
-macro c set browser "echo %u | xclip -selection clipboard && notify-send \"Link copied to clipboard\" " ; open-in-browser ; set browser brave
+macro c set browser "echo %u | xclip -selection clipboard && notify-send \"Link copied to clipboard\" " ; open-in-browser 
+macro l set browser elinks ; open-in-browser ; set browser brave

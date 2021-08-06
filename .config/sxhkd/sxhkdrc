@@ -1,20 +1,17 @@
-super + p
-	$TERMINAL -e pulsemixer
-
 super + Return
 	$TERMINAL
+
+super + p
+	$TERMINAL -e pulsemixer
 
 super + shift + h
 	$TERMINAL -e htop
 
 super + Up
-	setbg ~/.config/wallpapers
+	setbg $(ls ~/.config/wallpapers/custom/* | shuf -n1)
 
 super + shift + p
 	keepassxc
-
-super + shift + c
-	$TERMINAL -e bc -q
 
 super + m
 	$TERMINAL -e ncmpcpp
@@ -68,10 +65,10 @@ super + shift + equal
 	mpc volume +5 
 
 super + x
-	maim | tee ~/.local/share/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+	maim | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + shift + x
-	maim -s | tee ~/.local/share/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+	maim -s | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + F3
 	togglemouse
@@ -81,4 +78,5 @@ super + F12
 
 super + r
 	qrclipboard
-
+super + shift + w
+	whatsapp-nativefier
