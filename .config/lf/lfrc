@@ -1,7 +1,6 @@
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set hidden!
-
+set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.cache"
 cmd open ${{
     case $(file --mime-type "$f" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) zathura "$fx" ;;
