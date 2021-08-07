@@ -1,1 +1,1 @@
-yay -S lf-bin libxft-bgra brave-bin 
+yay -S lf-bin libxft-bgra brave-bin vidir htop-vim

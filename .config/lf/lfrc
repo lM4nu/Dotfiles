@@ -1,6 +1,7 @@
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.cache"
+set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux"
+set icons
 cmd open ${{
     case $(file --mime-type "$f" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) zathura "$fx" ;;
@@ -9,15 +10,18 @@ cmd open ${{
 	audio/*) mpv "$f" ;;
 	video/*) mpv "$f" ;;
 	application/pdf|application/vnd*|application/epub*) zathura "$fx" ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+        *) for f in "$fx"; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac
 }}
 
 cmd setbg "$1"
 cmd bulkrename $vidir
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
 
 map x delete
 map ` mark-load
 map b $setbg $f
-map B bulkrename
+map R bulkrename
 map s toggle 
+map <c-n> push :mkdir<space>

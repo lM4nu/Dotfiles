@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"", "sb-weather",						      3600,		9},
 	{" CPU:", "sb-cpu",							10,		1},
-	{"🌡️", "sensors | grep temp1 | awk '{print $2}'",			30,		2},
+	{"🌡️", "sensors | grep temp1 | awk '{print $2}' | sed s/+//",			30,		2},
 	{"", "sb-ram",								30,		3},
 	{"", "sb-battery",							30,		4},
 	{"", "sb-audio",							 0,	       10},

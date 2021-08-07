@@ -58,6 +58,7 @@ visualizer_output_name = "my_fifo"
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "+|"
+visualizer_spectrum_smooth_look = "yes"
 
 
 

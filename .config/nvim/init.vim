@@ -30,7 +30,6 @@ Plug 'sbdchd/neoformat'
 
 Plug 'baskerville/vim-sxhkdrc'
 
-
 Plug 'flazz/vim-colorschemes'
 
 Plug 'tpope/vim-fugitive'
