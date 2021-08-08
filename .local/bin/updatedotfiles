@@ -3,10 +3,12 @@
 dotfilespath=~/.config/dotfiles
 configpath=~/.config
 
-rm -rf $dotfilespath/.config/alacritty/ $dotfilespath/.config/dunst/ $dotfilespath/.config/i3/ $dotfilespath/.config/i3blocks/ $dotfilespath/.config/lf/ $dotfilespath/.config/mpd/ $dotfilespath/.config/mpv/ $dotfilespath/.config/ncmpcpp/ $dotfilespath/.config/newsboat/ $dotfilespath/.config/npm/ $dotfilespath/.config/nvim/ $dotfilespath/.config/sxhkd/ $dotfilespath/.config/sxiv/ $dotfilespath/.config/tmux/ $dotfilespath/.config/x11/ $dotfilespath/.config/.aliases $dotfilespath/.local/bin $dotfilespath/suckless $dotfilespath/.bashrc $dotfilespath/.profile
+rm -vrf $dotfilespath/.config/alacritty/ $dotfilespath/.config/dunst/ $dotfilespath/.config/i3/ $dotfilespath/.config/i3blocks/ $dotfilespath/.config/lf/ $dotfilespath/.config/mpd/ $dotfilespath/.config/mpv/ $dotfilespath/.config/ncmpcpp/ $dotfilespath/.config/newsboat/ $dotfilespath/.config/npm/ $dotfilespath/.config/nvim/ $dotfilespath/.config/sxhkd/ $dotfilespath/.config/sxiv/ $dotfilespath/.config/tmux/ $dotfilespath/.config/x11/ $dotfilespath/transmission-daemon $dotfilespath/.config/.aliases $dotfilespath/.local/bin $dotfilespath/.local/share/applications $dotfilespath/suckless $dotfilespath/.bashrc $dotfilespath/.profile
 
-cp -r $configpath/alacritty/ $configpath/dunst/ $configpath/i3/ $configpath/i3blocks/ $configpath/lf/ $configpath/mpd/ $configpath/mpv/ $configpath/ncmpcpp/ $configpath/newsboat/ $configpath/npm/ $configpath/nvim/ $configpath/sxhkd/ $configpath/sxiv/ $configpath/tmux/ $configpath/x11/ $configpath/.aliases $dotfilespath/.config/
+cp -vr $configpath/alacritty/ $configpath/dunst/ $configpath/i3/ $configpath/i3blocks/ $configpath/lf/ $configpath/mpd/ $configpath/mpv/ $configpath/ncmpcpp/ $configpath/newsboat/ $configpath/npm/ $configpath/nvim/ $configpath/sxhkd/ $configpath/sxiv/ $configpath/tmux/ $configpath/x11/ $configpath/transmission-daemon $configpath/.aliases $dotfilespath/.config/
 
-cp -r ~/.local/bin $dotfilespath/.local
+cp -vr ~/.local/bin $dotfilespath/.local
 
-cp -r ~/Downloads/suckless ~/.bashrc ~/.profile $dotfilespath
+cp -vr ~/.local/share/applications $dotfilespath/.local/share
+
+cp -vr ~/Downloads/suckless ~/.bashrc ~/.profile $dotfilespath

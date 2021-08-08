@@ -6,6 +6,7 @@ cmd open ${{
     case $(file --mime-type "$f" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) zathura "$fx" ;;
         text/*) $EDITOR "$f" ;;
+        application/json) $EDITOR "$f" ;;
 	image/*) sxiv "$f" * ;;
 	audio/*) mpv "$f" ;;
 	video/*) mpv "$f" ;;

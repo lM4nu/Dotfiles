@@ -14,5 +14,5 @@ then
 else
 	file=~/.local/share/newsboatimg
 	
-	curl -s --output - $(ntter $1) > $file && sxiv -b $file
+	curl -s --output - $(formatter $1) > $file && sxiv -b $file
 fi
