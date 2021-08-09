@@ -21,11 +21,9 @@ decrease(){
 
 if [ "$1" = "-inc" ]; then
 	increase $value
-	newline=$(echo "background_opacity: $newvalue")
-	sed -i "s/${line}/${newline}/g" ~/.config/alacritty/alacritty.yml
 else
 	decrease $value
-	newline=$(echo "background_opacity: $newvalue")
-	sed -i "s/${line}/${newline}/g" ~/.config/alacritty/alacritty.yml
 fi
 
+	newline=$(echo "background_opacity: $newvalue")
+	sed -i "s/${line}/${newline}/g" ~/.config/alacritty/alacritty.yml

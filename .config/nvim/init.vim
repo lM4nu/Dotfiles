@@ -34,6 +34,7 @@ Plug 'flazz/vim-colorschemes'
 
 Plug 'tpope/vim-fugitive'
 
+Plug 'fratajczak/one-monokai-vim'
 call plug#end()
 
 "Basic config
