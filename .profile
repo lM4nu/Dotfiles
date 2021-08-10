@@ -24,4 +24,3 @@ export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export KODI_DATA="$XDG_CONFIG_HOME"/kodi
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
