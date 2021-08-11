@@ -1,6 +1,6 @@
 xrdb ~/.config/x11/Xresources &
 /*setbg ~/.config/wallpapers/ &*/
-setbg $(ls ~/.config/wallpapers/custom/* | shuf -n1) &
+setbg ~/.config/wallpapers/custom &
 picom &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &

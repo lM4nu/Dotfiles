@@ -3,6 +3,5 @@
 cbcontent=$(xclip -o)
 tempfile="${XDG_DATA_HOME:-$HOME/.local/share}/qrtemp.png"
 
-echo "$cbcontent" | qrencode -o - > $tempfile
-sxiv -b -f -z 800 $tempfile
-
+qrencode $cbcontent -o $tempfile
+sxiv -bfz 800 $tempfile

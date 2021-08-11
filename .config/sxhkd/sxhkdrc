@@ -8,7 +8,7 @@ super + shift + h
 	$TERMINAL -e htop
 
 super + Up
-	setbg $(ls ~/.config/wallpapers/custom/* | shuf -n1)
+	setbg ~/.config/wallpapers/custom
 
 super + shift + p
 	keepassxc
