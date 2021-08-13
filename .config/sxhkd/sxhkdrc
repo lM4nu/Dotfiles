@@ -19,9 +19,6 @@ super + m
 super + n
 	$TERMINAL -e newsboat
 
-super + shift + n
-	$TERMINAL -e sudo newsboat
-
 super + shift + e
 	emojis h
 

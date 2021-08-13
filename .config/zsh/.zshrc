@@ -38,3 +38,5 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line

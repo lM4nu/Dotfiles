@@ -1,40 +1,24 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'https://github.com/ap/vim-css-color.git'
-
 Plug 'vim-airline/vim-airline'
-
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'jiangmiao/auto-pairs'
-
 Plug 'scrooloose/nerdtree' 
-
 Plug 'ryanoasis/vim-devicons'
-
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'pangloss/vim-javascript'
-
 Plug 'mxw/vim-jsx'
-
 Plug 'morhetz/gruvbox'
-
 Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'preservim/nerdcommenter'
-
 Plug 'sbdchd/neoformat'
-
 Plug 'baskerville/vim-sxhkdrc'
-
 Plug 'flazz/vim-colorschemes'
-
 Plug 'tpope/vim-fugitive'
-
 Plug 'fratajczak/one-monokai-vim'
+
 call plug#end()
 
 "Basic config

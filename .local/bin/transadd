@@ -2,6 +2,6 @@
 
 pidof transmission-daemon >/dev/null || (transmission-daemon && notify-send "Starting transmission daemon..." && sleep 3 )
 
-fileorlink=$(echo $@ | sed "s/^file:\/\///" )
+fileorlink="$(echo $@ | sed "s/^file:\/\///" )"
 
-tremc "$fileorlink" && notify-send "🔽 Torrent added."
+tremc "$fileorlink" && notify-send "🔽 Torrent added." && pkill -RTMIN+8 dwmblocks
