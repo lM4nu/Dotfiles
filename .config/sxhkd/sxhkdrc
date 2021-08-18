@@ -58,10 +58,10 @@ XF86AudioPlay
 XF86AudioNext
 	mpc next & pkill -RTMIN+9 dwmblocks
 
-super + shift + minus
+super + minus
 	mpc volume -5 
 
-super + shift + equal
+super + equal
 	mpc volume +5 
 
 super + x

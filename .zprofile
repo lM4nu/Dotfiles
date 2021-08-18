@@ -18,7 +18,7 @@ export LEIN_HOME="$XDG_DATA_HOME"/lein
 export VSCODE_PORTABLE="$XDG_DATA_HOME"/vscode
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME"/x11/xinitrc
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export XAUTHORITY="$XDG_CONFIG_HOME"/x11/Xauthority
 export KODI_DATA="$XDG_CONFIG_HOME"/kodi
 
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
