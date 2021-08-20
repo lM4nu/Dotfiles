@@ -4,7 +4,7 @@ set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.
 set icons
 cmd open ${{
     case $(file --mime-type "$f" -b) in
-	image/vnd.djvu|application/pdf|application/octet-stream) zathura "$fx" ;;
+	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura "$fx" ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
 	image/*) sxiv "$f" * ;;

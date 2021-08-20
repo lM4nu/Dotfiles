@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file="$HOME/.cache/newsboat/nbimg.jpg"
+
+formatted=$(echo $1 | sed "s/^https*/https/;s/localhost:10407/bibliogram\.domain\.glass/")
+
+
+curl -s --output - "$formatted" > $file
+
+sxiv -b $file && rm $file

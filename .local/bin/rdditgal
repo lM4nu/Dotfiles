@@ -1,0 +1,23 @@
+#!/bin/sh
+
+galleryfile="$HOME/.cache/newsboat/source"
+cache="$HOME/.cache/newsboat"
+curl -s "$1" > "$galleryfile"
+content=$(cat "$galleryfile")
+while [ "$content" == "Internal Server Error" ]
+do
+curl -s "$1" > "$galleryfile"
+content=$(cat $galleryfile)
+done
+
+links=$(grep -Eo "https://preview\.redd\.it/.{1,110}\"" $galleryfile | sed "/\\\u/ d;s/\".*\"$//g;s/\"$//;s/amp;//g" | uniq -w 25)
+
+counter=0
+while read p; do
+	#echo $p
+	curl -s --output - "$p" > "$cache/$counter.jpg"
+	counter=$((counter + 1))
+done <<< $(echo $links | tr ' ' \\n)
+
+sxiv -b $cache/*jpg && rm $cache/*jpg
+

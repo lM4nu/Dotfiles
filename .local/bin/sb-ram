@@ -1,4 +1,6 @@
-used=$( free -h | grep Mem | awk '{print $3}' | sed s/i//)
+#!/bin/sh
+
+used=$(free -h | grep Mem | awk '{print $3}' | sed s/i//)
 total=$(free -h | grep Mem | awk '{print $2}' | sed s/i//)
 
 echo $used\/$total

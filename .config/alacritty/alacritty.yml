@@ -145,7 +145,7 @@ colors:
   #  cyan:    '#5b7d78'
   #  white:   '#828482'
 
-background_opacity: 0.8
+background_opacity: 0.9
 
 #selection:
   # This string contains all characters that are used as separators for
