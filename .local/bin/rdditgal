@@ -14,10 +14,9 @@ links=$(grep -Eo "https://preview\.redd\.it/.{1,110}\"" $galleryfile | sed "/\\\
 
 counter=0
 while read p; do
-	#echo $p
 	curl -s --output - "$p" > "$cache/$counter.jpg"
 	counter=$((counter + 1))
 done <<< $(echo $links | tr ' ' \\n)
 
-sxiv -b $cache/*jpg && rm $cache/*jpg
+sxiv -b $cache/*jpg && rm $cache/*jpg rm $cache/source
 
