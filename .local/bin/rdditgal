@@ -18,5 +18,5 @@ while read p; do
 	counter=$((counter + 1))
 done <<< $(echo $links | tr ' ' \\n)
 
-sxiv -b $cache/*jpg && rm $cache/*jpg rm $cache/source
+sxiv -b $cache/*jpg && rm $cache/*jpg $cache/source
 

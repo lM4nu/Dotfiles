@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "$1" | sed "s/^https*/https/;s/localhost:10407/bibliogram\.domain\.glass/"

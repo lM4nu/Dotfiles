@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ "$1" =~ ^.*i\.redd.*$ ]]
+if [[ "$1" =~ ^.*i\.redd.*$ || "$1" =~ ^.*imgur.*$ ]]
 then
 	nbimg "$1"
 else
