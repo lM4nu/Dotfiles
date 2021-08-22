@@ -8,6 +8,6 @@ else
 	then
 		rdditgal "$1"
 	else
-		mpv "$1"
+		notify-send "Opening in mpv" && mpv "$1"
 	fi
 fi

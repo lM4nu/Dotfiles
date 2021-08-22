@@ -9,6 +9,6 @@ else
 	formatted=$(formatter "$1")
 fi
 
-curl -s --output - "$formatted" > $file
+wget -O "$file" "$formatted" 2> /dev/null
 
 sxiv -b $file && rm $file
