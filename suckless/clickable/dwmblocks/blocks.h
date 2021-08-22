@@ -8,7 +8,7 @@ static const Block blocks[] = {
 	{"", "sb-ram",								60,		3},
 	{"", "sb-battery",							60,		4},
 	{"", "sb-audio",							 0,	       10},
-	{"XMR:", "monero",						       300,		5},
+	{"XMR:", "sb-monero",						       300,		5},
 	{"📅 ", "sb-date",					   		30,		6},
 	{"📶 ", "sb-wifi",							10,	 	7},
 };
