@@ -1,6 +1,6 @@
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:cmark:mid3*:mutagen*:pygmentize:pytube:unidecode:moggsplit:tqdm"
+set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:cmark:mid3*:mutagen*:pygmentize:pytube:unidecode:moggsplit:tqdm:spotdl"
 set icons
 cmd open ${{
     case $(file --mime-type "$f" -b) in
