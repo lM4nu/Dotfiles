@@ -5,6 +5,10 @@ configpath=~/.config
 
 rm -vrf \
 $dotfilespath/.config/* \
+$dotfilespath/.config/.aliases \
+$dotfilespath/.local/bin \
+$dotfilespath/.local/share/applications \
+$dotfilespath/suckless
 $dotfilespath/.zprofile
 
 cp -vr \
@@ -22,8 +26,8 @@ $configpath/nvim/ \
 $configpath/sxhkd/ \
 $configpath/sxiv/ \
 $configpath/tmux/ \
-$configpath/x11/ \
 $configpath/transmission-daemon \
+$configpath/x11/ \
 $configpath/zsh \
 $configpath/.aliases \
 $dotfilespath/.config/
