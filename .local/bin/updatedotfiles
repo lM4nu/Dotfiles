@@ -4,27 +4,7 @@ dotfilespath=~/.config/dotfiles
 configpath=~/.config
 
 rm -vrf \
-$dotfilespath/.config/alacritty/ \
-$dotfilespath/.config/dunst/ \
-$dotfilespath/.config/i3/ \
-$dotfilespath/.config/i3blocks/ \
-$dotfilespath/.config/lf/ \
-$dotfilespath/.config/mpd/ \
-$dotfilespath/.config/mpv/ \
-$dotfilespath/.config/ncmpcpp/ \
-$dotfilespath/.config/newsboat/ \
-$dotfilespath/.config/npm/ \
-$dotfilespath/.config/nvim/ \
-$dotfilespath/.config/sxhkd/ \
-$dotfilespath/.config/sxiv/ \
-$dotfilespath/.config/tmux/ \
-$dotfilespath/.config/x11/ \
-$dotfilespath/.config/transmission-daemon \
-$dotfilespath/.config/zsh \
-$dotfilespath/.config/.aliases \
-$dotfilespath/.local/bin \
-$dotfilespath/.local/share/applications \
-$dotfilespath/suckless \
+$dotfilespath/.config/* \
 $dotfilespath/.zprofile
 
 cp -vr \
