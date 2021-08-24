@@ -41,22 +41,22 @@ XF86MonBrightnessUp
 	xbacklight -inc 5
 
 XF86AudioMute
-	pamixer --toggle-mute & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+	pamixer --toggle-mute & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
 
 XF86AudioLowerVolume
-	pamixer -d 5 & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+	pamixer -d 5 & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
 
 XF86AudioRaiseVolume
 	pamixer -i 5 & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
 
 XF86AudioPrev
-	mpc prev & pkill -RTMIN+9 dwmblocks
+	mpc prev
 
 XF86AudioPlay
-	mpc toggle & pkill -RTMIN+9 dwmblocks
+	mpc toggle
 
 XF86AudioNext
-	mpc next & pkill -RTMIN+9 dwmblocks
+	mpc next
 
 super + minus
 	mpc volume -5 

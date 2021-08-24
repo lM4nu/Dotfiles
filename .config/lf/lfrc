@@ -16,10 +16,8 @@ cmd open ${{
     esac
 }}
 
-cmd setbg "$1"
 cmd bulkrename $vidir
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
-
 
 map x delete
 map ` mark-load

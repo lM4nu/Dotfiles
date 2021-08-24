@@ -1,0 +1,3 @@
+#!/bin/sh
+temp=$(sensors | grep temp1 | awk '{print $2}' | sed "s/+//")
+echo 🌡"$temp"
