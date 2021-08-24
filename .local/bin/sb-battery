@@ -3,7 +3,7 @@
 # to charge status (🔌 for plugged up, 🔋 for discharging on battery, etc.).
 
 case $BLOCK_BUTTON in
-	3) "$TERMINAL" -e nvim "$0" ;;
+	3) "$TERMINAL" -e $EDITOR "$0" ;;
 	4) xbacklight -inc 5 ;;
 	5) xbacklight -dec 5 ;;
 esac

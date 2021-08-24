@@ -1,6 +1,6 @@
 #!/bin/sh
 
-file="$HOME/.cache/newsboat/nbimg.jpg"
+file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
 
 if [[ "$1" =~ https://imgur.com/.* ]]
 then

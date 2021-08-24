@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
 	1) $TERMINAL -e yay -Syu --noconfirm && pkill -RTMIN+1 dwmblocks;;
-	3) $TERMINAL -e nvim $0 ;;
+	3) $TERMINAL -e $EDITOR $0 ;;
 esac
 
 yay -Qu | wc -l | sed "s/^/📦/;/^📦0$/ d"

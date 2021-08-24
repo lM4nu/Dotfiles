@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
 	1) notify-send "$(nmcli dev wifi list | sed -E "/^IN-USE/ d;s/^.*:\w{2}\s{2}//g;s/\s*Infra.*s\s//g;s/\s\s+.*$/%/g")";;
-	3) $TERMINAL -e nvim $0;;
+	3) $TERMINAL -e $EDITOR $0;;
 esac
 
 signal=$(nmcli dev wifi list | grep -E '^\*' | awk '{print $8}')

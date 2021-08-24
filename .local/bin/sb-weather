@@ -22,7 +22,7 @@ sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | s
 case $BLOCK_BUTTON in
 	1) setsid -f "$TERMINAL" -e less -Srf "$weatherreport" ;;
 	2) getforecast && showweather ;;
-	3) "$TERMINAL" -e nvim "$0" ;;
+	3) "$TERMINAL" -e $EDITOR "$0" ;;
 esac
 
 # The test if our forcecast is updated to the day. If it isn't download a new

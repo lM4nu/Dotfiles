@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
 	1) setsid "$TERMINAL" -e less -Srf ~/.local/share/monerochart;;
-	3) "$TERMINAL" -e nvim "$0"
+	3) "$TERMINAL" -e $EDITOR "$0"
 esac
 
 moneroprice="$(curl -sf rate.sx/1xmr)"
