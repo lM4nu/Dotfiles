@@ -1,4 +1,8 @@
 #!/bin/sh
+if [[ "$1" =~ .*\.gif ]]
+then
+	notify-send "Opening in mpv" && mpv "$1" && exit
+fi
 
 if [[ "$1" =~ ^.*i\.redd.*$ || "$1" =~ ^.*imgur.*$ ]]
 then
