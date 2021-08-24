@@ -47,7 +47,7 @@ XF86AudioLowerVolume
 	pamixer -d 5 & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
 
 XF86AudioRaiseVolume
-	pamixer -i 5 & pkill -RTMIN+10 dwmblocks & pkill -SIGRTMIN+10 i3blocks
+	pamixer -i 5 & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
 
 XF86AudioPrev
 	mpc prev
