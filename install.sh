@@ -1,6 +1,7 @@
 pacman -S \
 base-devel \
 alacritty \
+dunst \
 wget \
 qrencode \
 acpilight \
@@ -24,6 +25,7 @@ xclip \
 xsel \
 xwallpaper \
 bc \
+clipmenu \
 bat \
 zathura \
 zathura-pdf-mupdf \
