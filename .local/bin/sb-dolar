@@ -9,8 +9,8 @@ fi
 bluecompra=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;7q" | tail -n1)
 blueventa=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;8q" | tail -n1)
 
-compra=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;6q" | tail -n1)
-venta=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;7q" | tail -n1)
+compra=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;5q" | tail -n1)
+venta=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;6q" | tail -n1)
 
 case $BLOCK_BUTTON in
 	1) notify-send \
