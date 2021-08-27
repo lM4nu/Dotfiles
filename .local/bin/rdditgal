@@ -11,6 +11,8 @@ curl -s "$1" > "$galleryfile"
 content=$(cat $galleryfile)
 done
 
+grep "Sorry, this post" $galleryfile >/dev/null && notify-send "Banned Post" && rm $galleryfile && exit
+
 links=$(grep -Eo "https://preview\.redd\.it/.{1,110}\"" $galleryfile | sed "/\\\u/ d;s/\".*\"$//g;s/\"$//;s/amp;//g" | uniq -w 37)
 
 counter=0
@@ -19,4 +21,4 @@ while read p; do
 	counter=$((counter + 1))
 done <<< $(echo $links | tr ' ' \\n)
 
-sxiv -b $cachedir/*jpg && rm $cachedir/*jpg $cachedir/source
+sxiv -b $cachedir/*jpg && rm $cachedir/*

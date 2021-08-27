@@ -4,11 +4,11 @@ file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
 
 if [[ "$1" =~ https://imgur.com/.* ]]
 then
-	formatted=$(echo $1.jpg | sed "s/\/i/\/i\.i/")
+	url=$(echo $1.jpg | sed "s/\/i/\/i\.i/")
 else
-	formatted=$(formatter "$1")
+	url="$1"
 fi
 
-wget -O "$file" "$formatted" 2> /dev/null
+wget -O "$file" "$url" 2> /dev/null
 
 sxiv -b $file && rm $file

@@ -1,11 +1,11 @@
 xrdb ~/.config/x11/Xresources &
-/*setbg ~/.config/wallpapers/ &*/
 setbg ~/.config/wallpapers/custom &
 picom &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
+clipmenud & 
 
 /*i3blocks &*/
 /*exec i3*/

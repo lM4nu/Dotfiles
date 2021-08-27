@@ -1,17 +1,12 @@
 #!/bin/sh
-if [[ "$1" =~ .*\.gif ]]
+if [[ "$1" =~ .*\.gif || "$1" =~ ^.*v\.redd.*$  ]]
 then
 	notify-send "Opening in mpv" && mpv "$1" && exit
 fi
 
-if [[ "$1" =~ ^.*i\.redd.*$ ]]
+if [[ "$1" =~ ^.*gallery.*$ ]]
 then
-	nbimg "$1"
+	rdditgal "$1"
 else
-	if [[ "$1" =~ ^.*gallery.*$ ]]
-	then
-		rdditgal "$1"
-	else
-		notify-send "Opening in mpv" && mpv "$1"
-	fi
+	nbimg "$1"
 fi

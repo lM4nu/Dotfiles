@@ -76,7 +76,11 @@ super + F3
 super + F12
 	switchlayout
 
+super + shift + c
+	clipmenu
+
 super + r
 	qrclipboard
+
 super + shift + w
 	whatsapp-nativefier

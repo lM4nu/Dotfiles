@@ -15,9 +15,10 @@ do
 	case "$1" in
 	"w")  
 		setbg "$file";;
-	"r")  
-		xwallpaper --zoom "$file";;
-	"d")	rm "$file" ;;
+	"b")  
+		setbg "$file";;
+	"d")	
+		rm "$file" ;;
 	"C-c")
                 echo -n "$file" | xclip -selection clipboard ;;	
         "C-r")
