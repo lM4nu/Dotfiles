@@ -1,0 +1,9 @@
+#!/bin/sh
+file="$HOME/.local/share/dolar"
+
+if [[ $(stat -c %y $file | cut -d' ' -f1) !=  $(date "+%Y-%m-%d") ]]
+then
+	curl -s "https://www.cronista.com/MercadosOnline/dolar.html" > $file
+fi
+
+grep -Eo "currency.{50}" $file | sed 3q | tail -n1 | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./"
