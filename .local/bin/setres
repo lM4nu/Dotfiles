@@ -4,10 +4,8 @@ currentres=$(xrandr | grep \* | awk '{print $1}')
 if [ $currentres == 1280x720 ]
 then
 	xrandr --output eDP1 --mode 1920x1080
-	xwallpaper --zoom ~/.local/share/bg
 else
 	xrandr --output eDP1 --mode 1280x720
-	xwallpaper --zoom ~/.local/share/bg
 fi
 
-
+setbg

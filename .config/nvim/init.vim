@@ -84,11 +84,11 @@ autocmd BufWritePost *.tex !pdflatex %
 
 "autocmd BufWritePost *.java !java % 
 
-autocmd BufWritePost sxhkdrc !pkill sxhkd 
+autocmd BufWritePost sxhkdrc !pkill sxhkd
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
-autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks
+autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
 "Snippets
 autocmd FileType java inoremap psvm public static void main(String[] args) { <Enter><Enter> }<Esc>ki
