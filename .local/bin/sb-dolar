@@ -14,10 +14,10 @@ blueventa=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,
 
 case $BLOCK_BUTTON in
 	1) notify-send \
-"💵 Dolar Oficial 💵
+"💵 Oficial 💵
 Compra: \$$compra
 Venta:  \$$venta
-💵 Dolar Blue 💵
+💵 Blue 💵
 Compra: \$$bluecompra 
 Venta:  \$$blueventa" ;;
 	3) $TERMINAL -e $EDITOR "$0";;
