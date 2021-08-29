@@ -10,7 +10,6 @@ cmd open ${{
 	image/*) sxiv "$f" * ;;
 	audio/*) mpv "$f" ;;
 	video/*) mpv "$f" ;;
-	application/pdf|application/epub*) zathura "$fx" ;;
 	application/vnd.openxmlformats-officedocument*) setsid -f libreoffice "$f" ;;
         *) for f in "$fx"; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac

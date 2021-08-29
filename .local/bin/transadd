@@ -4,4 +4,4 @@ pidof transmission-daemon >/dev/null || (transmission-daemon && notify-send "Sta
 
 fileorlink="$(echo $@ | sed "s/^file:\/\///" )"
 
-tremc "$fileorlink" && notify-send "🔽 Torrent added." && pkill -RTMIN+2 dwmblocks
+tremc "$fileorlink" && notify-send "🔽 Torrent added." && sleep 5 && pkill -RTMIN+2 dwmblocks

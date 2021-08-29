@@ -84,7 +84,7 @@ autocmd BufWritePost *.tex !pdflatex %
 
 "autocmd BufWritePost *.java !java % 
 
-autocmd BufWritePost sxhkdrc !pkill sxhkd
+autocmd BufWritePost sxhkdrc !pkill -10 sxhkd
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 

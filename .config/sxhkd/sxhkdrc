@@ -16,6 +16,9 @@ super + shift + p
 super + m
 	$TERMINAL -e ncmpcpp
 
+super + shift + m
+	$TERMINAL -e tremc
+
 super + n
 	$TERMINAL -e newsboat
 

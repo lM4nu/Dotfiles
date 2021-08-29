@@ -10,8 +10,8 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 unsetopt beep
 
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 source ~/.config/.aliases
 
