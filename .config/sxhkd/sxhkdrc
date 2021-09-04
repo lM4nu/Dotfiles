@@ -8,7 +8,7 @@ super + shift + h
 	$TERMINAL -e htop
 
 super + Up
-	setbg ~/.config/wallpapers/custom
+	setbg ~/.local/Wallpapers/custom
 
 super + shift + p
 	keepassxc
@@ -47,10 +47,10 @@ XF86AudioMute
 	pamixer --toggle-mute & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
 
 XF86AudioLowerVolume
-	pamixer -d 5 & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
+	pamixer -d 5 & pkill -RTMIN+8 dwmblocks & pkill -RTMIN+8 i3blocks
 
 XF86AudioRaiseVolume
-	pamixer -i 5 & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
+	pamixer -i 5 & pkill -RTMIN+8 dwmblocks & pkill -RTMIN+8 i3blocks
 
 XF86AudioPrev
 	mpc prev

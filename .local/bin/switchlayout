@@ -1,16 +1,11 @@
 #!/bin/sh
 
-layoutfile="${XDG_DATA_HOME:-$HOME/.local/share}/layout"
-layout="$(cat $layoutfile)" 
+layout="$(setxkbmap -print -verbose 10 | grep layout | sed "s/^layout:\s*//")" 
 
 if [ $layout == 'us' ]
 then
-	setxkbmap es
-	echo "es" > $layoutfile
-	notify-send -t 900 "⌨️ ES 🇪🇸 " 
+	setxkbmap es && notify-send -t 900 "⌨️ ES 🇪🇸 " 
 
 else
-	setxkbmap us
-	echo "us" > $layoutfile
-	notify-send -t 900 "⌨️ US 🇬🇧 "
+	setxkbmap us && notify-send -t 900 "⌨️ US 🇬🇧 "
 fi

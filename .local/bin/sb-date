@@ -1,6 +1,11 @@
 #!/bin/sh
-date=$(date '+%d-%m %a %H:%M')
+date=$(date '+%d/%m %a %H:%M')
 hour=$(date '+%I')
+
+case $BLOCK_BUTTON in 
+	1) notify-send "$(cal)"
+esac
+
 case $hour in
 	01) clock="🕐" ;;
 	02) clock="🕑" ;;

@@ -1,5 +1,6 @@
 xrdb ~/.config/x11/Xresources &
-setbg ~/.config/wallpapers/custom &
+setxkbmap -option caps:escape &
+setbg ~/.local/Wallpapers/custom &
 picom &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &
@@ -12,4 +13,3 @@ clipmenud &
 
 dwmblocks &
 exec dwm
-

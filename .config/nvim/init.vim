@@ -88,6 +88,8 @@ autocmd BufWritePost sxhkdrc !pkill -10 sxhkd
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
+autocmd BufEnter .aliases set filetype=bash
+
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
 "Snippets
@@ -100,7 +102,7 @@ tnoremap <Esc> <C-\><C-n>
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " open terminal on ctrl+n
 function! OpenTerminal()
-  split term://bash
+  split term://zsh
   resize 10
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>

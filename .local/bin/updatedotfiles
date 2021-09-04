@@ -8,7 +8,7 @@ $dotfilespath/.config/* \
 $dotfilespath/.config/.aliases \
 $dotfilespath/.local/bin \
 $dotfilespath/.local/share/applications \
-$dotfilespath/suckless
+$dotfilespath/suckless \
 $dotfilespath/.zprofile
 
 cp -vr \

@@ -11,4 +11,4 @@ fi
 
 wget -O "$file" "$url" 2> /dev/null
 
-sxiv -b $file && rm $file
+pidof sxiv >/dev/null && exit || sxiv -b $file 2>/dev/null && rm $file

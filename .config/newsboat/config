@@ -1,4 +1,5 @@
 #auto-reload yes
+max-items 300
 
 color listnormal cyan default
 color listfocus black yellow standout bold
@@ -31,9 +32,9 @@ bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
 
-macro y set browser "notify-send 'Opening in mpv' && setsid -f mpv %u" ; open-in-browser ; set browser "setsid -f nbmedia %u"
+macro y set browser "notify-send 'Opening in mpv' && setsid -f mpv --no-terminal %u" ; open-in-browser ; set browser "setsid -f nbmedia %u"
 macro i set browser "setsid -f nbmedia %u"
-macro v set browser "notify-send 'Opening in mpv' && setsid -f mpv $(formatter %u)"
+macro v set browser "notify-send 'Opening in mpv' && setsid -f mpv --no-terminal $(formatter %u)"
 macro w set browser brave
 macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" " ; open-in-browser 
 macro l set browser elinks ; open-in-browser ; set browser brave

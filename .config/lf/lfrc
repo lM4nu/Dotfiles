@@ -18,9 +18,13 @@ cmd open ${{
 cmd bulkrename $vidir
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
+
 map x delete
 map ` mark-load
 map b $setbg $f
 map R bulkrename
+map P $libreoffice --convert-to pdf "$f"
+map a $chmod -x "$f"
+map A $chmod +x "$f"
 map s toggle 
 map <c-n> push :mkdir<space>
