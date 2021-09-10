@@ -4,6 +4,9 @@ super + Return
 super + p
 	$TERMINAL -e pulsemixer
 
+super + BackSpace
+	offmenu
+
 super + shift + h
 	$TERMINAL -e htop
 
@@ -13,6 +16,9 @@ super + Up
 super + shift + p
 	keepassxc
 
+super + shift + v
+	notify-send "Opening in mpv" ; mpv "$(xclip -o)"
+
 super + m
 	$TERMINAL -e ncmpcpp
 
@@ -20,7 +26,7 @@ super + shift + m
 	$TERMINAL -e tremc
 
 super + n
-	$TERMINAL -e newsboat
+	$TERMINAL -o font.size=7.5 -e newsboat
 
 super + shift + e
 	emojis h
@@ -34,6 +40,8 @@ super + shift + d
 super + w
 	brave
 
+super + shift + w
+	brave --incognito
 super + z
 	zoom
 
@@ -84,6 +92,3 @@ super + shift + c
 
 super + r
 	qrclipboard
-
-super + shift + w
-	whatsapp-nativefier

@@ -3,7 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree' 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'

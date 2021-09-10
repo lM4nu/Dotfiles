@@ -1,0 +1,9 @@
+#!/bin/sh
+
+choice=$(printf "Power Off\nLock Screen" | dmenu -i -sb '#f00')
+
+case $choice in
+	"Power Off") poweroff;;
+	"Lock Screen") slock;;
+	*) exit ;;
+esac
