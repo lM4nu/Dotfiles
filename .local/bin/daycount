@@ -7,4 +7,4 @@ current=$(date '+%s')
 
 diff=$(echo \($current - $start\) / 86400 | bc | sed "s/-//")
 
-echo +$diff 
+echo $2 +$diff $3
