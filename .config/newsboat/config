@@ -37,5 +37,5 @@ macro i set browser "setsid -f nbmedia %u"
 macro v set browser "notify-send 'Opening in mpv' && setsid -f mpv --no-terminal $(formatter %u)"
 macro w set browser brave
 macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" " ; open-in-browser 
-macro d set browser "wget -qP ~/Downloads/ %u && notify-send \"Downloaded\" " ; 
+macro d set browser "wget -qP ~/Downloads/memes/ %u && notify-send \"Downloaded\" " ; 
 macro l set browser elinks ; open-in-browser ; set browser brave

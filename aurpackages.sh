@@ -4,4 +4,5 @@ libxft-bgra \
 brave-bin \
 vidir \
 htop-vim \
-nerd-fonts-dejavu-complete
+nerd-fonts-dejavu-complete \
+epub-thumbnailer-git

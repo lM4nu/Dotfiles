@@ -10,9 +10,6 @@ super + BackSpace
 super + shift + h
 	$TERMINAL -e htop
 
-super + Up
-	setbg ~/.local/Wallpapers/custom
-
 super + shift + p
 	keepassxc
 

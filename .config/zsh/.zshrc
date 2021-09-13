@@ -5,6 +5,9 @@ fi
 autoload -U colors && colors
 export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
 
+# Disable % eof
+unsetopt prompt_cr prompt_sp
+
 setopt autocd
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
@@ -12,6 +15,9 @@ unsetopt beep
 
 HISTSIZE=10000
 SAVEHIST=10000
+
+
+
 
 source ~/.config/.aliases
 

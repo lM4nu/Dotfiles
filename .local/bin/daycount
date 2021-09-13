@@ -1,0 +1,10 @@
+#!/bin/sh
+
+start=$(date --date="$1" '+%s')
+
+current=$(date '+%s')
+
+
+diff=$(echo \($current - $start\) / 86400 | bc | sed "s/-//")
+
+echo +$diff 
