@@ -16,8 +16,6 @@ venta=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;
 bluecompra=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;7q" | tail -n1)
 blueventa=$(grep -Eo "currency.{50}" $file | grep -Eo "[0-9]*,[0-9]*" | sed "s/,/./;8q" | tail -n1)
 
-echo $blueventa
-
 case $BLOCK_BUTTON in
 	1) notify-send \
 "💵 Oficial 💵
@@ -29,3 +27,5 @@ Venta:  \$$blueventa" ;;
 	2) update ;;
 	3) $TERMINAL -e $EDITOR "$0";;
 esac
+
+echo $blueventa
