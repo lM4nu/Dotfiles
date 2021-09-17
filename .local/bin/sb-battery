@@ -18,4 +18,5 @@ capacity=$(cat "/sys/class/power_supply/BAT0/capacity")
 
 [ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
 
-printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
+#printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
+echo $status$warn$capacity% ; unset warn

@@ -57,9 +57,10 @@ command=sb-ram
 interval=60
 signal=6
 
-[alda]
-command=battery
+[battery]
+command=sb-battery
 interval=60
+signal=7
 
 [volume]
 command=sb-audio

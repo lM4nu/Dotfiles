@@ -171,11 +171,12 @@ bar {
 }
 
 gaps inner 10
-bindsym $mod+i gaps inner current plus 5 
-bindsym $mod+Shift+i gaps inner current minus 5 
 
-bindsym $mod+o gaps outer current plus 5 
-bindsym $mod+Shift+o gaps outer current minus 5 
+bindsym $mod+mod1+i 		gaps inner current plus 5 
+bindsym $mod+mod1+Shift+i 	gaps inner current minus 5 
 
-bindsym $mod+Shift+u gaps inner current toggle 0 
-bindsym $mod+mod1+0 gaps inner current toggle 10 
+bindsym $mod+mod1+o 		gaps outer current plus 5 
+bindsym $mod+mod1+Shift+o 	gaps outer current minus 5 
+
+bindsym $mod+mod1+0 gaps inner current toggle 10
+bindsym $mod+mod1+Shift+0 gaps inner current set 10 
