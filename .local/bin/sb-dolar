@@ -2,7 +2,9 @@
 file="$HOME/.local/share/dolar"
 
 update(){
-	curl -s "https://dolarhoy.com/" > $file
+	rm $file
+	curl -s "https://dolarhoy.com/cotizaciondolaroficial" > $file
+	curl -s "https://dolarhoy.com/cotizaciondolarblue" >> $file
 }
 
 if [[ $(stat -c %y $file | cut -d' ' -f1) !=  $(date -I) ]]
@@ -10,11 +12,11 @@ then
 	update
 fi
 
-compra=$(grep -Eo "\"val\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | sed "3q" | tail -n1)
-venta=$(grep -Eo "\"val\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | sed "4q" | tail -n1)
+compra=$(grep -Eo "\"value\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | head -n1 )
+venta=$(grep -Eo "\"value\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | sed "2q" | tail -n1)
 
-bluecompra=$(grep -Eo "\"val\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | head -n1)
-blueventa=$(grep -Eo "\"val\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | sed "2q" | tail -n1)
+bluecompra=$(grep -Eo "\"value\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | sed "3q" | tail -n1)
+blueventa=$(grep -Eo "\"value\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | tail -n1)
 
 case $BLOCK_BUTTON in
 	1) notify-send \

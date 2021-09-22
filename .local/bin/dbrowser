@@ -1,0 +1,5 @@
+#!/bin/sh
+input=$(echo "" | dmenu -p "Search: " | sed "s/ /+/g")
+search=$(echo "https://duckduckgo.com/?q=$input" | sed "/=$/ d")
+$BROWSER "$search"
+

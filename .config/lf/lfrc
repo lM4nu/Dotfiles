@@ -21,7 +21,7 @@ cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map x delete
 map ` mark-load
-map b $setbg $f
+map b $setbg "$f"
 map R bulkrename
 map P $libreoffice --convert-to pdf "$f"
 map a $chmod -x "$f"

@@ -25,5 +25,5 @@ else
 	decrease $value
 fi
 
-	newline=$(echo "background_opacity: $newvalue")
+	newline="background_opacity: $newvalue"
 	sed -i "s/${line}/${newline}/g" ~/.config/alacritty/alacritty.yml
