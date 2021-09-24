@@ -5,6 +5,7 @@ update(){
 	rm $file
 	curl -s "https://dolarhoy.com/cotizaciondolaroficial" > $file
 	curl -s "https://dolarhoy.com/cotizaciondolarblue" >> $file
+	blueventa=$(grep -Eo "\"value\".{20}" $file | grep -Eo "[0-9]*\.[0-9]*" | tail -n1)
 }
 
 if [[ $(stat -c %y $file | cut -d' ' -f1) !=  $(date -I) ]]

@@ -10,8 +10,6 @@
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
 
-currenttemp=$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1)
-
 # Some very particular and terse stream manipulation. We get the maximum
 # precipitation chance and the daily high and low from the downloaded file and
 # display them with coresponding emojis.
@@ -24,6 +22,8 @@ case $BLOCK_BUTTON in
 	2) getforecast && showweather ;;
 	3) "$TERMINAL" -e $EDITOR "$0" ;;
 esac
+
+currenttemp=$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1)
 
 # The test if our forcecast is updated to the day. If it isn't download a new
 # weather report from wttr.in with the above function.

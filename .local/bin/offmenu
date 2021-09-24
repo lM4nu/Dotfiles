@@ -1,9 +1,10 @@
 #!/bin/sh
 
-choice=$(printf "Power Off\nLock Screen" | dmenu -i -sb '#f00')
+choice=$(printf "Power Off\nReboot\nLock Screen" | dmenu -i -sb '#f00')
 
 case $choice in
 	"Power Off") poweroff;;
+	"Reboot") reboot;;
 	"Lock Screen") slock;;
 	*) exit ;;
 esac

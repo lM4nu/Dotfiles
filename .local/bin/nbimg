@@ -11,4 +11,4 @@ fi
 
 wget -O "$file" "$url" 2> /dev/null
 
-pidof sxiv >/dev/null && exit || sxiv -b $file 2>/dev/null && rm $file
+pgrep -f "sxiv -b /home/m4nu/.cache/newsboat/nbimg.jpg" > /dev/null && exit || sxiv -b $file 2>/dev/null && rm $file

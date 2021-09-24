@@ -8,7 +8,7 @@ case $BLOCK_BUTTON in
 	
 esac
 
-[ $(pamixer --get-mute) = true ] && echo "  🔇  " && exit
+[ $(pamixer --get-mute) = true ] && echo "    🔇    " && exit
 
 vol="$(pamixer --get-volume)"
 
