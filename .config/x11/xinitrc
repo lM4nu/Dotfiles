@@ -7,6 +7,7 @@ unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
 clipmenud & 
+xbacklight -set 1 &
 
 /*i3blocks &*/
 /*exec i3*/

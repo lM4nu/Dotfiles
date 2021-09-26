@@ -1,4 +1,4 @@
 #!/bin/sh
 url=$(echo "$1" | sed -E "s/fanfox\.net/www\.mangatown\.com/;s/1\.html$//;s/\/v.*c/\/c/")
 
-comics-downloader -url "$url" -create-default-path=false -output ~/.cache/newsboat && zathura ~/.cache/newsboat/*pdf && rm ~/.cache/newsboat/*pdf
+comics-downloader -url "$url" -create-default-path=false -output ~/.cache/newsboat && zathura -P 1 ~/.cache/newsboat/*pdf && rm ~/.cache/newsboat/*pdf

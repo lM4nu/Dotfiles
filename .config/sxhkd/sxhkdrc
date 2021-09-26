@@ -39,6 +39,7 @@ super + w
 
 super + shift + w
 	brave --incognito
+
 super + z
 	zoom
 
