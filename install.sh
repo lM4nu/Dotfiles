@@ -1,4 +1,6 @@
+#!/bin/sh
 pacman -S \
+zsh \
 base-devel \
 alacritty \
 dunst \
@@ -11,6 +13,8 @@ ttf-dejavu \
 ttf-nerd-fonts-symbols \
 keepassxc \
 newsboat \
+zathura \
+zathura-pdf-mupdf \
 ncmpcpp \
 mpd \
 mpc \
@@ -27,8 +31,6 @@ xwallpaper \
 bc \
 clipmenu \
 bat \
-zathura \
-zathura-pdf-mupdf \
 ffmpegthumbnailer \
 ueberzug \
 imagemagick \

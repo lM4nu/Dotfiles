@@ -1,4 +1,5 @@
-yay -S \
+#!/bin/sh
+paru -S \
 lf-bin \
 libxft-bgra \
 brave-bin \

@@ -27,4 +27,5 @@ map P $libreoffice --convert-to pdf "$f"
 map a $chmod -x "$f"
 map A $chmod +x "$f"
 map s toggle 
+map V push :!nvim<space>
 map <c-n> push :mkdir<space>

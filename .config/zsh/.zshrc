@@ -15,10 +15,6 @@ unsetopt beep
 
 HISTSIZE=10000
 SAVEHIST=10000
-
-
-
-
 source ~/.config/.aliases
 
 LFCD="/home/m4nu/.config/lf/lfcd.sh"
@@ -44,5 +40,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
+#edit command in vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line

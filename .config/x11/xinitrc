@@ -1,13 +1,14 @@
+xbacklight -set 1 &
 xrdb ~/.config/x11/Xresources &
 setxkbmap -option caps:escape &
-setbg ~/.local/Wallpapers/custom &
+setbg ~/.local/wallpapers &
 picom &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
 clipmenud & 
-xbacklight -set 1 &
+mpd &
 
 /*i3blocks &*/
 /*exec i3*/

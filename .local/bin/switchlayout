@@ -5,7 +5,6 @@ layout="$(setxkbmap -print -verbose 10 | grep layout | sed "s/^layout:\s*//")"
 if [ $layout == 'us' ]
 then
 	setxkbmap es && notify-send -t 900 "⌨️ ES 🇪🇸 " 
-
 else
 	setxkbmap us && notify-send -t 900 "⌨️ US 🇬🇧 "
 fi
