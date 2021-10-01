@@ -9,6 +9,6 @@ else
 	url="$1"
 fi
 
-wget -O "$file" "$url" 2> /dev/null
+wget -O "$file" "$url" 2> /dev/null || ( notify-send "Error" && rm $file && exit )
 
 pgrep -f "sxiv -b /home/m4nu/.cache/newsboat/nbimg.jpg" > /dev/null && exit || sxiv -b $file 2>/dev/null && rm $file

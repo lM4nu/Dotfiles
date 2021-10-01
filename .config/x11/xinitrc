@@ -8,7 +8,7 @@ unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
 clipmenud & 
-mpd &
+pidof mpd || mpd &
 
 /*i3blocks &*/
 /*exec i3*/

@@ -1,7 +1,7 @@
 #!/bin/sh
 if [[ "$1" =~ .*\.gif || "$1" =~ ^.*v\.redd.*$  ]]
 then
-	notify-send "Opening in mpv" && mpv --no-terminal "$1" && exit
+	nbvid "$1"
 fi
 
 if [[ "$1" =~ ^.*gallery.*$ ]]
