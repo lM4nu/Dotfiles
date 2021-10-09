@@ -1,0 +1,5 @@
+#!/bin/sh
+vidurl=$(xclip -selection clipboard -o)
+
+notify-send "Playing 
+$(youtube-dl -e "$vidurl" || yt-dlp -e "$vidurl")" ; mpv "$vidurl" || mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp "$vidurl" || notify-send "Error"

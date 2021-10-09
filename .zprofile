@@ -1,4 +1,3 @@
-
 export PATH=$PATH:/home/m4nu/.local/bin
 export EDITOR=nvim
 export TERMINAL=alacritty

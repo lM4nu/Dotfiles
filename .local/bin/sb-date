@@ -1,13 +1,12 @@
 #!/bin/sh
 date=$(date '+%d/%m %a %H:%M')
-hour=$(date '+%I')
 
 case $BLOCK_BUTTON in 
 	1) notify-send "$(cal)";;
 	3) $TERMINAL -e $EDITOR $0;;
 esac
 
-case $hour in
+case "$(date '+%I')" in
 	01) clock="🕐" ;;
 	02) clock="🕑" ;;
 	03) clock="🕒" ;;

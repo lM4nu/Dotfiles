@@ -14,7 +14,7 @@ super + shift + p
 	keepassxc
 
 super + shift + v
-	notify-send "Opening in mpv" ; mpv "$(xclip -selection clipboard -o)" || notify-send "Error"
+	videoclipboard
 
 super + m
 	$TERMINAL -e ncmpcpp
