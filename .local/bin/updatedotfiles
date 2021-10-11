@@ -6,6 +6,7 @@ configpath=~/.config
 rm -vrf \
 $dotfilespath/.config/* \
 $dotfilespath/.config/.aliases \
+$dotfilespath/.config/mimeapps.list \
 $dotfilespath/.local/bin \
 $dotfilespath/.local/share/applications \
 $dotfilespath/suckless \
@@ -31,6 +32,7 @@ $configpath/transmission-daemon \
 $configpath/x11/ \
 $configpath/zsh \
 $configpath/.aliases \
+$configpath/mimeapps.list \
 $dotfilespath/.config/
 
 cp -vr ~/.local/bin $dotfilespath/.local

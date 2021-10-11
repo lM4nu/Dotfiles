@@ -5,7 +5,6 @@ case $BLOCK_BUTTON in
 	3) $TERMINAL -e $EDITOR $0;;
 	4) pamixer -i 5;;
 	5) pamixer -d 5;;
-	
 esac
 
 [ $(pamixer --get-mute) = true ] && echo "    🔇    " && exit
