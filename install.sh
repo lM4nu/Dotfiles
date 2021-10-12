@@ -10,6 +10,7 @@ acpilight \
 noto-fonts-emoji \
 noto-fonts \
 ttf-dejavu \
+ttf-font-awesome \
 ttf-nerd-fonts-symbols \
 keepassxc \
 newsboat \

@@ -11,7 +11,7 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans:size=10:antialias=true", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "FontAwesome:pixelsize=14"};
+static const char *fonts[]          = { "DejaVu Sans:size=10:antialias=true", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "Font Awesome 5 Brands Regular:style=Regular:pixelsize=16"};
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_black[]       = "#101010";
 static const char col_red[]         = "#C00000";
