@@ -8,6 +8,7 @@ alias p='sudo pacman'
 alias pa='paru'
 alias sctl='sudo systemctl'
 alias lf='lfcd'
+alias rsync='rsync --progress'
 
 alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias horario='cat ~/Documents/UTN/horarios'

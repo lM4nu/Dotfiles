@@ -9,8 +9,8 @@ $dotfilespath/.config/.aliases \
 $dotfilespath/.config/mimeapps.list \
 $dotfilespath/.local/bin \
 $dotfilespath/.local/share/applications \
-$dotfilespath/suckless \
 $dotfilespath/.zprofile
+#$dotfilespath/suckless \
 
 cp -vr \
 $configpath/alacritty/ \
@@ -39,4 +39,5 @@ cp -vr ~/.local/bin $dotfilespath/.local
 
 cp -vr ~/.local/share/applications $dotfilespath/.local/share
 
-cp -vr ~/Downloads/suckless ~/.zprofile $dotfilespath
+cp -vr ~/.zprofile $dotfilespath
+#cp -vr ~/Downloads/suckless ~/.zprofile $dotfilespath

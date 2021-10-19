@@ -1,9 +1,6 @@
 super + Return
 	$TERMINAL
 
-super + p
-	$TERMINAL -e pulsemixer
-
 super + BackSpace
 	offmenu
 
