@@ -71,11 +71,11 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		batorcat --language=cpp "$1"
 		;;
 	*.cbr)
-		unrar p -inul "$1" "$(unrar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
+		rar p -inul "$1" "$(rar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.cbz)
-		unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | head -n1 | sed -E "s/\s+/;/g" | cut -d';' -f5)" > "${CACHE}.jpg"
+		unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | grep "\.jpg\|\.png\|\.jpeg" | head -n1 | sed -E "s/^\s+[0-9]+\s+.{19}//" )" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*)
