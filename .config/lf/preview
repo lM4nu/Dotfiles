@@ -71,7 +71,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		batorcat --language=cpp "$1"
 		;;
 	*.cbr)
-		rar p -inul "$1" "$(rar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
+		unrar p -inul "$1" "$(unrar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.cbz)

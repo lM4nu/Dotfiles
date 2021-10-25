@@ -38,5 +38,5 @@ macro v set browser "setsid -f nbvid %u"
 macro w set browser "setsid -f nbbrowser %u"
 macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" " 
 macro d set browser "wget -qP ~/Downloads/memes/ %u && notify-send \"Downloaded\" " ; 
-macro m set browser "setsid -f nbmanga %u" ;  open-in-browser ; set browser "setsid -f nbmedia %u"
+macro m set browser "setsid -f nbmanga %u" ;  open-in-browser-and-mark-read ; set browser "setsid -f nbmedia %u"
 macro l set browser elinks ; open-in-browser ; set browser "setsid -f nbmedia %u"

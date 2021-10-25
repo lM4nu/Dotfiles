@@ -7,9 +7,10 @@ cmd open ${{
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura "$fx" ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
-	image/*) sxiv "$f" * ;;
 	audio/*) mpv "$f" ;;
 	video/*) mpv "$f" ;;
+	image/gif) mpv "$f" ;;
+	image/*) sxiv "$f" * ;;
 	application/vnd.openxmlformats-officedocument*) setsid -f libreoffice "$f" ;;
         *) for f in "$fx"; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac
@@ -24,6 +25,7 @@ map ` mark-load
 map b $setbg "$f"
 map R bulkrename
 map P $libreoffice --convert-to pdf "$f"
+map Y $cat "$f" | xclip -sel c -t $(file --mime-type -b "$f")
 map a $chmod -x "$f"
 map A $chmod +x "$f"
 map s toggle 

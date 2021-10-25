@@ -11,6 +11,7 @@ alias lf='lfcd'
 alias rsync='rsync --progress'
 
 alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias yta='youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias horario='cat ~/Documents/UTN/horarios'
 alias pdfconvert='libreoffice --convert-to pdf'
 alias xmr='curl -s rate.sx/xmr'

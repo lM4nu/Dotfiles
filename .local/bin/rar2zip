@@ -1,0 +1,12 @@
+#!/bin/sh
+mkdir ~/.cache/rar2zip/
+
+for i in "$@"; do
+	dirname=$(echo "$i" | sed -E "s/.{4}$//")
+	mkdir ~/.cache/rar2zip/"$dirname"
+	unrar e "$i" "$HOME/.cache/rar2zip/$dirname/"
+	zip -j ./"$dirname.zip" "$HOME/.cache/rar2zip/$dirname"/*
+	rm -r "$HOME/.cache/rar2zip/$dirname"
+done
+
+rm -r "$HOME/.cache/rar2zip"
