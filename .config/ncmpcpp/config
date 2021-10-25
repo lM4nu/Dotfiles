@@ -586,7 +586,7 @@ main_window_color = green
 #
 progressbar_color = red:b
 #
-progressbar_elapsed_color = magenta:b
+progressbar_elapsed_color = blue:b
 #
 #statusbar_color = default
 #

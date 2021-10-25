@@ -2,12 +2,14 @@
 max-items 300
 
 color listnormal cyan default
+color listnormal_unread blue default bold
 color listfocus black yellow standout bold
-color listnormal_unread blue default
 color listfocus_unread yellow default bold
 color info red black bold
 color article white default bold
 
+highlight article "https?://[^ ]+" green default bold
+highlight article "\\[image\\ [0-9]+\\]" green default bold
 highlight feedlist "---.*---" yellow default bold
 highlight feedlist ".*0/0.." default default invis
 
