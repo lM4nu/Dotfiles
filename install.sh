@@ -2,6 +2,7 @@
 pacman -S \
 zsh \
 base-devel \
+git \
 alacritty \
 dunst \
 wget \
@@ -41,9 +42,10 @@ catdoc \
 docx2txt \
 lxappearance \
 kvantum-qt5 \
-arc-gtk-theme \
 arc-icon-theme \
 mesa \
 xf86-video-intel \
 vulkan-intel \
 libva-intel-driver
+
+git clone "https://aur.archlinux.org/paru.git"

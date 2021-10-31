@@ -1,3 +1,3 @@
 #!/bin/sh
 notify-send "Opening in mpv"
-mpv --no-terminal "$1" 2> /dev/null || notify-send "Error"
+mpv --no-terminal "$1" 2> /dev/null || mpv --no-terminal --script-opts=ytdl_hook-ytdl_path=yt-dlp "$1" 2> /dev/null || notify-send "Error"

@@ -1,14 +1,14 @@
 #!/bin/sh
 file="$(basename "$1")"
-files=$(ls -b . | grep "\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.JPG$\|\.PNG$\|\.JPEG$\|\.GIF")
+files=$(ls . | grep "\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.JPG$\|\.PNG$\|\.JPEG$\|\.GIF$")
 counter=0
 
 while read i; do
 	counter=$((counter + 1))
 	if [ "$i" = "$file" ]; then
-		pos=$counter
 		break
 	fi
 done <<< $files
 
-echo $files | xargs sxiv -n $pos
+#echo $files | xargs sxiv -n $counter
+while read i; do echo "$i"; done <<< $files | sxiv -i -n $counter

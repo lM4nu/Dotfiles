@@ -8,7 +8,7 @@ transmission-remote -l | grep % |
 	s/.*Idle.*/B 🕰️/;
 	s/.*Uploading.*/L ⬆️/;
 	s/.*%.*/M ⬇️/" |
-		sort -h | uniq -c | awk '{print $3 $1}' | paste -sd ' ' -
+		sort -h | uniq -c | awk '{print $3 $1}' | paste -sd ' ' - | sed "s/^$/✅0/"
 
 case $BLOCK_BUTTON in
 	1) notify-send "$(transmission-remote -l | tail -n +2 | head -n -1 | sed -E "s/^\s*//;s/\s{2,}/;/g" | cut -d';' -f2,9 | sed "s/;/ /")" ;;

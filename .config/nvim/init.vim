@@ -29,6 +29,8 @@ filetype plugin on
 set number rnu
 set splitright splitbelow
 
+command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+
 autocmd BufEnter *.js colorscheme gruvbox | set background=dark
 autocmd BufEnter *.html colorscheme gruvbox | set background=dark
 autocmd BufEnter *.css colorscheme gruvbox | set background=dark

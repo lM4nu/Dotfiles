@@ -19,6 +19,6 @@ counter=0
 while read p; do
 	wget -O $cachedir/$counter.jpg "$p" 2> /dev/null
 	counter=$((counter + 1))
-done <<< $(echo $links | tr ' ' \\n)
+done <<< $links
 
 sxiv $cachedir/*jpg && rm $cachedir/*

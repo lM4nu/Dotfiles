@@ -16,6 +16,7 @@ image/jpg=sxiv.desktop
 image/png=sxiv.desktop
 
 application/pdf=org.pwmt.zathura.desktop
+application/zip=org.pwmt.zathura.desktop
 
 [Removed Applications]
 text/plain=code-oss.dekstop

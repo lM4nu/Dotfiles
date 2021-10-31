@@ -75,7 +75,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.cbz)
-		unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | grep "\.jpg\|\.png\|\.jpeg" | head -n1 | sed -E "s/^\s+[0-9]+\s+.{19}//" )" > "${CACHE}.jpg"
+		unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | grep "\.jpg\|\.png\|\.jpeg" | head -n1 | sed -E "s/^\s*[0-9]+\s+.{19}//" )" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*)

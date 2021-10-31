@@ -1,5 +1,5 @@
 #!/bin/sh
 
-ip link set wlp0s21f0u7i2 down
+sudo ip link set wlp0s21f0u7i2 down
 sleep 3
-ip link set wlp0s21f0u7i2 up
+sudo ip link set wlp0s21f0u7i2 up

@@ -6,7 +6,6 @@ case $BLOCK_BUTTON in
 	5) xbacklight -dec 5 ;;
 esac
 
-
 case "$(cat "/sys/class/power_supply/BAT0/status")" in
 	"Full") status="⚡" ;;
 	"Discharging") status="🔋" ;;
@@ -14,6 +13,7 @@ case "$(cat "/sys/class/power_supply/BAT0/status")" in
 	"Not charging") status="🛑" ;;
 	"Unknown") status="♻️" ;;
 esac
+
 capacity=$(cat "/sys/class/power_supply/BAT0/capacity")
 
 [ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"

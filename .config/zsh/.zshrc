@@ -21,6 +21,8 @@ LFCD="/home/m4nu/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
     source "$LFCD"
 fi
+bindkey -s '^o' 'lfcd\n'  # zsh
+
 
 # Basic auto/tab complete:
 autoload -U compinit
