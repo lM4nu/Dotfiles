@@ -2,9 +2,7 @@
 if [[ "$1" =~ .*\.gif || "$1" =~ ^.*v\.redd.*$  ]]
 then
 	nbvid "$1"
-fi
-
-if [[ "$1" =~ ^.*gallery.*$ ]]
+elif [[ "$1" =~ ^.*gallery.*$ ]]
 then
 	rdditgal "$1"
 else

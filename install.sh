@@ -43,6 +43,7 @@ docx2txt \
 lxappearance \
 kvantum-qt5 \
 arc-icon-theme \
+materia-gtk-theme \
 mesa \
 xf86-video-intel \
 vulkan-intel \
