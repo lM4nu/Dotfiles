@@ -94,6 +94,8 @@ autocmd BufEnter .aliases set filetype=bash
 
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
+autocmd BufWritePost dunstrc !pkill dunst && setsid -f dunst
+
 "Snippets
 autocmd FileType java inoremap psvm public static void main(String[] args) { <Enter><Enter> }<Esc>ki
 		

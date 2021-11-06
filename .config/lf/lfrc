@@ -8,13 +8,23 @@ cmd open ${{
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
-	audio/*) mpv "$f" ;;
-	video/*) mpv "$f" ;;
-	image/gif) mpv "$f" ;;
+	audio/*) setsid -f mpv --no-terminal "$f"  ;;
+	video/*) setsid -f mpv --no-terminal "$f"  ;;
+	image/gif) setsid -f mpv --no-terminal "$f" ;;
 	image/*) lfsxiv "$f" ;;
 	application/vnd.openxmlformats-officedocument*) setsid -f libreoffice "$f" ;;
         *) for f in $fx; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac
+}}
+
+cmd chmod ${{
+	if [[ "$1" = "minus" ]]; then
+	chmod -x $fx
+	else
+	chmod +x $fx
+	fi
+
+	lf -remote 'send reload'
 }}
 
 cmd bulkrename $vidir
@@ -24,10 +34,10 @@ map x delete
 map ` mark-load
 map b $setbg "$f"
 map R bulkrename
-map P $libreoffice --convert-to pdf "$f"
+map P $libreoffice --convert-to pdf $fx
 map Y $cat "$f" | xclip -sel c -t $(file --mime-type -b "$f")
-map a $chmod -x $fx
-map A $chmod +x $fx
+map a chmod minus 
+map A chmod plus
 map s toggle 
 map V push :!nvim<space>
 map <c-n> push :mkdir<space>

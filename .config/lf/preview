@@ -24,7 +24,8 @@ CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(
 
 case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
-		ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+		[ ! -f "${CACHE}.jpg" ] && \
+			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.tgz|*.tar.gz) tar tzf "$1" ;;
@@ -46,22 +47,22 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		;;
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && \
-		pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
+			pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.epub)
 		[ ! -f "$CACHE" ] && \
-		epub-thumbnailer "$1" "$CACHE" 1024
+			epub-thumbnailer "$1" "$CACHE" 1024
 		image "$CACHE" "$2" "$3" "$4" "$5"
 		;;
 	*.djvu)
-		[ ! -f "$CACHE" ] && \
-		ddjvu -page=1 -format=tiff "$1" "$CACHE"
-		image "$CACHE" "$2" "$3" "$4" "$5"
+		[ ! -f "${CACHE}.jpg" ] && \
+			ddjvu -page=1 -format=tiff "$1" "${CACHE}.jpg"
+		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.avi|*.mp4|*.wmv|*.dat|*.3gp|*.ogv|*.mkv|*.mpg|*.mpeg|*.vob|*.fl[icv]|*.m2v|*.mov|*.webm|*.ts|*.mts|*.m4v|*.r[am]|*.qt|*.divx)
 		[ ! -f "${CACHE}.jpg" ] && \
-		ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
+			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif)
@@ -71,11 +72,13 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		batorcat --language=cpp "$1"
 		;;
 	*.cbr)
-		unrar p -inul "$1" "$(unrar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
+		[ ! -f "${CACHE}.jpg" ] && \
+			unrar p -inul "$1" "$(unrar vb "$1" | sort | head -n1)" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.cbz)
-		unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | grep "\.jpg\|\.png\|\.jpeg" | head -n1 | sed -E "s/^\s*[0-9]+\s+.{19}//" )" > "${CACHE}.jpg"
+		[ ! -f "${CACHE}.jpg" ] && \
+			unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | head -n-2 | sed -E "/\s*0\s+.*\/$/d;s/\s*[0-9]+\s+.{19}//" | sort | head -n1)" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*)

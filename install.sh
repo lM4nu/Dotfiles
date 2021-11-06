@@ -31,6 +31,7 @@ xclip \
 xsel \
 xwallpaper \
 bc \
+lm_sensors \
 clipmenu \
 bat \
 ffmpegthumbnailer \
@@ -50,3 +51,4 @@ vulkan-intel \
 libva-intel-driver
 
 git clone "https://aur.archlinux.org/paru.git"
+chsh -s /bin/zsh
