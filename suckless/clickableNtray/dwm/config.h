@@ -35,14 +35,17 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
-const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
-const char *spcmd3[] = {"alacritty", "--class", "splf"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "lf", NULL };
+//const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
+//const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
+//const char *spcmd3[] = {"alacritty", "--class", "spaudio"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "pulsemixer", NULL };
+const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "90x28", "-e", "bc", "-ql", NULL };
+const char *spcmd2[] = {"st", "-n", "spterm", "-g", "90x28", NULL };
+const char *spcmd3[] = {"st", "-n", "spaudio", "-g", "90x28", "-e", "pulsemixer", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spcalc",      spcmd1},
 	{"spterm",      spcmd2},
-	{"splf",    	spcmd3},
+	{"spaudio",    	spcmd3},
 };
 
 /* tagging */
@@ -57,12 +60,12 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ NULL,     "zoom",    NULL,           1 << 0,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          0,           0,        -1 },
+	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty",NULL,    NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ NULL,	    "spcalc",	NULL,	      SPTAG(0),   1, 	      1 , 	   0, 	     -1 },
 	{ NULL,	    "spterm",	NULL,	      SPTAG(1),   1, 	      1 , 	   0, 	     -1 },
-	{ NULL,	    "splf",	NULL,	      SPTAG(2),   1, 	      1 , 	   0, 	     -1 },
+	{ NULL,	    "spaudio",	NULL,	      SPTAG(2),   1, 	      1 , 	   0, 	     -1 },
 };
 
 /* layout(s) */
@@ -163,6 +166,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,        		XK_c,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,        		XK_v,  	   togglescratch,  {.ui = 1 } },
+	{ MODKEY,        		XK_p,  	   togglescratch,  {.ui = 2 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
