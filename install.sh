@@ -57,13 +57,16 @@ cd paru
 makepkg -si
 cd ..
 
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+./aurpackages.sh
 
 sudo make -C suckless/dwm/ install
 sudo make -C suckless/dwmblocks/ install
 sudo make -C suckless/slock/ install
 sudo make -C suckless/dmenu/ install
 
-./aurpackages.sh
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 chsh -s /bin/zsh
+
+cp .zprofile ~
+cp -r .config .local ~
