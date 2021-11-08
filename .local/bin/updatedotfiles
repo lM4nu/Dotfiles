@@ -16,6 +16,8 @@ cp -vr \
 $configpath/alacritty/ \
 $configpath/dunst/ \
 $configpath/fontconfig/ \
+$configpath/gtk-2.0/ \
+$configpath/gtk-3.0/ \
 $configpath/i3/ \
 $configpath/i3blocks/ \
 $configpath/lf/ \

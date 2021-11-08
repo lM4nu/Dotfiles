@@ -35,12 +35,12 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-//const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
-//const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
-//const char *spcmd3[] = {"alacritty", "--class", "spaudio"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "pulsemixer", NULL };
-const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "100x28", "-e", "bc", "-ql", NULL };
-const char *spcmd2[] = {"st", "-n", "spterm", "-g", "100x28", NULL };
-const char *spcmd3[] = {"st", "-n", "spaudio", "-g", "100x28", "-e", "pulsemixer", NULL };
+const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
+const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
+const char *spcmd3[] = {"alacritty", "--class", "spaudio"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "pulsemixer", NULL };
+//const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "100x28", "-e", "bc", "-ql", NULL };
+//const char *spcmd2[] = {"st", "-n", "spterm", "-g", "100x28", NULL };
+//const char *spcmd3[] = {"st", "-n", "spaudio", "-g", "100x28", "-e", "pulsemixer", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spcalc",      spcmd1},

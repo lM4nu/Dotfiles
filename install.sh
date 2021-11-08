@@ -1,5 +1,7 @@
 #!/bin/sh
-pacman -S \
+sudo pacman -Syu
+
+sudo pacman -S \
 zsh \
 base-devel \
 git \
@@ -51,4 +53,17 @@ vulkan-intel \
 libva-intel-driver
 
 git clone "https://aur.archlinux.org/paru.git"
+cd paru
+makepkg -si
+cd ..
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+sudo make -C suckless/dwm/ install
+sudo make -C suckless/dwmblocks/ install
+sudo make -C suckless/slock/ install
+sudo make -C suckless/dmenu/ install
+
+./aurpackages.sh
+
 chsh -s /bin/zsh
