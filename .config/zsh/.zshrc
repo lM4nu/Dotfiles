@@ -1,5 +1,5 @@
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx "XDG_CONFIG_HOME"/x11/xinitrc
+  exec startx "${XDG_CONFIG_HOME}"/x11/xinitrc
 fi
 
 autoload -U colors && colors
@@ -17,7 +17,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 source ~/.config/.aliases
 
-LFCD="/home/m4nu/.config/lf/lfcd.sh"
+LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
     source "$LFCD"
 fi

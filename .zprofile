@@ -1,4 +1,4 @@
-export PATH=$PATH:/home/m4nu/.local/bin
+export PATH=$PATH:$HOME/.local/bin
 export EDITOR=nvim
 export TERMINAL=alacritty
 export BROWSER=brave
