@@ -90,7 +90,9 @@ autocmd BufWritePost sxhkdrc !pkill -10 sxhkd
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
-autocmd BufEnter .aliases set filetype=bash
+autocmd BufEnter .aliases set filetype=sh
+
+autocmd BufEnter icons set filetype=sh
 
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
