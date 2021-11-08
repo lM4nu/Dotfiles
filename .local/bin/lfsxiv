@@ -1,6 +1,6 @@
 #!/bin/sh
 file="$(basename "$1")"
-files=$(ls . | grep "\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.JPG$\|\.PNG$\|\.JPEG$\|\.GIF$")
+files=$(ls . | grep "\.jpg$\|\.png$\|\.jpeg$\|\.webp\|\.gif$\|\.JPG$\|\.PNG$\|\.JPEG$\|\.WEBP\|\.GIF$")
 counter=0
 
 while read i; do

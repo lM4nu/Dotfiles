@@ -3,11 +3,11 @@
 !*.background:   #1a1a1a
 *.background:   #0c0c0c
 *.cursorColor:  #FF00FF
-*.alpha: 0.8
+*.alpha: 0.9
 
 !black
 *.color0:       #1d1f21
-*.color8:       #969896
+*.color8:       #1d1f21
 
 ! red
 *.color1:       #EE0000

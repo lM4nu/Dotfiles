@@ -9,7 +9,7 @@ x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 
 application/x-bittorrent=torrent.desktop
 
-text/plain=nvim.dekstop
+text/plain=editor.desktop
 
 image/jpeg=sxiv.desktop
 image/jpg=sxiv.desktop

@@ -1,17 +1,17 @@
 set ifs "\n"
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:cmark:mid3*:mutagen*:pygmentize:pytube:unidecode:moggsplit:tqdm:spotdl:yt-dlp"
+set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:cmark:mid3*:mutagen*:pygmentize:pytube:unidecode:moggsplit:tqdm:spotdl:yt-dlp:doesitcache"
 set icons
 cmd open ${{
     case $(file --mime-type "$f" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
-	audio/*) setsid -f mpv --no-terminal "$f"  ;;
-	video/*) setsid -f mpv --no-terminal "$f"  ;;
+	audio/*) mpc searchplay Title "$(exiftool -title -b "$f")" || mpc add "$(basename $f)" && mpc searchplay Title "$(exiftool -title -b "$f")" ;;
+	video/*) setsid -f mpv --no-terminal "$f" ;;
 	image/gif) setsid -f mpv --no-terminal "$f" ;;
-	image/*) lfsxiv "$f" ;;
+	image/*) lfsxiv "$f" || sxiv "$f" ;;
 	application/vnd.openxmlformats-officedocument*) setsid -f libreoffice "$f" ;;
         *) for f in $fx; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac

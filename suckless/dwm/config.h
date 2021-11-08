@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -38,9 +38,9 @@ typedef struct {
 //const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
 //const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
 //const char *spcmd3[] = {"alacritty", "--class", "spaudio"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "pulsemixer", NULL };
-const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "90x28", "-e", "bc", "-ql", NULL };
-const char *spcmd2[] = {"st", "-n", "spterm", "-g", "90x28", NULL };
-const char *spcmd3[] = {"st", "-n", "spaudio", "-g", "90x28", "-e", "pulsemixer", NULL };
+const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "100x28", "-e", "bc", "-ql", NULL };
+const char *spcmd2[] = {"st", "-n", "spterm", "-g", "100x28", NULL };
+const char *spcmd3[] = {"st", "-n", "spaudio", "-g", "100x28", "-e", "pulsemixer", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spcalc",      spcmd1},
