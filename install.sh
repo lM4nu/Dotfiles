@@ -59,10 +59,10 @@ cd ..
 
 ./aurpackages.sh
 
-sudo make -C suckless/dwm/ install
-sudo make -C suckless/dwmblocks/ install
-sudo make -C suckless/slock/ install
-sudo make -C suckless/dmenu/ install
+sudo make -C suckless/dwm install
+sudo make -C suckless/dwmblocks install
+sudo make -C suckless/slock install
+sudo make -C suckless/dmenu install
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
