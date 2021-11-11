@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cbcontent=$(xclip -selection clipboard -o)
-tempfile="${XDG_DATA_HOME:-$HOME/.local/share}/qrtemp.png"
+tempfile="${XDG_CACHE_HOME:-$HOME/.cache}/qrtemp.png"
 
 qrencode "$cbcontent" -o "$tempfile"
 sxiv -bfz 800 "$tempfile" && rm "$tempfile"

@@ -1,6 +1,6 @@
-dwm-1
 lyrics
 *.log
+*.o
 mpdstate
 mpd.pid
 mpd.db

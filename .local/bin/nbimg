@@ -2,7 +2,7 @@
 
 file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
 
-if [[ "$1" =~ https://imgur.com/.* ]]
+if [[ "$1" =~ https?://imgur.com/.* ]]
 then
 	url=$(echo $1.jpg | sed "s/\/i/\/i\.i/")
 else
