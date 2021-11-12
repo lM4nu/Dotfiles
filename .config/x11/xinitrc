@@ -10,6 +10,7 @@ touchpad &
 sxhkd &
 clipmenud & 
 pidof mpd || mpd &
+blueman-applet &
 nm-applet &
 
 /*i3blocks &*/

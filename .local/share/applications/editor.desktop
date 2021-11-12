@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Editor
-Exec=/usr//bin/alacritty -e nvim %f
+Exec=/usr/bin/alacritty -e nvim %f
