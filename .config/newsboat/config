@@ -1,5 +1,5 @@
 #auto-reload yes
-max-items 300
+max-items 900
 
 color listnormal cyan default
 color listnormal_unread blue default bold
@@ -38,6 +38,7 @@ macro y set browser "setsid -f nbvid %u" ; open-in-browser-and-mark-read ; up ; 
 macro i set browser "setsid -f nbmedia %u"
 macro v set browser "setsid -f nbvid %u"
 macro w set browser "setsid -f nbbrowser %u"
+macro W set browser "setsid -f nbbrowser %u --incognito"
 macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" "
 macro d set browser "wget -qP ~/Downloads/memes/ %u && notify-send \"Downloaded\" "
 macro m set browser "setsid -f nbmanga %u" ;  open-in-browser-and-mark-read ; up ; set browser "setsid -f nbmedia %u"

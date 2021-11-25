@@ -19,6 +19,9 @@ super + m
 super + shift + m
 	$TERMINAL -e tremc
 
+super + alt + m
+	td-toggle
+
 super + n
 	$TERMINAL -o font.size=7.5 -e newsboat
 
@@ -36,6 +39,7 @@ super + w
 
 super + shift + w
 	brave --incognito
+
 super + shift + b
 	bt-toggle
 
@@ -78,7 +82,7 @@ super + x
 	maim | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + shift + x
-	maim -s | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+	maim -us | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + F3
 	togglemouse
@@ -91,3 +95,7 @@ super + shift + c
 
 super + r
 	qrclipboard
+
+super + shift + r
+	qrtoclipboard
+

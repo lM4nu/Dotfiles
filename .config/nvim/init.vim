@@ -94,6 +94,8 @@ autocmd BufEnter .aliases set filetype=sh
 
 autocmd BufEnter icons set filetype=sh
 
+autocmd BufEnter mpv.conf set filetype=conf
+
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
 autocmd BufWritePost dunstrc !pkill dunst && setsid -f dunst

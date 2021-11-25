@@ -5,4 +5,4 @@
 # TR_TORRENT_HASH
 # TR_TORRENT_ID
 # TR_TORRENT_NAME
-notify-send "$TR_TORRENT_NAME Finished Download" && pkill -RTMIN+2 dwmblocks
+notify-send "✅ $TR_TORRENT_NAME Finished Download" && pkill -RTMIN+2 dwmblocks

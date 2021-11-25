@@ -9,7 +9,6 @@ unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
 clipmenud & 
-pidof mpd || mpd &
 blueman-applet &
 nm-applet &
 

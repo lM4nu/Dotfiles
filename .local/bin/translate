@@ -5,5 +5,5 @@ to=$(echo $1 | cut -d'-' -f2)
 
 search=$(echo $2 | sed "s/ /%20/g")
 
-curl -s "https://simplytranslate.org/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//" || \
-	curl -s "https://translate.metalune.xyz/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//"
+curl -s "https://translate.metalune.xyz/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//" ||
+	curl -s "https://simplytranslate.org/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//"

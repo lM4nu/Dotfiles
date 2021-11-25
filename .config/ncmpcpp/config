@@ -1,9 +1,3 @@
-##############################################################
-## This is an example configuration file. Copy it to        ##
-## $XDG_CONFIG_HOME/ncmpcpp/config or $HOME/.ncmpcpp/config ##
-## and set up your preferences.                             ##
-##############################################################
-#
 ##### directories ######
 ##
 ## Directory for storing ncmpcpp related files.  Changing it is useful if you
@@ -252,7 +246,7 @@ current_item_prefix = $(default)$r
 #
 #current_item_inactive_column_suffix = $/r$(end)
 #
-#now_playing_prefix = $b
+now_playing_prefix = $b
 #
 #now_playing_suffix = $/b
 #
@@ -315,7 +309,7 @@ current_item_prefix = $(default)$r
 ##
 #
 #song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
-song_columns_list_format = (20)[]{a} (30)[yellow]{t|f:Title} (20)[cyan]{b} (7f)[blue]{lr}
+song_columns_list_format = (20)[]{a} (30)[yellow]{t|f:Title} (40f)[cyan]{b} (7f)[blue]{lr}
 #
 ##### various settings #####
 #

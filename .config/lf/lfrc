@@ -8,7 +8,12 @@ cmd open ${{
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
-	audio/*) mpc searchplay Title "$(exiftool -title -b "$f")" || mpc add "$(basename $f)" && mpc searchplay Title "$(exiftool -title -b "$f")" || setsid -f mpv --no-terminal "$f" ;;
+	audio/*) 
+artist="$(exiftool "$f" | grep -E "Artist\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Artist -b "$f" 2> /dev/null || echo null)"
+title="$(exiftool "$f" | grep -E "Title\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Title -b "$f" 2> /dev/null || echo null)"
+
+mpc searchplay Artist "$artist" Title "$title" > /dev/null 2>&1 || mpc add "$(echo "$f" | sed "s/.*Music\\///")" > /dev/null 2>&1 && mpc searchplay Artist "$artist" Title "$title" > /dev/null 2>&1 || setsid -f mpv --player-operation-mode=pseudo-gui "$f"
+	;;
 	video/*) setsid -f mpv --no-terminal "$f" ;;
 	image/gif) setsid -f mpv --no-terminal "$f" ;;
 	image/*) lfsxiv "$f" || sxiv "$f" ;;

@@ -1,2 +1,2 @@
 #!/bin/sh
-"$BROWSER" "$1" > /dev/null 2>&1
+runuser -u m4nu -- "$BROWSER" "$@" > /dev/null 2>&1 || "$BROWSER" "$@" > /dev/null 2>&1

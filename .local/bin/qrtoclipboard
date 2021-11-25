@@ -1,0 +1,4 @@
+#!/bin/sh
+
+notify-send "Scanning"
+zbarcam -1 /dev/video0 | sed "s/QR-Code://" | xclip -selection clipboard -r && notify-send "Copied to clipboard" || notify-send "Error"
