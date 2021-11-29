@@ -6,4 +6,5 @@ brave-bin \
 vidir \
 htop-vim \
 nerd-fonts-dejavu-complete \
-epub-thumbnailer-git
+epub-thumbnailer-git \
+urlview-xdg-git

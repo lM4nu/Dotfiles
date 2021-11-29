@@ -2,7 +2,7 @@ xbacklight -set 1 &
 xrandr --dpi 96 &
 xrdb ~/.config/x11/Xresources &
 setxkbmap -option caps:escape &
-setbg ~/.local/wallpapers &
+setbg &
 picom &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &

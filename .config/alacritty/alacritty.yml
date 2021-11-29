@@ -1495,7 +1495,7 @@ colors: *custom
   #  cyan:    '#70c0b1'
   #  white:   '#eaeaea'
 
-background_opacity: 0.8
+background_opacity: 0.9
 
 
   # Dim colors

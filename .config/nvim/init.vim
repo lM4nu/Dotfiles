@@ -80,13 +80,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 "AutoCmds
-autocmd BufWritePost ~/.config/x11/Xresources !xrdb %
-
-autocmd BufWritePost *.tex !pdflatex % 
 
 "autocmd BufWritePost *.java !java % 
-
-autocmd BufWritePost sxhkdrc !pkill -10 sxhkd
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
@@ -98,7 +93,13 @@ autocmd BufEnter mpv.conf set filetype=conf
 
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
-autocmd BufWritePost dunstrc !pkill dunst && setsid -f dunst
+autocmd BufWritePost dunstrc :silent !pkill dunst && setsid -f dunst
+
+autocmd BufWritePost sxhkdrc :silent !pkill -10 sxhkd
+
+autocmd BufWritePost ~/.config/x11/Xresources !xrdb %
+
+autocmd BufWritePost *.tex !pdflatex % 
 
 "Snippets
 autocmd FileType java inoremap psvm public static void main(String[] args) { <Enter><Enter> }<Esc>ki

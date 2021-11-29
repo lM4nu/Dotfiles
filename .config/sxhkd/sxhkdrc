@@ -23,7 +23,8 @@ super + alt + m
 	td-toggle
 
 super + n
-	$TERMINAL -o font.size=7.5 -e newsboat
+	$TERMINAL -e neomutt
+	#$TERMINAL -o font.size=7.5 -e newsboat
 
 super + shift + e
 	emojis h
@@ -55,13 +56,13 @@ XF86MonBrightnessUp
 	xbacklight -inc 5
 
 XF86AudioMute
-	pamixer --toggle-mute & pkill -RTMIN+8 dwmblocks & pkill -SIGRTMIN+8 i3blocks
+	pamixer --toggle-mute & pkill -RTMIN+9 dwmblocks & pkill -SIGRTMIN+9 i3blocks
 
 XF86AudioLowerVolume
-	pamixer -d 5 & pkill -RTMIN+8 dwmblocks & pkill -RTMIN+8 i3blocks
+	pamixer -d 5 & pkill -RTMIN+9 dwmblocks & pkill -RTMIN+9 i3blocks
 
 XF86AudioRaiseVolume
-	pamixer -i 5 & pkill -RTMIN+8 dwmblocks & pkill -RTMIN+8 i3blocks
+	pamixer -i 5 & pkill -RTMIN+9 dwmblocks & pkill -RTMIN+9 i3blocks
 
 XF86AudioPrev
 	mpc prev

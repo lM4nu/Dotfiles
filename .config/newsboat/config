@@ -43,3 +43,6 @@ macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to cli
 macro d set browser "wget -qP ~/Downloads/memes/ %u && notify-send \"Downloaded\" "
 macro m set browser "setsid -f nbmanga %u" ;  open-in-browser-and-mark-read ; up ; set browser "setsid -f nbmedia %u"
 macro l set browser elinks ; open-in-browser ; set browser "setsid -f nbmedia %u"
+
+#macro u set pager "urlview %f"; open ; set pager "internal"
+macro u pipe-to urlview

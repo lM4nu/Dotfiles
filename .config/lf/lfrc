@@ -4,7 +4,7 @@ set cleaner ~/.config/lf/cleaner
 set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:cmark:mid3*:mutagen*:pygmentize:pytube:unidecode:moggsplit:tqdm:spotdl:yt-dlp:doesitcache"
 set icons
 cmd open ${{
-    case $(file --mime-type "$f" -b) in
+    case $(file --mime-type "$(readlink -f "$f")" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
         text/*) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;

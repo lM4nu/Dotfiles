@@ -3,7 +3,6 @@ export EDITOR=nvim
 export TERMINAL=alacritty
 export BROWSER=brave
 
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -23,6 +22,10 @@ export XAUTHORITY="$XDG_CONFIG_HOME"/x11/Xauthority
 export KODI_DATA="$XDG_CONFIG_HOME"/kodi
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RANDFILE="$XDG_CONFIG_HOME"/rnd
+export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
+export MBSYNCRC="$XDG_CONFIG_HOME"/isync/mbsyncrc
 
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export HISTFILE="$XDG_CONFIG_HOME"/zsh/history
