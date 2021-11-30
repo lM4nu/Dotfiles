@@ -4,7 +4,9 @@ case $BLOCK_BUTTON in
 	1)$TERMINAL -e neomutt;;
 esac
 
-unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/INBOX/new/ -type f | wc -l 2>/dev/null)"
+#unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/INBOX/new/ -type f | wc -l 2>/dev/null)"
+
+unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/ -regex ".*/new/.*" -type f | wc -l 2>/dev/null)"
 
 pidof mbsync > /dev/null 2>&1 #&& icon="🔄"
 

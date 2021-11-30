@@ -3,5 +3,5 @@
 cbcontent=$(xclip -selection clipboard -o)
 tempfile="${XDG_CACHE_HOME:-$HOME/.cache}/qrtemp.png"
 
-qrencode "$cbcontent" -o "$tempfile"
-sxiv -bfz 800 "$tempfile" && rm "$tempfile"
+qrencode -s 10 "$cbcontent" -o "$tempfile"
+sxiv -bfz 200 "$tempfile" && rm "$tempfile"

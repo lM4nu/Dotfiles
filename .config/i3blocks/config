@@ -30,63 +30,68 @@ command=sb-pacman
 interval=once
 signal=1
 
+[mail]
+command=sb-mail
+interval=10
+signal=2
+
 [torrent]
 command=sb-torrent
 interval=60
-signal=2
+signal=3
 
 [weather]
 command=sb-weather
 interval=3600
-signal=3
+signal=4
 
 [cpu]
 label=CPU:
 command=sb-cpu
 interval=10
-signal=4
+signal=5
 #separator=false
 
 [temperature]
 command=sb-temp
 interval=10
-signal=5
+signal=6
 
 [memory]
 command=sb-ram
 interval=60
-signal=6
+signal=7
 
 [battery]
 command=sb-battery
 interval=60
-signal=7
+signal=8
 
 [volume]
 command=sb-audio
 interval=once
-signal=8
+signal=9
 
 [monero]
 label=XMR 
 command=sb-monero
 interval=300
-signal=9
+signal=10
 
 [dolar]
 label=💵 $
 command=sb-dolar
 interval=once
-signal=10
+signal=11
 
 [date]
 label=📅
 command=sb-date
 interval=once
-signal=11
+signal=12
 
 #[wifi]
 #label=📶
 #command=sb-wifi
 #interval=10
-#signal=12
+#signal=13
