@@ -1,15 +1,16 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1)$TERMINAL -e neomutt;;
+	1) $TERMINAL -e neomutt;;
+	3) $TERMINAL -e $EDITOR $0 ;;
 esac
-
-#unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/*/INBOX/new/ -type f | wc -l 2>/dev/null)"
 
 unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/ -regex ".*/new/.*" -type f | wc -l 2>/dev/null)"
 
-pidof mbsync > /dev/null 2>&1 #&& icon="🔄"
+#pidof mbsync > /dev/null 2>&1 && icon="🔄"
+#[ "$unread" = "0" ] && echo -n "$icon" && exit
 
-[ "$unread" = "0" ] && echo -n "$icon" && exit
+[ "$unread" = "0" ] && exit
 
-echo "$icon 📧 $unread"
+echo "$icon📧 $unread"
+

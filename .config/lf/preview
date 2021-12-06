@@ -1,4 +1,5 @@
 #!/bin/sh
+alias bat='bat -pp --color=always'
 
 image() {
 	if [ -n "$DISPLAY" ]; then
@@ -9,15 +10,8 @@ image() {
 	fi
 }
 
-batorcat() {
-	file="$1"
-	shift
-	if command -v bat > /dev/null 2>&1
-	then
-		bat --color=always --style=plain --pager=never "$file" "$@"
-	else
-		cat "$file"
-	fi
+imageorexif(){
+	exiftool "$1" | grep "Picture" > /dev/null && image "${CACHE}.jpg" "$2" "$3" "$4" "$5" || exiftool "$1"
 }
 
 CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
@@ -26,7 +20,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
 		[ ! -f "${CACHE}.jpg" ] && \
 			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
-		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+		imageorexif "$1" "$2" "$3" "$4" "$5"
 		;;
 	*.tgz|*.tar.gz) tar tzf "$1" ;;
 	*.tar.bz2|*.tbz2) tar tjf "$1" ;;
@@ -42,8 +36,8 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.odt|*.ods|*.odp|*.sxw) odt2txt "$1" ;;
 	*.doc) catdoc "$1" ;;
 	*.docx) docx2txt "$1" - ;;
-	*.xls|*.xlsx) 
-		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | batorcat --language=csv
+	*.xls|*.xlsx)
+		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | bat --language=csv
 		;;
 	*.pdf)
 		[ ! -f "${CACHE}.jpg" ] && \
@@ -69,7 +63,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		image "$1" "$2" "$3" "$4" "$5"
 		;;
 	*.ino)
-		batorcat --language=cpp "$1"
+		bat --language=cpp "$1"
 		;;
 	*.cbr)
 		[ ! -f "${CACHE}.jpg" ] && \
@@ -82,7 +76,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*)
-		batorcat "$1"
+		bat "$1"
 		;;
 esac
 exit 0

@@ -1,6 +1,6 @@
 #!/bin/sh
-
-line="$(grep -E "background_opacity:.[0-9]\.[0-9]" ~/.config/alacritty/alacritty.yml)"
+alacrittyconfig="$HOME/.config/alacritty/alacritty.yml"
+line="$(grep "^background_opacity: " $alacrittyconfig)"
 value=$(echo $line | grep -Eo "[0-9]\.[0-9]$" )
 
 increase(){
@@ -24,5 +24,6 @@ if [ "$1" = "-inc" ]; then
 else
 	decrease $value
 fi
-	newline="background_opacity: $newvalue"
-	sed -i "s/${line}/${newline}/" ~/.config/alacritty/alacritty.yml
+
+newline="background_opacity: $newvalue"
+sed -i "s/${line}/${newline}/" $alacrittyconfig

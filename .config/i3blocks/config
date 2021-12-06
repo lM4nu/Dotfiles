@@ -73,7 +73,7 @@ interval=once
 signal=9
 
 [monero]
-label=XMR 
+label= 
 command=sb-monero
 interval=300
 signal=10
