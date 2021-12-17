@@ -1,6 +1,6 @@
 #!/bin/sh
 file="$(basename "$1")"
-files=$(ls . | grep "\.jpg$\|\.png$\|\.jpeg$\|\.webp\|\.gif$\|\.JPG$\|\.PNG$\|\.JPEG$\|\.WEBP\|\.GIF$")
+files=$(ls . | grep -i "\.jpg$\|\.png$\|\.jpeg$\|\.gif$")
 counter=0
 
 while read i; do
@@ -11,4 +11,4 @@ while read i; do
 done <<< $files
 
 #echo $files | xargs sxiv -n $counter
-while read i; do echo "$i"; done <<< $files | sxiv -i -n $counter
+while read i; do echo "$i"; done <<< $files | sxiv -ai -n $counter

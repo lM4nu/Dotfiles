@@ -11,4 +11,4 @@ fi
 
 wget -O "$file" "$url" 2> /dev/null || ( notify-send "Error" && rm $file && exit )
 
-pgrep -f "sxiv -b $HOME/.cache/newsboat/nbimg.jpg" > /dev/null && exit || sxiv -b $file 2>/dev/null && rm $file
+pgrep -f "sxiv -ab $file" > /dev/null && exit || sxiv -ab $file 2>/dev/null && rm $file

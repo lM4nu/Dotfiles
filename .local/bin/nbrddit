@@ -1,5 +1,5 @@
 #!/bin/sh
-if [[ "$1" =~ .*\.gif || "$1" =~ ^.*v\.redd.*$  ]]
+if [[ "$1" =~ ^.*v\.redd.*$  ]]
 then
 	nbvid "$1"
 elif [[ "$1" =~ ^.*gallery.*$ ]]
