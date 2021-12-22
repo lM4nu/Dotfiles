@@ -21,4 +21,4 @@ while read p; do
 	counter=$((counter + 1))
 done <<< $links
 
-sxiv $cachedir/*jpg && rm $cachedir/*
+ls --sort width $cachedir/*jpg | sxiv -i && rm $cachedir/*
