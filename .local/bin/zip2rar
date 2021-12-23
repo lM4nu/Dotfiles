@@ -2,7 +2,7 @@
 mkdir ~/.cache/zip2rar/
 
 for i in "$@"; do
-	dirname=$(echo "$(basename "$i")" | sed -E "s/.{4}$//")
+	dirname=$(basename "$i" | sed -E "s/.{4}$//")
 	mkdir ~/.cache/zip2rar/"$dirname"
 	unzip "$i" -d "$HOME/.cache/zip2rar/$dirname/"
 	rar a -ep ./"$dirname.rar" "$HOME/.cache/zip2rar/$dirname"/*

@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 galleryfile="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/source"
 cachedir="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat"
 
 curl -s "$1" > "$galleryfile"
 content=$(cat "$galleryfile")
 
-while [ "$content" == "Internal Server Error" ]
+while [ "$content" = "Internal Server Error" ]
 do
 curl -s "$1" > "$galleryfile"
 content=$(cat $galleryfile)

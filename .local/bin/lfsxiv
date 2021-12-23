@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 file="$(basename "$1")"
 files=$(ls . | grep -i "\.jpg$\|\.png$\|\.jpeg$\|\.gif$")
 counter=0

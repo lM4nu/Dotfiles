@@ -1,7 +1,7 @@
 #!/bin/sh
-currentres=$(xrandr | grep \* | awk '{print $1}')
+currentres=$(xrandr | grep "\*" | awk '{print $1}')
 
-if [ $currentres == 1280x720 ]
+if [ "$currentres" = 1280x720 ]
 then
 	xrandr --output eDP1 --mode 1920x1080
 else

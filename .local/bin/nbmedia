@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ $1 =~ https://.\.redd\.it/.* || $1 =~ https://www\.reddit\.com/gallery/* ]]
 then

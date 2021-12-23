@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 case $BLOCK_BUTTON in
 	1) $TERMINAL -e htop;;
 	3) $TERMINAL -e $EDITOR $0

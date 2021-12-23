@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 touchpadId=$(xinput -list | grep Touchpad | awk '{print substr($6,4)}')
 tappingId=$(xinput --list-props $touchpadId | grep -m 1 'Tapping Enabled' | awk '{print substr($4,2,3)}')
 accelerationId=$(xinput --list-props $touchpadId | grep -m 1 Accel | awk '{print substr($4,2,3)}' )
