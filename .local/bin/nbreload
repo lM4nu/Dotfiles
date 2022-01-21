@@ -1,6 +1,6 @@
 #!/bin/sh
 sendkey() {
-	#terminalid="$(xdotool search --pid $(ps axhjf | grep -v grep | grep -B 2 newsboat | head -n1 | awk '{print $2}'))"
+	#terminalid="$(xdotool search --pid $(ps axjf | grep -v grep | grep -B 2 newsboat | head -n1 | awk '{print $2}'))"
 	terminalid="$(xdotool search --pid $(ps -o ppid= -p $(ps -o ppid= -p $(pidof newsboat))))"
 	xdotool key --window "$terminalid" R
 }

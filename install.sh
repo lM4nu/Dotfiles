@@ -4,6 +4,7 @@ sudo pacman -Syu
 sudo pacman -S \
 zsh \
 base-devel \
+moreutils \
 git \
 alacritty \
 dunst \

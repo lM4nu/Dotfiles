@@ -23,6 +23,8 @@ do
                 echo -n "$file" | xclip -selection clipboard ;;	
         "C-r")
                 convert -rotate 90 "$file" "$file" ;;
+	"n") 
+		notify-send "$file";;
 
 	esac
 done

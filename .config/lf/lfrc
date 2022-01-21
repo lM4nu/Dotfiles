@@ -22,7 +22,7 @@ mpc searchplay Artist "$artist" Title "$title" > /dev/null 2>&1 || mpc add "$(ec
 }}
 
 cmd chmod ${{
-	if [[ "$1" = "minus" ]]; then
+	if [ "$1" = "minus" ]; then
 	chmod -x $fx
 	else
 	chmod +x $fx
@@ -43,5 +43,6 @@ map Y $cat "$f" | xclip -sel c -t $(file --mime-type -b "$f")
 map a chmod minus 
 map A chmod plus
 map s toggle 
+map o $setsid -f pcmanfm . 
 map V push :!nvim<space>
 map <c-n> push :mkdir<space>

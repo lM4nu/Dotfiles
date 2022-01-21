@@ -1,6 +1,6 @@
 #!/bin/sh
 alacrittyconfig="$HOME/.config/alacritty/alacritty.yml"
-line="$(grep "^background_opacity: " $alacrittyconfig)"
+line="$(grep "^background_opacity: " "$alacrittyconfig")"
 value=$(echo $line | grep -Eo "[0-9]\.[0-9]$" )
 
 increase(){
@@ -26,4 +26,4 @@ else
 fi
 
 newline="background_opacity: $newvalue"
-sed -i "s/${line}/${newline}/" $alacrittyconfig
+sed -i "s/${line}/${newline}/" "$alacrittyconfig"

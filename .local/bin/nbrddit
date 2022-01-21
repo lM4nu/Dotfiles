@@ -1,7 +1,7 @@
 #!/bin/bash
 if [[ "$1" =~ ^.*v\.redd.*$  ]]
 then
-	nbvid "$1"
+	nbvid --pause "$1"
 elif [[ "$1" =~ ^.*gallery.*$ ]]
 then
 	rdditgal "$1"

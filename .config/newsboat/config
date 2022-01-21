@@ -1,6 +1,7 @@
 #auto-reload yes
 max-items 900
 openbrowser-and-mark-jumps-to-next-unread yes
+confirm-mark-feed-read no
 
 color listnormal cyan default
 color listnormal_unread blue default bold
@@ -40,10 +41,10 @@ macro i set browser "setsid -f nbmedia %u"
 macro v set browser "setsid -f nbvid %u"
 macro w set browser "setsid -f nbbrowser %u"
 macro W set browser "setsid -f nbbrowser %u --incognito"
-macro c set browser "printf %u | xsel -i -b && notify-send \"Link copied to clipboard\" "
+macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" "
 macro d set browser "wget -qP ~/Downloads/memes/ %u && notify-send \"Downloaded\" "
 macro m set browser "setsid -f nbmanga %u" ;  open-in-browser-and-mark-read ; set browser "setsid -f nbmedia %u"
-macro l set browser elinks ; open-in-browser ; set browser "setsid -f nbmedia %u"
+macro l set browser w3m ; open-in-browser ; set browser "setsid -f nbmedia %u"
 
 #macro u set pager "urlview %f"; open ; set pager "internal"
 macro u pipe-to urlview
