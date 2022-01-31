@@ -24,6 +24,7 @@ window:
   #history: 10000
 
   #multiplier: 3
+  opacity: 0.8
 
 font:
   normal:
@@ -1495,7 +1496,6 @@ colors: *custom
   #  cyan:    '#70c0b1'
   #  white:   '#eaeaea'
 
-background_opacity: 0.9
 
 
   # Dim colors

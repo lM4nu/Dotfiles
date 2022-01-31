@@ -1,0 +1,3 @@
+#!/bin/sh
+
+paru -Syu --noconfirm ; pkill -RTMIN+1 dwmblocks
