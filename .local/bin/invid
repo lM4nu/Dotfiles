@@ -12,33 +12,33 @@ then
 	exit 1
 fi
 
+html="$(mktemp)"
 file="$(mktemp)"
 titles="$(mktemp)"
 urls="$(mktemp)"
 channels="$(mktemp)"
-list="$(mktemp)"
+menu="$(mktemp)"
 
-curl -s "https://invidious.snopyta.org/search?q=$query" > $file
+curl -s "https://invidious.snopyta.org/search?q=$query" > $html
 
-grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "/watch?v=" > "$urls"
+grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" > "$file"
 
-
-grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "VIDEOTITLE" | cut -d';' -f2 > "$titles"
-
-grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "CHANNELNAME" | cut -d';' -f2 > "$channels"
+grep "VIDEOTITLE" "$file" | cut -d';' -f2 > "$titles"
+grep "CHANNELNAME" "$file" | cut -d';' -f2 > "$channels"
+grep "/watch?v=" "$file" | cut -d';' -f2 > "$urls"
 
 paste -d@ "$urls" "$titles" "$channels" | while IFS="@" read -r f1 f2 f3
 do
   printf '%s;%s by %s\n' "$f1" "$f2" "$f3"
-done > $list
+done > $menu
 
-chosen="$(cut -d';' -f2 "$list" | dmenu -i -l 30)"
+chosen="$(cut -d';' -f2 "$menu" | dmenu -i -l 30)"
 
 if [ -z "$chosen" ]
 then
 	exit 1
 fi
 
-setsid -f mpv --no-terminal "$(grep ";$chosen" "$list" | cut -d';' -f1)" 2> /dev/null || notify-send "Error"
+setsid -f mpv --no-terminal "$(grep ";$chosen" "$menu" | cut -d';' -f1)" 2> /dev/null || notify-send "Error"
 
-rm "$file" "$titles" "$urls" "$list" "$channels"
+rm "$html" "$file" "$titles" "$urls" "$channels" "$menu"
