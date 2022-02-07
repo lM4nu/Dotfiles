@@ -1,0 +1,44 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then
+	query="$(printf "" | dmenu -p "search: " | tr ' ' '+')"
+else
+	query="$(echo "$1" | tr ' ' '+')"
+fi
+
+if [ -z "$query" ]
+then
+	exit 1
+fi
+
+file="$(mktemp)"
+titles="$(mktemp)"
+urls="$(mktemp)"
+channels="$(mktemp)"
+list="$(mktemp)"
+
+curl -s "https://invidious.snopyta.org/search?q=$query" > $file
+
+grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "/watch?v=" > "$urls"
+
+
+grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "VIDEOTITLE" | cut -d';' -f2 > "$titles"
+
+grep -A 14 -B 2 "<div class=\"thumbnail\">" "$file" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" | grep "CHANNELNAME" | cut -d';' -f2 > "$channels"
+
+paste -d@ "$urls" "$titles" "$channels" | while IFS="@" read -r f1 f2 f3
+do
+  printf '%s;%s by %s\n' "$f1" "$f2" "$f3"
+done > $list
+
+chosen="$(cut -d';' -f2 "$list" | dmenu -i -l 30)"
+
+if [ -z "$chosen" ]
+then
+	exit 1
+fi
+
+setsid -f mpv --no-terminal "$(grep ";$chosen" "$list" | cut -d';' -f1)" 2> /dev/null || notify-send "Error"
+
+rm "$file" "$titles" "$urls" "$list" "$channels"
