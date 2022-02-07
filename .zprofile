@@ -27,6 +27,7 @@ export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wgetrc"
 export XAUTHORITY="${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xauthority"
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export FZF_DEFAULT_OPTS="--bind=alt-j:down,alt-k:up"
 
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"

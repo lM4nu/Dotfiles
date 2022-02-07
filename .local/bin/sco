@@ -1,0 +1,3 @@
+#!/bin/sh
+find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||" | grep -v "lyrics/\|plugged\/" | fzf | xargs -r $EDITOR
+

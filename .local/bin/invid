@@ -23,9 +23,9 @@ curl -s "https://invidious.snopyta.org/search?q=$query" > $html
 
 grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" > "$file"
 
+grep "/watch?v=" "$file" | cut -d';' -f2 > "$urls"
 grep "VIDEOTITLE" "$file" | cut -d';' -f2 > "$titles"
 grep "CHANNELNAME" "$file" | cut -d';' -f2 > "$channels"
-grep "/watch?v=" "$file" | cut -d';' -f2 > "$urls"
 
 paste -d@ "$urls" "$titles" "$channels" | while IFS="@" read -r f1 f2 f3
 do

@@ -1,0 +1,2 @@
+#!/bin/sh
+find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR
