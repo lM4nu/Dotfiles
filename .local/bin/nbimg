@@ -4,11 +4,14 @@ file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
 
 if [[ "$1" =~ https?://imgur.com/.* ]]
 then
-	url=$(echo $1.jpg | sed "s/\/i/\/i\.i/")
+	url="$(echo $1.jpg | sed "s/\/i/\/i\.i/")"
+elif [[ "$1" =~ .*watch\?v=.{11}$ ]] || [[ "$1" =~ .*youtu\.be/.* ]]
+then
+	url="$(yt-dlp --skip-download --get-thumbnail "$1")"
 else
 	url="$1"
 fi
 
 wget -O "$file" "$url" 2> /dev/null || ( notify-send "Error" && rm $file && exit )
 
-pgrep -f "sxiv -ab $file" > /dev/null && exit || sxiv -ab $file 2>/dev/null && rm $file
+(pgrep -f "sxiv -ab $file" > /dev/null && exit) || (sxiv -ab $file 2>/dev/null && rm $file)

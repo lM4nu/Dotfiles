@@ -19,18 +19,18 @@ urls="$(mktemp)"
 channels="$(mktemp)"
 menu="$(mktemp)"
 
-curl -s "https://invidious.snopyta.org/search?q=$query" > $html
+curl -s "https://invidious.snopyta.org/search?q=$query" > "$html"
 
 grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" > "$file"
 
-grep "/watch?v=" "$file" | cut -d';' -f2 > "$urls"
+grep "/watch?v=" "$file" > "$urls"
 grep "VIDEOTITLE" "$file" | cut -d';' -f2 > "$titles"
 grep "CHANNELNAME" "$file" | cut -d';' -f2 > "$channels"
 
 paste -d@ "$urls" "$titles" "$channels" | while IFS="@" read -r f1 f2 f3
 do
   printf '%s;%s by %s\n' "$f1" "$f2" "$f3"
-done > $menu
+done > "$menu"
 
 chosen="$(cut -d';' -f2 "$menu" | dmenu -i -l 30)"
 
@@ -39,6 +39,10 @@ then
 	exit 1
 fi
 
-setsid -f mpv --no-terminal "$(grep ";$chosen" "$menu" | cut -d';' -f1)" 2> /dev/null || notify-send "Error"
+yturl="$(grep ";$chosen" "$menu" | cut -d';' -f1)"
+
+printf "%s" "$yturl" | xsel -bi
+
+setsid -f mpv --no-terminal "$yturl" 2> /dev/null || notify-send "Error"
 
 rm "$html" "$file" "$titles" "$urls" "$channels" "$menu"
