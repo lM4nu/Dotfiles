@@ -1,4 +1,22 @@
 #!/bin/sh
+camscan() {
+	notify-send "Scanning"
+	zbarcam -1 /dev/video0 | cut -d':' -f2,99 | xclip -sel c -r && notify-send "Copied to clipboard" || notify-send "Error"
+}
 
-notify-send "Scanning"
-zbarcam -1 /dev/video0 | sed "s/QR-Code://" | xclip -selection clipboard -r && notify-send "Copied to clipboard" || notify-send "Error"
+screenscan() {
+	tempfile="$(mktemp)"
+	maim -s > "$tempfile"
+	( zbarimg --quiet "$tempfile" > /dev/null 2>&1 && notify-send "Copied to clipboard" ) || ( notify-send "Error" && exit 1 )
+
+	zbarimg --quiet "$tempfile" | cut -d':' -f2-99 | xclip -sel c -r
+	rm "$tempfile"
+}
+
+choice="$(printf "Screenshot\nCamera" | dmenu -i -p "Scan from: ")"
+
+case "$choice" in
+	Camera) camscan ;;
+	Screenshot) screenscan ;;
+	*) exit ;;
+esac
