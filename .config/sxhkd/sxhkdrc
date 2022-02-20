@@ -16,6 +16,9 @@ super + shift + k
 super + shift + v
 	videoclipboard
 
+super + i
+	invid
+
 super + m
 	$TERMINAL -e ncmpcpp
 
@@ -103,3 +106,5 @@ super + r
 super + shift + r
 	qrtoclipboard
 
+super + F5
+	sudo systemctl restart NetworkManager

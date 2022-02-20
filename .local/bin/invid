@@ -20,6 +20,7 @@ channels="$(mktemp)"
 menu="$(mktemp)"
 
 curl -s "https://invidious.snopyta.org/search?q=$query" > "$html"
+sed -i "s/&#39;/'/g;s/&quot;/\"/g" "$html"
 
 grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" > "$file"
 
@@ -39,9 +40,11 @@ then
 	exit 1
 fi
 
-yturl="$(grep ";$chosen" "$menu" | cut -d';' -f1)"
+yturl="$(grep -F ";$chosen" "$menu" | cut -d';' -f1)"
 
 printf "%s" "$yturl" | xsel -bi
+
+notify-send "Playing $chosen in mpv"
 
 setsid -f mpv --no-terminal "$yturl" 2> /dev/null || notify-send "Error"
 

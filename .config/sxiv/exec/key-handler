@@ -26,5 +26,8 @@ do
 	"n") 
 		notify-send "$file";;
 
+	"y") 
+		cat "$file" | xclip -sel c -t $(file --mime-type -b "$file")
+
 	esac
 done

@@ -2,6 +2,8 @@
 
 file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
 
+pgrep -fx "wget -O "$file" .*" > /dev/null && exit 1
+
 if [[ "$1" =~ https?://imgur.com/.* ]]
 then
 	url="$(echo $1.jpg | sed "s/\/i/\/i\.i/")"
@@ -12,6 +14,6 @@ else
 	url="$1"
 fi
 
-wget -O "$file" "$url" 2> /dev/null || ( notify-send "Error" && rm $file && exit )
+curl -sL "$url" -o "$file" 2> /dev/null || ( notify-send "Error" && rm $file && exit 1 )
 
-(pgrep -f "sxiv -ab $file" > /dev/null && exit) || (sxiv -ab $file 2>/dev/null && rm $file)
+(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab $file 2>/dev/null && rm $file)

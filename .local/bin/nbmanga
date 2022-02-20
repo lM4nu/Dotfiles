@@ -1,10 +1,7 @@
 #!/bin/sh
-#url=$(echo "$1" | sed -E "s/fanfox\.net/www\.mangatown\.com/;s/1\.html$//;s/\/v.*c/\/c/")
-#comics-downloader -url "$url" -create-default-path=false -output ~/.cache/newsboat 2> /dev/null && zathura -P 1 ~/.cache/newsboat/*pdf && rm ~/.cache/newsboat/*pdf ||
-	#nbbrowser "$1" --start-fullscreen
 
 folder="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/manga"
 
-gallery-dl "$1" -D "$folder" > /dev/null 2>&1 &&
-	convert "$folder"/* "$folder"/manga.pdf &&
-	zathura -P 1 "$folder/manga.pdf" && rm -rf "$folder"
+( gallery-dl "$1" -D "$folder" > /dev/null 2>&1 &&
+	zip -j "$folder"/manga.cbz "$folder"/* > /dev/null 2>&1 &&
+	zathura -P 1 "$folder/manga.cbz" && rm -rf "$folder" ) || (rm -rf "$folder" && nbbrowser "$1")

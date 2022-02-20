@@ -1,0 +1,3 @@
+#!/bin/sh
+url="$(echo "$1" | sed "s/nitter\.pussthecat\.org/twitter\.com/;s/#m$//")"
+nbvid "$(gallery-dl -g "$url")"

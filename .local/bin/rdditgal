@@ -1,24 +1,14 @@
-#!/bin/bash
-galleryfile="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/source"
+#!/bin/sh
 cachedir="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat"
+urlist="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/urlist"
+indexlist="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/indexlist"
 
-curl -s "$1" > "$galleryfile"
-content=$(cat "$galleryfile")
+gallery-dl -g "$1" > "$urlist" || (notify-send "Error" && exit 1)
+seq -w "$(wc -l "$urlist" | cut -d' ' -f1)" > "$indexlist"
 
-while [ "$content" = "Internal Server Error" ]
+paste -d@ "$indexlist" "$urlist" | while IFS="@" read -r f1 f2
 do
-curl -s "$1" > "$galleryfile"
-content=$(cat $galleryfile)
+  curl -sLo "$cachedir/gal-$f1" "$f2"
 done
 
-grep "Sorry, this post" $galleryfile >/dev/null && notify-send "Banned Post" && rm $galleryfile && exit
-
-links=$(grep -Eo "https://preview\.redd\.it/.{1,110}\"" $galleryfile | sed "/\\\u/ d;s/\".*\"$//g;s/\"$//;s/amp;//g" | uniq -w 37)
-
-counter=0
-while read p; do
-	wget -O $cachedir/gal$counter.jpg "$p" 2> /dev/null
-	counter=$((counter + 1))
-done <<< $links
-
-ls --sort width $cachedir/gal*jpg | sxiv -i && rm $cachedir/*
+sxiv -p "$cachedir"/gal* && rm "$cachedir"/*

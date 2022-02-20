@@ -1,6 +1,6 @@
 #!/bin/bash
 file="$(basename "$1")"
-files=$(ls . | grep -i "\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.webp")
+files=$(ls . | grep -iE "\.(jpe?g|png|gif|webp|tiff|bmp)$")
 counter=0
 
 while read i; do

@@ -45,3 +45,6 @@ bindkey -v '^?' backward-delete-char
 #edit command in vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+se(){ find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR }
+sco() { find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||" | grep -v "lyrics/\|plugged\/" | fzf | xargs -r $EDITOR }

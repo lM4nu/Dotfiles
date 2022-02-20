@@ -35,10 +35,12 @@ bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
+bind-key x delete-article
 
 macro y set browser "setsid -f nbvid %u" ; open-in-browser-and-mark-read ; set browser "setsid -f nbmedia %u"
 macro i set browser "setsid -f nbmedia %u"
 macro v set browser "setsid -f nbvid %u"
+macro t set browser "setsid -f nbtter %u" ; open-in-browser-and-mark-read ; set browser "setsid -f nbmedia %u"
 macro w set browser "setsid -f nbbrowser %u"
 macro W set browser "setsid -f nbbrowser %u --incognito"
 macro c set browser "echo -n %u | xsel -i -b && notify-send \"Link copied to clipboard\" "

@@ -1,9 +1,0 @@
-#!/bin/sh
-#receive a file with a list of links from wallhaven as argument
-
-while read p; do
-	curl -s "$p" | grep -Eo "https:\/{2}w\.wallhaven\.cc\/full\/.{2}\/wallhaven-.*\.jpg" >> ./wallhavenlist
-	sleep 0.5
-done <$1
-	
-#wget -i ./wallhavenlist && rm ./wallhavenlist

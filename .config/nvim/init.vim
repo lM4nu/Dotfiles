@@ -44,6 +44,7 @@ map <C-l> <C-w>l
 
 "Copy to sys Clipboard
 vnoremap <C-c> "+y
+map <C-y> "+P
 
 "NERDTREE 
 nnoremap <C-space> :NERDTreeToggle<CR>
