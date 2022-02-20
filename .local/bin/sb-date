@@ -3,7 +3,7 @@ date=$(date '+%d/%m %a %H:%M')
 
 case $BLOCK_BUTTON in 
 	1) notify-send "$(cal)";;
-	3) $TERMINAL -e $EDITOR $0;;
+	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
 case "$(date '+%I')" in
@@ -21,4 +21,4 @@ case "$(date '+%I')" in
 	12) clock="🕛" ;;
 esac
 
-echo $date $clock
+echo "$date $clock"

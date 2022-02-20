@@ -20,7 +20,7 @@ sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | s
 case $BLOCK_BUTTON in
 	1) setsid -f "$TERMINAL" -e less -Srf "$weatherreport" ;;
 	2) getforecast && showweather ;;
-	3) "$TERMINAL" -e $EDITOR "$0" ;;
+	3) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
 currenttemp=$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1)
@@ -30,4 +30,4 @@ currenttemp=$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d
 [ "$(stat -c %y "$weatherreport" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
 	getforecast
 
-printf "🌡️%s" $currenttemp && showweather
+printf "🌡️%s" "$currenttemp" && showweather

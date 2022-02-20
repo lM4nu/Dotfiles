@@ -1,13 +1,13 @@
 #!/bin/sh
 alacrittyconfig="$HOME/.config/alacritty/alacritty.yml"
 line="$(grep "  opacity: " "$alacrittyconfig")"
-value=$(echo $line | grep -Eo "[0-9]\.[0-9]$" )
+value=$(echo "$line" | grep -Eo "[0-9]\.[0-9]$" )
 
 increase(){
 	if [ "$1" = 1.0 ] || [ "$1" = 0.9 ]; then
 		newvalue="1.0"
 	else
-		newvalue="0$(echo $1 + 0.1 | bc )"
+		newvalue="0$(echo "$1" + 0.1 | bc )"
 	fi
 }
 
@@ -15,14 +15,14 @@ decrease(){
 	if [ "$1" = 0.0 ] || [ "$1" = 0.1 ]; then
 		newvalue="0.0"
 	else
-		newvalue="0$(echo $1 - 0.1 | bc )"
+		newvalue="0$(echo "$1" - 0.1 | bc )"
 	fi
 }
 
 if [ "$1" = "-inc" ]; then
-	increase $value
+	increase "$value"
 else
-	decrease $value
+	decrease "$value"
 fi
 
 newline="  opacity: $newvalue"
