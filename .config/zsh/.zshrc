@@ -48,3 +48,4 @@ bindkey '^e' edit-command-line
 
 se(){ find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR }
 sco() { find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||" | grep -v "lyrics/\|plugged\/" | fzf | xargs -r $EDITOR }
+resetbar() { seq 15 | while read -r n; do pkill -RTMIN+"$n" dwmblocks ; done }
