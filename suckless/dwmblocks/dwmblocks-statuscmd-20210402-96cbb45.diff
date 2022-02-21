@@ -89,7 +89,7 @@ index ded717c..78fdeb5 100644
 +			sprintf(shcmd, "%s; kill -%d %d", blocks[i].command, SIGRTMIN+blocks[i].signal, parent);
 +			char *cmd[] = { "/bin/sh", "-c", shcmd, NULL };
 +			char button[2] = { '0' + si->si_value.sival_int, '\0' };
-+			setenv("BUTTON", button, 1);
++			setenv("BLOCK_BUTTON", button, 1);
 +			setsid();
 +			execvp(cmd[0], cmd);
 +			perror(cmd[0]);

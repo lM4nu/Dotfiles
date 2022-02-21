@@ -16,7 +16,7 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "DejaVu Sans:size=10:antialias=true", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "Font Awesome 5 Brands Regular:style=Regular:pixelsize=16"};
+static const char *fonts[]          = { "DejaVu Sans:size=10:antialias=true", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "Font Awesome 6 Brands Regular:style=Regular:pixelsize=16"};
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_black[]       = "#101010";
 static const char col_red[]         = "#C00000";
@@ -35,7 +35,7 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30","-e", "bc", "-ql", NULL };
+const char *spcmd1[] = {"alacritty", "--class", "spcalc", "-o", "window.dimensions.columns=55", "window.dimensions.lines=17", "font.size=15", "-e", "bc", "-ql", NULL };
 const char *spcmd2[] = {"alacritty", "--class", "spterm", "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", NULL };
 const char *spcmd3[] = {"alacritty", "--class", "spaudio"  , "-o", "window.dimensions.columns=100", "window.dimensions.lines=30", "-e", "pulsemixer", NULL };
 //const char *spcmd1[] = {"st", "-n", "spcalc", "-g", "100x28", "-e", "bc", "-ql", NULL };
@@ -62,6 +62,7 @@ static const Rule rules[] = {
 	{ NULL,     "zoom",    NULL,           1 << 0,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Alacritty",NULL,    NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,   NULL, "noswallow",           0,         0,          0,           1,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ NULL,	    "spcalc",	NULL,	      SPTAG(0),   1, 	      1 , 	   0, 	     -1 },
 	{ NULL,	    "spterm",	NULL,	      SPTAG(1),   1, 	      1 , 	   0, 	     -1 },
@@ -122,7 +123,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
