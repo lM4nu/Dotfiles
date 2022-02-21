@@ -1,14 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 file="$(basename "$1")"
 files=$(ls | grep -iE "\.(jpe?g|png|gif|webp|tiff|bmp)$")
 counter=0
 
-while read -r i; do
+findindex(){
+echo "$files" | while read -r i; do
 	counter=$((counter + 1))
 	if [ "$i" = "$file" ]; then
+		echo $counter
 		break
 	fi
-done <<< "$files"
+done
+}
 
-#echo $files | xargs sxiv -n $counter
-while read -r i; do echo "$i"; done <<< "$files" | sxiv -ai -n $counter
+echo "$files" | sxiv -ai -n "$(findindex)"

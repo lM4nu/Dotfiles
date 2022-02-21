@@ -33,4 +33,4 @@ esac
 	#update
 #fi
 [ "$(stat -c %y "$file" | cut -d' ' -f1)" !=  "$(date -I)" ] && update
-echo "$blueventa"
+echo " \$$blueventa"

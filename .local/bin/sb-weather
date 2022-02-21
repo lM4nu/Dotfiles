@@ -8,14 +8,21 @@
 # terminal if desired. This function will only be run once a day when needed.
 
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
-getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
+getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || (echo "🥶" ; exit 1) ;}
 
 # Some very particular and terse stream manipulation. We get the maximum
 # precipitation chance and the daily high and low from the downloaded file and
 # display them with coresponding emojis.
-showweather() { printf "%s" "$(sed '16q;d' "$weatherreport" |
+formatweather() { printf "%s" "$(sed '16q;d' "$weatherreport" |
 	grep -wo "[0-9]*%" | sort -rn | sed "s/^/ 💦/g;1q" | tr -d '\n')"
 sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " 🥶" $1 "°","🌞" $2 "°"}' ;}
+
+showweather() {
+	currenttemp="$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/")"
+	weather="$(formatweather)"
+
+	printf "%s%s\n"  "$currenttemp" "$weather"
+}
 
 case $BLOCK_BUTTON in
 	1) setsid -f "$TERMINAL" -e less -Srf "$weatherreport" ;;
@@ -23,11 +30,10 @@ case $BLOCK_BUTTON in
 	3) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-currenttemp=$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1)
-
 # The test if our forcecast is updated to the day. If it isn't download a new
 # weather report from wttr.in with the above function.
 [ "$(stat -c %y "$weatherreport" 2>/dev/null | cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ] ||
 	getforecast
 
-printf "🌡️%s" "$currenttemp" && showweather
+
+showweather
