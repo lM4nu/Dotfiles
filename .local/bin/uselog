@@ -18,9 +18,11 @@ logtime(){
 	linesdiff="$((endlinenum - startlinenum))"
 	hours="$((linesdiff / 60))"
 	minutes="$((linesdiff - (60 * hours)))"
+	formatedhours="$(printf "%02d" "$hours")"
+	formatedminutes="$(printf "%02d" "$minutes")"
 	
 	sed -i "$endlinenum i ║ $time" "$file"
-	sed -i "s|╚\[$date\] END.*|╚\[$date\] END - $hours:$minutes hs|" "$file"
+	sed -i "s|╚\[$date\] END.*|╚\[$date\] END - $formatedhours:$formatedminutes hs|" "$file"
 }
 
 showusage(){
