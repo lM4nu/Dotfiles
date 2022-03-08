@@ -8,7 +8,7 @@ super + shift + h
 	$TERMINAL -e htop
 
 super + shift + p
-	passmenu
+	passmenu-otp
 
 super + shift + k
 	keepassxc

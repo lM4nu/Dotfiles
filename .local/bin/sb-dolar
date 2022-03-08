@@ -17,7 +17,7 @@ update(){
 setvar
 
 case $BLOCK_BUTTON in
-	1) notify-send \
+	1) [ -z "$blueventa" ] || notify-send \
 "💵 Oficial 💵
 Compra: \$$compra
 Venta:  \$$venta
@@ -28,9 +28,6 @@ Venta:  \$$blueventa" ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 
-#if [[ $(stat -c %y $file | cut -d' ' -f1) !=  $(date -I) ]]
-#then
-	#update
-#fi
 [ "$(stat -c %y "$file" | cut -d' ' -f1)" !=  "$(date -I)" ] && update
-echo " \$$blueventa"
+
+[ -z "$blueventa" ] || echo " $blueventa"

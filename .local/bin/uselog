@@ -1,0 +1,31 @@
+#!/bin/sh
+date="$(date '+%d/%m/%Y')"
+time="$(date '+%H:%M')"
+file="$(readlink -f "${XDG_DATA_HOME:-$HOME/.local/share}/todayusage")"
+logfile="$(readlink -f "${XDG_DATA_HOME:-$HOME/.local/share}/usagelog")"
+
+logtime(){
+	movetolog(){
+		cat "$file" >> "$logfile"
+		printf "╔[%s] START\n╚[%s] END\n\n" "$date" "$date" > "$file"
+	
+	}
+	
+	grep "╔\[$date\] START" "$file" > /dev/null || movetolog
+	
+	startlinenum="$(grep -n "╔\[$date\] START" "$file" | cut -d':' -f1)"
+	endlinenum="$(grep -n "╚\[$date\] END" "$file" | cut -d':' -f1)"
+	linesdiff="$((endlinenum - startlinenum))"
+	hours="$((linesdiff / 60))"
+	minutes="$((linesdiff - (60 * hours)))"
+	
+	sed -i "$endlinenum i ║ $time" "$file"
+	sed -i "s|╚\[$date\] END.*|╚\[$date\] END - $hours:$minutes hs|" "$file"
+}
+
+showusage(){
+	grep "END" "$file" | sed "s/╚//;s/ END//"
+}
+
+
+[ -z "$1" ] && logtime || showusage

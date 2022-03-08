@@ -17,7 +17,7 @@ static const int monitortime = 300;
 /*Enable blur*/
 #define BLUR
 /*Set blur radius*/
-static const int blurRadius=5;
+static const int blurRadius=25;
 /*Enable Pixelation*/
 //#define PIXELATION
 /*Set pixelation radius*/

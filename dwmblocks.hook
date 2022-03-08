@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Signal dwmblocks sb-pacman module
+When = PostTransaction
+Exec = /usr/bin/pkill -RTMIN+1 dwmblocks

@@ -1,10 +1,18 @@
 #!/bin/sh
 
-choice=$(printf "Power Off\nReboot\nLock Screen" | dmenu -i -sb '#f00')
+lidswitchvalue="$(grep -E "^HandleLidSwitch=.*$" /etc/systemd/logind.conf | cut -d'=' -f2)"
+
+
+[ "$lidswitchvalue" = "ignore" ] && lidswitchopt="Use Lid" || lidswitchopt="Ignore Lid"
+
+choice=$(printf "Power Off\nReboot\nLock Screen\nTurn off Screen\n$lidswitchopt" | dmenu -i -sb '#f00')
 
 case $choice in
 	"Power Off") poweroff;;
 	"Reboot") reboot;;
 	"Lock Screen") slock;;
+	"Turn off Screen") xset dpms force off;;
+	"Use Lid") sudo sed -i "s/^HandleLidSwitch=ignore/HandleLidSwitch=suspend/" /etc/systemd/logind.conf ; sudo systemctl kill -s HUP systemd-logind.service ;;
+	"Ignore Lid") sudo sed -i "s/^HandleLidSwitch=suspend/HandleLidSwitch=ignore/" /etc/systemd/logind.conf ; sudo systemctl kill -s HUP systemd-logind.service ;;
 	*) exit ;;
 esac

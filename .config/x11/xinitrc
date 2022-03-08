@@ -1,6 +1,7 @@
 xbacklight -set 1 &
 xrandr --dpi 96 &
 xrdb ~/.config/x11/Xresources &
+xss-lock -- slock &
 setxkbmap -option caps:escape &
 setbg &
 mailsync &

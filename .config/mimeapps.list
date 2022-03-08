@@ -6,18 +6,16 @@ x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
 x-scheme-handler/magnet=torrent.desktop
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
-
 application/x-bittorrent=torrent.desktop
-
 text/plain=editor.desktop
-
 image/jpeg=sxiv.desktop
 image/jpg=sxiv.desktop
 image/png=sxiv.desktop
-
 application/pdf=org.pwmt.zathura.desktop
 application/zip=org.pwmt.zathura.desktop
 
 [Removed Applications]
 text/plain=code-oss.dekstop
 text/plain=code-oss-url-handler.dekstop
+
+[Added Associations]

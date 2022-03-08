@@ -1,8 +1,8 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	1) "$TERMINAL" -e sb-update ;;
+	1) "$TERMINAL" -e paru -Syu --noconfirm ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-paru -Qu | wc -l | sed "s/^/📦/;/^📦0$/ d"
+paru -Qu | sed -E "/\[ignored\]$/d" | wc -l | sed "s/^/📦/;/^📦0$/ d"

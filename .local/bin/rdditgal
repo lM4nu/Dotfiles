@@ -1,14 +1,14 @@
 #!/bin/sh
 cachedir="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat"
-urlist="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/urlist"
-indexlist="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/indexlist"
+urlist="$cachedir/urlist"
+indexlist="$cachedir/indexlist"
 
 gallery-dl -g "$1" > "$urlist" || (notify-send "Error" && exit 1)
 seq -w "$(wc -l "$urlist" | cut -d' ' -f1)" > "$indexlist"
 
-paste -d@ "$indexlist" "$urlist" | while IFS="@" read -r f1 f2
+paste -d@ "$indexlist" "$urlist" | while IFS="@" read -r number url
 do
-  curl -sLo "$cachedir/gal-$f1" "$f2"
+  curl -sLo "$cachedir/gal-$number" "$url"
 done
 
 sxiv -p "$cachedir"/gal* && rm "$cachedir"/*

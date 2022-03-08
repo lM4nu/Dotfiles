@@ -37,6 +37,7 @@ wireplumber \
 yt-dlp \
 youtube-dl \
 maim \
+xss-lock \
 xclip \
 xsel \
 xwallpaper \
