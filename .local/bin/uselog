@@ -8,7 +8,6 @@ logtime(){
 	movetolog(){
 		cat "$file" >> "$logfile"
 		printf "╔[%s] START\n╚[%s] END\n\n" "$date" "$date" > "$file"
-	
 	}
 	
 	grep "╔\[$date\] START" "$file" > /dev/null || movetolog

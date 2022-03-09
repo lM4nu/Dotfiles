@@ -6,8 +6,7 @@ sendkey() {
 }
 
 reloadandnotify(){
-	newsboat -x reload
-	unreads="$(newsboat -x print-unread | cut -d' ' -f1)"
+	unreads="$(newsboat -x reload -x print-unread | cut -d' ' -f1)"
 	[ "$unreads" -eq 0 ] || notify-send --icon rss "Newsboat" "$unreads new articles"
 }
 
