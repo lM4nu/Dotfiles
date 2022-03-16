@@ -1,6 +1,6 @@
 #!/bin/sh
 paru -S \
-lf-bin \
+lf \
 libxft-bgra \
 brave-bin \
 htop-vim \
