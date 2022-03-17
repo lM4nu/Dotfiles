@@ -1,6 +1,7 @@
 #!/bin/sh
 sendkey() {
-	terminalid="$(xdotool search --pid "$(ps axjf | grep -v grep | grep -B 5 newsboat | grep "$TERMINAL" | tail -n1 | awk '{print $2}')")"
+	pid="$(pgrep -u "$USER" newsboat)"
+	terminalid="$(xdotool search --pid "$(ps axjf | grep -v grep | grep -B 5 "$pid" | grep "$TERMINAL" | tail -n1 | awk '{print $2}')")"
 	#terminalid="$(xdotool search --pid "$(ps -o ppid= -p "$(ps -o ppid= -p "$(pidof newsboat)")")")"
 	xdotool key --window "$terminalid" R
 }
@@ -8,6 +9,6 @@ sendkey() {
 reloadandnotify(){
 	unreads="$(newsboat -x reload -x print-unread | cut -d' ' -f1)"
 	[ "$unreads" -eq 0 ] || notify-send --icon rss "Newsboat" "$unreads new articles"
+	echo "$unreads new articles"
 }
-
-pidof -q newsboat && sendkey || reloadandnotify
+pgrep -u "$USER" newsboat > /dev/null && sendkey || reloadandnotify

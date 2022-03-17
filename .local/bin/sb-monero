@@ -1,17 +1,30 @@
 #!/bin/sh
 
+file="${XDG_DATA_HOME:-$HOME/.local/share}/monerochart"
+
+show(){
+	moneroprice="$(tail -n1 "$file")"
+	personalmonero="0.035829173139" 
+	personalmonerotrunc="$(echo "$moneroprice" \* "$personalmonero" | bc -l)"
+	
+	[ -z "$moneroprice" ] && exit 1
+	
+	printf " %0.2f(%0.2f)" "$personalmonerotrunc" "$moneroprice"
+}
+
+update(){
+	curl -sf rate.sx/xmr@2w > "$file" || exit 1
+	curl -sf rate.sx/1xmr >> "$file" || exit 1
+}
+
 case $BLOCK_BUTTON in
-	1) setsid "$TERMINAL" -e less -Srf ~/.local/share/monerochart && exit ;;
+	1) setsid "$TERMINAL" -e less -Srf "$file" && exit ;;
+	2) update ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0"
 esac
 
-moneroprice="$(curl -sf rate.sx/1xmr)"
+moddate="$(date -r "$file" '+%s')"
+actualdate="$(date '+%s')"
+diff="$(( (actualdate - moddate) / 60 ))"
 
-personalmonero="0.035829173139" 
-personalmonerotrunc="$(echo "$moneroprice" \* "$personalmonero" | bc -l)"
-
-[ -z "$moneroprice" ] && exit 1
-
-printf " %0.2f(%0.2f)" "$personalmonerotrunc" "$moneroprice"
-
-curl -sf rate.sx/xmr@2w > ~/.local/share/monerochart
+( [ "$diff" -lt 5 ] && show ) || (update && show)

@@ -2,12 +2,23 @@
 sudo pacman -Syu
 
 sudo pacman -S \
+dash \
 zsh \
 base-devel \
+man-db \
+tmux \
+rsync \
+unclutter \
 moreutils \
+xorg \
+xorg-xinit \
+network-manager-applet \
+mlocate \
 git \
 alacritty \
 dunst \
+pass \
+pass-otp \
 wget \
 qrencode \
 acpilight \
@@ -35,7 +46,6 @@ pipewire-alsa \
 pipewire-pulse \
 wireplumber \
 yt-dlp \
-youtube-dl \
 maim \
 xss-lock \
 xclip \
@@ -63,6 +73,10 @@ lxappearance \
 kvantum-qt5 \
 arc-icon-theme \
 materia-gtk-theme \
+neomutt \
+isync \
+msmtp \
+lynx \
 mesa \
 xf86-video-intel \
 vulkan-intel \

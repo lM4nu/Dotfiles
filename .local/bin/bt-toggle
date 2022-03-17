@@ -1,3 +1,6 @@
 #!/bin/sh
-(sudo systemctl status bluetooth > /dev/null && sudo systemctl stop bluetooth && notify-send "Bluetooth Off") || 
-	(sudo systemctl start bluetooth && echo "power on" | bluetoothctl > /dev/null && notify-send "Bluetooth On")
+#(sudo systemctl status bluetooth > /dev/null && sudo systemctl stop bluetooth && notify-send "Bluetooth Off") || 
+	#(sudo systemctl start bluetooth && echo "power on" | bluetoothctl > /dev/null && notify-send "Bluetooth On")
+
+(sudo rc-service bluetoothd status > /dev/null && sudo rc-service bluetoothd stop && notify-send "Bluetooth Off") ||
+	(sudo rc-service bluetoothd start > /dev/null && echo "power on" | bluetoothctl > /dev/null && notify-send "Bluetooth On")

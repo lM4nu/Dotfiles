@@ -1,3 +1,6 @@
+pipewire &
+pipewire-pulse &
+pipewire-media-session &
 xbacklight -set 1 &
 xrandr --dpi 96 &
 xrdb ~/.config/x11/Xresources &
@@ -5,7 +8,7 @@ xss-lock -- slock &
 setxkbmap -option caps:escape &
 setbg &
 mailsync &
-picom &
+xcompmgr &
 dunst &
 unclutter --timeout 1 --ignore-scrolling &
 touchpad &

@@ -1,14 +1,26 @@
 #!/bin/sh
 
+file="${XDG_DATA_HOME:-$HOME/.local/share}/btcchart"
+
+show(){
+	btcprice="$(tail -n1 "$file")"
+	[ -z "$btcprice" ] && exit 1
+	printf " %0.2f" "$btcprice"
+}
+
+update(){
+	curl -sf rate.sx/btc@2w > "$file" || exit 1
+	curl -sf rate.sx/1btc >> "$file" || exit 1
+}
+
 case $BLOCK_BUTTON in
-	1) setsid "$TERMINAL" -e less -Srf ~/.local/share/btcchart && exit ;;
+	1) setsid "$TERMINAL" -e less -Srf "$file" && exit ;;
+	2) update ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0"
 esac
 
-btcprice="$(curl -sf rate.sx/1btc)"
+moddate="$(date -r "$file" '+%s')"
+actualdate="$(date '+%s')"
+diff="$(( (actualdate - moddate) / 60 ))"
 
-[ -z "$btcprice" ] && exit 1
-
-printf " %0.2f" "$btcprice"
-
-curl -sf rate.sx/btc@2w > ~/.local/share/btcchart
+( [ "$diff" -lt 5 ] && show ) || (update && show)

@@ -33,4 +33,4 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
 
 [ -f $HOME/.config/lf/icons ] && source $HOME/.config/lf/icons
-#[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd
+[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd

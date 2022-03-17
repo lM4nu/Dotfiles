@@ -107,4 +107,5 @@ super + shift + r
 	qrtoclipboard
 
 super + F5
-	sudo systemctl restart NetworkManager
+	#sudo systemctl restart NetworkManager
+	sudo rc-service NetworkManager restart
