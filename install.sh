@@ -96,7 +96,11 @@ sudo make -C suckless/dmenu install
 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-chsh -s /bin/zsh
+[ -d /etc/pacman.d/hooks ] || sudo mkdir -p /etc/pacman.d/hooks
+sudo cp dash.hook dwmblocks.hook /etc/pacman.d/hooks/
+sudo ln -sfT dash /usr/bin/sh
 
 cp .zprofile ~
 cp -r .config .local ~
+
+chsh -s /bin/zsh
