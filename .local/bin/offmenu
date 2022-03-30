@@ -7,11 +7,11 @@ lidswitchvalue="$(grep -E "^HandleLidSwitch=.*$" "$logindconf" | cut -d'=' -f2)"
 
 [ "$lidswitchvalue" = "ignore" ] && lidswitchopt="Use Lid" || lidswitchopt="Ignore Lid"
 
-choice=$(printf "Power Off\nReboot\nLock Screen\nTurn off Screen\n$lidswitchopt" | dmenu -i -sb '#f00')
+choice=$(printf "Power Off\nReboot\nLock Screen\nTurn off Screen\n$lidswitchopt" | dmenu -i -sf '#fff' -sb '#f00')
 
 case $choice in
-	"Power Off") sudo poweroff;;
-	"Reboot") sudo reboot;;
+	"Power Off") sudo loginctl poweroff;;
+	"Reboot") sudo loginctl reboot;;
 	"Lock Screen") slock;;
 	"Turn off Screen") xset dpms force off;;
 	"Use Lid") sudo sed -i "s/^HandleLidSwitch=ignore/HandleLidSwitch=suspend/" "$logindconf" ; sudo loginctl reload ;;#sudo systemctl kill -s HUP systemd-logind.service ;;

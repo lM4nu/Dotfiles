@@ -9,4 +9,5 @@ epub-thumbnailer-git \
 urlview-xdg-git \
 gallery-dl \
 rar \
-tremc-git
+tremc-git \
+simple-mtpfs

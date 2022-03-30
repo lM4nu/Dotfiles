@@ -100,7 +100,7 @@ autocmd BufWritePost sxhkdrc :silent !pkill -10 sxhkd
 
 autocmd BufWritePost ~/.config/x11/Xresources !xrdb %
 
-autocmd BufWritePost *.tex !pdflatex % 
+autocmd BufWritePost *.tex :silent !pdflatex % 
 
 "Snippets
 autocmd FileType java inoremap psvm public static void main(String[] args) { <Enter><Enter> }<Esc>ki

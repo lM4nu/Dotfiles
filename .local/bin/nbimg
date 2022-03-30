@@ -10,10 +10,15 @@ then
 elif [[ "$1" =~ .*watch\?v=.{11}$ ]] || [[ "$1" =~ .*youtu\.be/.* ]]
 then
 	url="$(yt-dlp --skip-download --get-thumbnail "$1")"
+elif [[ "$1" =~ .*nitter.*status ]]
+then
+	twitter="$(echo "$1" | sed "s/nitter\.pussthecat\.org/twitter\.com/;s/#m$//")"
+	url="$(gallery-dl -g "$twitter" | head -n1)"
+	echo "$url" | grep video > /dev/null && exec nbvid "$url"
 else
 	url="$1"
 fi
 
-curl -sLo "$file" "$url" 2> /dev/null || (notify-send "Error" ; rm "$file" ; exit 1)
+curl -sLo "$file" "$url" 2> /dev/null || ( notify-send "Error" ; rm "$file" ; exit 1 )
 
-(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab "$file" 2>/dev/null && rm "$file") || (notify-send "Error" ; rm "$file" ; exit 1)
+( pgrep -f "sxiv -pab $file" > /dev/null && exit ) || ( sxiv -pab "$file" 2>/dev/null && rm "$file" ) || ( notify-send "Error" "not an image" ; rm "$file" ; exit 1 )

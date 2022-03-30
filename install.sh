@@ -31,6 +31,8 @@ keepassxc \
 newsboat \
 zathura \
 zathura-pdf-mupdf \
+zathura-cb \
+zathura-djvu \
 ffmpeg \
 ncmpcpp \
 mpd \
@@ -69,6 +71,7 @@ perl-image-exiftool \
 mediainfo \
 catdoc \
 docx2txt \
+odt2txt \
 lxappearance \
 kvantum-qt5 \
 arc-icon-theme \

@@ -1,14 +1,23 @@
 #!/bin/sh
 weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
+currenttempfile="${XDG_DATA_HOME:-$HOME/.local/share}/currenttempfile"
 
-getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
+getforecast() { 
+	curl -sf "wttr.in/$LOCATION" > "$weatherreport"
+	curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/" > "$currenttempfile"
+}
 
 formatweather() { printf "%s" "$(sed '16q;d' "$weatherreport" |
 	grep -wo "[0-9]*%" | sort -rn | sed "s/^/ 💦/g;1q" | tr -d '\n')"
 sed '13q;d' "$weatherreport" | grep -o "m\\([-+]\\)*[0-9]\\+" | sed 's/+//g' | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " 🥶" $1 "°","🌞" $2 "°"}' ;}
 
 showweather() {
-	currenttemp="$(curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/")"
+	moddate="$(date -r "$currenttempfile" '+%s')"
+	actualdate="$(date '+%s')"
+	diff="$(( (actualdate - moddate) / 60 ))"
+
+	[ "$diff" -gt 60 ] && curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/" > "$currenttempfile"
+	currenttemp="$(cat "$currenttempfile")"
 	weather="$(formatweather)"
 	[ -z "$weather" ] && printf "🥶" || printf "%s%s"  "$currenttemp" "$weather"
 }

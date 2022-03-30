@@ -1,5 +1,5 @@
 #!/bin/sh
-vidurl=$(xclip -selection clipboard -o)
+vidurl="$(xclip -selection clipboard -o | sed "s/&list=.*//")"
 
 notify-send "Playing 
 $(yt-dlp -e "$vidurl")" &

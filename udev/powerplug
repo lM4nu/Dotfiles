@@ -1,0 +1,4 @@
+#!/bin/sh
+bright="$(/usr/bin/xbacklight -get)"
+[ "$bright" -lt 10 ] && /usr/bin/xbacklight -set 10
+/usr/bin/pkill -RTMIN+8 dwmblocks

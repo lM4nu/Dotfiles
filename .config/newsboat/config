@@ -35,7 +35,7 @@ bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
-bind-key x delete-article
+#bind-key x delete-article
 
 macro y set browser "setsid -f nbvid %u" ; open-in-browser-and-mark-read ; set browser "setsid -f nbmedia %u"
 macro i set browser "setsid -f nbmedia %u"

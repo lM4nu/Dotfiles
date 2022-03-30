@@ -18,8 +18,8 @@ titles="$(mktemp)"
 urls="$(mktemp)"
 channels="$(mktemp)"
 menu="$(mktemp)"
-#instance="https://invidious.snopyta.org"
-instance="https://invidious.flokinet.to"
+instance="https://invidious.snopyta.org"
+#instance="https://invidious.flokinet.to"
 
 clean(){
 	rm "$html" "$file" "$titles" "$urls" "$channels" "$menu"

@@ -1,0 +1,2 @@
+SUBSYSTEM=="power_supply", ATTR{online}=="0", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/m4nu/.config/x11/Xauthority", RUN+="/usr/bin/pkill -RTMIN+8 dwmblocks"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/m4nu/.config/x11/Xauthority", RUN+="/etc/udev/rules.d/powerplug"
