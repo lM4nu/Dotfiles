@@ -73,7 +73,9 @@ catdoc \
 docx2txt \
 odt2txt \
 lxappearance \
+qt5ct
 kvantum-qt5 \
+kvantum-theme-materia \
 arc-icon-theme \
 materia-gtk-theme \
 neomutt \

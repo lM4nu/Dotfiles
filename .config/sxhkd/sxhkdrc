@@ -42,10 +42,10 @@ super + shift + d
 	discord
 
 super + w
-	brave
+	$BROWSER
 
 super + shift + w
-	brave --incognito
+	$BROWSER --incognito
 
 super + shift + b
 	bt-toggle

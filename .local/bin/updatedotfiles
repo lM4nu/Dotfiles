@@ -8,7 +8,7 @@ $dotfilespath/.config/* \
 $dotfilespath/.config/.aliases \
 $dotfilespath/.config/mimeapps.list \
 $dotfilespath/.local/bin \
-$dotfilespath/.local/share/applications \
+$dotfilespath/.local/share/applications/* \
 $dotfilespath/.zprofile
 #$dotfilespath/suckless \
 
@@ -19,6 +19,7 @@ $configpath/fontconfig \
 $configpath/gtk-2.0 \
 $configpath/gtk-3.0 \
 $configpath/i3blocks \
+$configpath/Kvantum \
 $configpath/lf \
 $configpath/mpd \
 $configpath/mpv \
@@ -27,6 +28,7 @@ $configpath/newsboat \
 $configpath/npm \
 $configpath/nvim \
 $configpath/pinentry \
+$configpath/qt5ct \
 $configpath/sxhkd \
 $configpath/sxiv \
 $configpath/tmux \
@@ -40,7 +42,7 @@ $dotfilespath/.config/
 
 cp -vr ~/.local/bin $dotfilespath/.local
 
-cp -vr ~/.local/share/applications $dotfilespath/.local/share
+cp -vr ~/.local/share/applications/editor.desktop ~/.local/share/applications/torrent.desktop $dotfilespath/.local/share/applications
 
-cp -vr ~/.zprofile $dotfilespath
+#cp -vr ~/.zprofile $dotfilespath
 #cp -vr ~/Downloads/suckless ~/.zprofile $dotfilespath

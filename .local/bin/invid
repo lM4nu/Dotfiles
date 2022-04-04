@@ -47,12 +47,13 @@ then
 fi
 
 yturl="$(grep -F ";$chosen" "$menu" | cut -d';' -f1)"
+url="$(echo "$yturl" | sed "s|https://www.youtube.com|$instance|")"
 
-printf "%s" "$yturl" | xsel -bi
+#printf "%s" "$yturl" | xsel -bi
+printf "%s" "$url" | xsel -bi
 
 notify-send "Playing $chosen in mpv"
 
 setsid -f mpv --no-terminal "$yturl" 2> /dev/null || notify-send "Error"
 
 clean
-

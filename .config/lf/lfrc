@@ -37,6 +37,7 @@ cmd bulkrename $vidir
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map x delete
+map w $setsid -f brave "$f" > /dev/null 2>&1
 map ` mark-load
 map b $setbg "$f"
 map R bulkrename

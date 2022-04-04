@@ -31,9 +31,10 @@ set splitright splitbelow
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
-autocmd BufEnter *.js colorscheme gruvbox | set background=dark
-autocmd BufEnter *.html colorscheme gruvbox | set background=dark
-autocmd BufEnter *.css colorscheme gruvbox | set background=dark
+autocmd BufEnter *.js colorscheme monokain | set background=dark
+autocmd BufEnter *.html colorscheme monokain | set background=dark
+autocmd BufEnter *.css colorscheme monokain | set background=dark
+autocmd BufEnter *.java colorscheme monokain | set background=dark
 
 let g:airline_theme='simple'
 
