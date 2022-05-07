@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pidof -q rclone && exit
+
+src="gdrive,share_with_me:"
+dest="$HOME/Documents/UTN/gdrive"
+rclone -P copy "$src" "$dest"

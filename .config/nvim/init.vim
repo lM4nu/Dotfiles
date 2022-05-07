@@ -28,6 +28,10 @@ syntax on
 filetype plugin on
 set number rnu
 set splitright splitbelow
+"Spellchecking
+"setlocal spell spelllang=es
+"z=
+"set nospell
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 

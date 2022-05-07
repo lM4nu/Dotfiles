@@ -269,7 +269,7 @@ now_playing_prefix = $b
 ## browser_sort_mode are "type", "name", "mtime", "format" and "none".
 ##
 #
-#browser_sort_mode = type
+browser_sort_mode = name
 #
 #browser_sort_format = {%a - }{%t}|{%f} {%l}
 #
@@ -356,7 +356,7 @@ song_columns_list_format = (20)[]{a} (6f)[cyan]{NrE} (30)[yellow]{t|f:Title} (40
 #
 #volume_change_step = 2
 #
-#autocenter_mode = no
+autocenter_mode = yes
 #
 #centered_cursor = no
 #

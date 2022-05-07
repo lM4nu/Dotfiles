@@ -14,10 +14,7 @@ touchpad &
 sxhkd &
 clipmenud & 
 blueman-applet &
-nm-applet &
-
-/*i3blocks &*/
-/*exec i3*/
+connman-gtk &
 
 dwmblocks &
 exec dwm

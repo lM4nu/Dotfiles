@@ -45,7 +45,7 @@ super + w
 	$BROWSER
 
 super + shift + w
-	$BROWSER --incognito
+	$BROWSER --private-window
 
 super + shift + b
 	bt-toggle
@@ -108,8 +108,11 @@ super + shift + r
 	qrtoclipboard
 
 super + F5
-	sudo rc-service NetworkManager restart
+	sudo rc-service connmand restart
+	#sudo rc-service NetworkManager restart
 	#sudo systemctl restart NetworkManager
 super + shift + F5
-	sudo rc-service NetworkManager stop
+	sudo rc-service connmand stop
+	#sudo rc-service NetworkManager stop
+	#sudo systemctl stop NetworkManager
 

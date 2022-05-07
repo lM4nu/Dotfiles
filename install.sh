@@ -68,6 +68,7 @@ ueberzug \
 imagemagick \
 poppler \
 perl-image-exiftool \
+perl-file-mimeinfo \
 mediainfo \
 catdoc \
 docx2txt \

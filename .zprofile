@@ -1,5 +1,5 @@
 export PATH="$PATH:$HOME/.local/bin"
-export BROWSER=brave
+export BROWSER=firefox
 export EDITOR=nvim
 export TERMINAL=alacritty
 

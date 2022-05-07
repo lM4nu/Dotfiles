@@ -5,6 +5,6 @@ choice="$(printf "Clipboard\nBrowser\nBrowser Incognito" | dmenu -i -p "Send to:
 case "$choice" in
 	Clipboard) printf "%s" "$1" | xsel -bi ;;
 	Browser) setsid -f "$BROWSER" "$1" > /dev/null 2>&1 ;;
-	"Browser Incognito") setsid -f "$BROWSER" "$1" --incognito > /dev/null 2>&1 ;;
+	"Browser Incognito") setsid -f "$BROWSER" "$1" --private-window > /dev/null 2>&1 ;;
 	*) exit 0 ;;
 esac

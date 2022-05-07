@@ -17,7 +17,7 @@ esac
 capacity=$(cat "/sys/class/power_supply/BAT0/capacity")
 
 [ "$status" = "🔋" ] && [ "$capacity" -le 25 ] && warn="❗"
-[ "$status" = "🔋" ] && [ "$capacity" -le 5 ] && notify-send -u critical "Low Battery"
+[ "$status" = "🔋" ] && [ "$capacity" -le 10 ] && notify-send -u critical "Low Battery"
 
 #printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
 echo "$status$warn$capacity%" ; unset warn
