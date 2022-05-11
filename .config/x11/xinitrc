@@ -1,6 +1,6 @@
 pipewire &
 pipewire-pulse &
-pipewire-media-session &
+wireplumber &
 xrandr --dpi 96 &
 xrdb ~/.config/x11/Xresources &
 xss-lock -- slock &
