@@ -1,0 +1,5 @@
+#!/bin/sh
+
+from="$(ls ~/.config/mutt/mailtorc-* | sed "s/^.*mailtorc-//" | fzf --prompt "Select From Address ")"
+
+neomutt -F "$HOME/.config/mutt/mailtorc-$from" "$1"

@@ -1,0 +1,4 @@
+#!/bin/sh
+unrar p -inul "$1" "$(unrar l "$1" | tail -n+9 | head -n-3 | sed -E "/^ d/d;s/.{41}//" | sort | head -n1)" > "$2"
+
+convert -resize "$3"x "$2" "$2"

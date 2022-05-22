@@ -1,0 +1,4 @@
+#!/bin/sh
+unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | head -n-2 | sed -E "/\s*0\s+.*\/$/d;s/\s*[0-9]+\s+.{19}//" | sort | head -n1)" > "$2"
+
+convert -resize "$3"x "$2" "$2"

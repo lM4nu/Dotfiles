@@ -25,8 +25,9 @@ logtime(){
 }
 
 showusage(){
-	[ "$1" = "all" ] && grep -h END "$logfile" "$file" | sed "s/╚//;s/ END//" || grep "END" "$file" | sed "s/╚//;s/ END//"
+	[ -z "$1" ] && grep "END" "$file" | sed "s/╚//;s/ END//" && exit
+	grep -h END "$logfile" "$file" | sed "s/╚//;s/ END//" | less
 }
 
 
-[ -z "$1" ] && logtime || showusage "$1"
+[ "$1" = "log" ] && logtime || showusage "$1"

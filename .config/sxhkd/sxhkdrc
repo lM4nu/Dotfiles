@@ -57,10 +57,12 @@ super + shift + z
 	pkill zoom
 
 XF86MonBrightnessDown
-	xbacklight -dec 5
+	brightctl -dec
+	#xbacklight -dec 5
 
 XF86MonBrightnessUp
-	xbacklight -inc 5
+	brightctl -inc
+	#xbacklight -inc 5
 
 XF86AudioMute
 	pamixer --toggle-mute & pkill -RTMIN+9 dwmblocks
@@ -94,6 +96,9 @@ super + shift + x
 
 super + F3
 	togglemouse
+
+super + F11
+	crontog
 
 super + F12
 	switchlayout

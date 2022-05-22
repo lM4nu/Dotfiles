@@ -19,6 +19,6 @@ else
 	url="$1"
 fi
 
-curl -sLo "$file" "$url" 2> /dev/null || ( notify-send "Error" ; rm "$file" ; exit 1 )
+curl -sLo "$file" "$url" 2> /dev/null || (notify-send "Error" ; rm "$file" ; exit 1)
 
-( pgrep -f "sxiv -pab $file" > /dev/null && exit ) || ( sxiv -pab "$file" 2>/dev/null && rm "$file" ) || ( notify-send "Error" "not an image" ; rm "$file" ; exit 1 )
+(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab "$file" 2>/dev/null && rm "$file") || (notify-send "Error" ; rm "$file" ; exit 1)

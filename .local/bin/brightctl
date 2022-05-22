@@ -1,0 +1,24 @@
+#!/bin/sh
+
+brightf="$(printf "%0.3f" $(xbacklight -getf))"
+bright="$(xbacklight -get)"
+
+decrease(){
+	[ $bright -ge 10 ] && xbacklight -dec 5 && exit
+	[ $bright -gt 5 ] && [ $bright -lt 10 ] && xbacklight -set 5 && exit
+	[ $bright -eq 1 ] && xbacklight -set 0.001 && exit
+	[ $bright -eq 0 ] && xbacklight -set 0 && exit
+	[ $bright -le 5 ] && xbacklight -set 1 && exit
+
+}
+
+increase(){
+	[ $bright -eq 0 ] && [ $brightf = "0.000" ] && xbacklight -set 0.001 && exit
+	[ $bright -eq 0 ] && xbacklight -set 1 && exit
+	[ $bright -lt 5 ] && xbacklight -set 5 && exit
+	[ $bright -ge 5 ] && [ $bright -lt 10 ] && xbacklight -set 10 && exit
+	[ $bright -ge 10 ] && xbacklight -inc 5 && exit
+
+}
+
+[ "$1" = "-inc" ] && increase || decrease

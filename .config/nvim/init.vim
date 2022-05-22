@@ -11,11 +11,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
+Plug 'sainnhe/gruvbox-material'
+Plug 'joshdick/onedark.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'sbdchd/neoformat'
 Plug 'baskerville/vim-sxhkdrc'
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'fratajczak/one-monokai-vim'
 
@@ -35,10 +38,12 @@ set splitright splitbelow
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
-autocmd BufEnter *.js colorscheme monokain | set background=dark
-autocmd BufEnter *.html colorscheme monokain | set background=dark
-autocmd BufEnter *.css colorscheme monokain | set background=dark
-autocmd BufEnter *.java colorscheme monokain | set background=dark
+"autocmd BufEnter *.js colorscheme codedark | set background=dark
+"autocmd BufEnter *.ts colorscheme codedark | set background=dark
+"autocmd BufEnter *.html colorscheme codedark | set background=dark
+"autocmd BufEnter *.css colorscheme codedark | set background=dark
+"autocmd BufEnter *.scss colorscheme codedark | set background=dark
+"autocmd BufEnter *.java colorscheme codedark | set background=dark
 
 let g:airline_theme='simple'
 

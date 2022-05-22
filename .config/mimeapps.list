@@ -22,6 +22,8 @@ image/png=sxiv.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/zip=org.pwmt.zathura.desktop
 
+x-scheme-handler/mailto=neomutt.desktop
+
 [Removed Applications]
 text/plain=code-oss.dekstop
 text/plain=code-oss-url-handler.dekstop

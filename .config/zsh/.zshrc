@@ -2,9 +2,10 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx "${XDG_CONFIG_HOME}"/x11/xinitrc
 fi
 
+[ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 autoload -U colors && colors
-export PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
-
+setopt PROMPT_SUBST
+export PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$fg[cyan]%}$(__git_ps1 " %s ")%{$reset_color%}$%b '
 # Disable % eof
 unsetopt prompt_cr prompt_sp
 
