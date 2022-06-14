@@ -1,9 +1,18 @@
 #!/bin/sh
 
 #nmcli dev wifi list | grep -E '^\*' | sed -E "s/.*s\s{2}//;s/\s+.*$/%/"
-tail -n1 /proc/net/wireless | sed -E "s/\s+/|/g" | cut -d'|' -f4 | sed "s/\.//;s/$/%/;/^%$/d"
+#tail -n1 /proc/net/wireless | sed -E "s/\s+/|/g" | cut -d'|' -f4 | sed "s/\.//;s/$/%/;/^%$/d"
+
+if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+	wifiicon="$(awk '/^\s*w/ { print "📶", int($3 * 100 / 70) "%" }' /proc/net/wireless)"
+elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
+	grep -xq '0x1003' /sys/class/net/w*/flags && wifiicon="📡 " || wifiicon="❌ "
+fi
+
+printf "%s%s%s\n" "$wifiicon" "$(sed "s/down/❎/;s/up/🌐/" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*/🔒/" /sys/class/net/tun*/operstate 2>/dev/null)"
 
 case $BLOCK_BUTTON in
 	1) notify-send "$(nmcli --fields ssid,mode,signal dev wifi list | sed "/^SSID\s*MODE\s*SIGNAL/ d;s/\s*Infra\s//;s/\s*$/%/")";;
+	2) "$TERMINAL" -e nmtui ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac

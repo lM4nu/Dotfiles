@@ -2,8 +2,8 @@ pipewire &
 pipewire-pulse &
 wireplumber &
 xrandr --dpi 96 &
+xbacklight -set 5 &
 xrdb ~/.config/x11/Xresources &
-xss-lock -- slock &
 setxkbmap -option caps:escape &
 setbg &
 mailsync &
@@ -14,7 +14,7 @@ touchpad &
 sxhkd &
 clipmenud & 
 blueman-applet &
-connman-gtk &
+nm-applet &
 
 dwmblocks &
 exec dwm

@@ -7,10 +7,10 @@ esac
 
 unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/ -regex ".*/new/.*" -type f | wc -l 2>/dev/null)"
 
-[ "$unread" = "0" ] && exit
-echo "📧 $unread"
+#[ "$unread" = "0" ] && exit
+#echo "📧 $unread"
 
-#pidof mbsync > /dev/null 2>&1 && icon="🔄"
-#[ "$unread" = "0" ] && echo "$icon" && exit
-#echo "$icon📧 $unread"
+pidof mbsync > /dev/null 2>&1 && icon="🔄"
+[ "$unread" = "0" ] && printf "%s" "$icon" && exit
+echo "$icon📧 $unread"
 

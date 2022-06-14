@@ -2,7 +2,7 @@
 date=$(date '+%d/%m %a %H:%M')
 
 case $BLOCK_BUTTON in 
-	1) notify-send "$(cal)";;
+	1) notify-send " " "<b>$(cal --color=always | sed "s/..7m/<span fgcolor=\"yellow\">/;s/..27m/<\/span>/")</b>" && notify-send "$(calcurse -d7)";;
 	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac
 

@@ -4,28 +4,24 @@ Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree' 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'morhetz/gruvbox'
-Plug 'tomasiser/vim-code-dark'
 Plug 'sainnhe/gruvbox-material'
-Plug 'joshdick/onedark.vim'
+Plug 'LexFrench/molokai-transparent'
+Plug 'Mofiqul/vscode.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdcommenter'
-Plug 'sbdchd/neoformat'
 Plug 'baskerville/vim-sxhkdrc'
-"Plug 'flazz/vim-colorschemes'
-Plug 'tpope/vim-fugitive'
-Plug 'fratajczak/one-monokai-vim'
 
 call plug#end()
 
 "Basic config
-set background=light
+"set background=light
 imap jj <Esc>
 syntax on
 filetype plugin on
@@ -38,14 +34,29 @@ set splitright splitbelow
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
-"autocmd BufEnter *.js colorscheme codedark | set background=dark
-"autocmd BufEnter *.ts colorscheme codedark | set background=dark
-"autocmd BufEnter *.html colorscheme codedark | set background=dark
-"autocmd BufEnter *.css colorscheme codedark | set background=dark
-"autocmd BufEnter *.scss colorscheme codedark | set background=dark
-"autocmd BufEnter *.java colorscheme codedark | set background=dark
+" GRUVBOX 
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_foreground = 'material'
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_visual = 'reverse'
+let g:gruvbox_material_ui_contrast = 'high'
+let g:airline_theme='base16_gruvbox_dark_hard'
+set background=dark
+colorscheme gruvbox-material
 
-let g:airline_theme='simple'
+" MOLOKAI
+"let g:molokai_transparent = 1
+"let g:molokai_alternate_comments = 1
+"let g:airline_theme='simple'
+"colorscheme molokaiTransparent
+
+"VSCODE
+"set background=dark
+"let g:vscode_transparent = 1
+"let g:vscode_italic_comment = 1
+"let g:airline_theme='simple'
+"colorscheme vscode
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -81,10 +92,6 @@ let g:coc_global_extensions = [
  \ 'coc-java'
  \ ]
 
-"Prettier
-"command! -nargs=0 Prettier :CocCommand prettier.formatFile
-"autocmd BufWritePre *.js Neoformat
-"autocmd BufWritePre *.css Neoformat
 
 "CtrlP
 let g:ctrlp_working_path_mode = 'ra'

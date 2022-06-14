@@ -1,8 +1,10 @@
 #auto-reload yes
-max-items 900
+max-items 1900
 reload-threads 10
 #openbrowser-and-mark-jumps-to-next-unread yes
 confirm-mark-feed-read no
+
+notify-program "nbnotify"
 
 color listnormal cyan default
 color listnormal_unread blue default bold

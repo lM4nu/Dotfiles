@@ -1,7 +1,7 @@
 set ifs "\n"
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
-set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:lost+found"
+set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:lost+found:*.srt"
 set icons
 cmd open ${{
     case $(file --mime-type "$(readlink -f "$f")" -b) in
@@ -45,6 +45,6 @@ map P $libreoffice --convert-to pdf $fx
 map Y $cat "$f" | xclip -sel c -t $(file --mime-type -b "$f")
 map a chmod minus 
 map A chmod plus
-map o $setsid -f pcmanfm . 
+map o $setsid -f pcmanfm . > /dev/null 2>&1
 map V push :!nvim<space>
 map <c-n> push :mkdir<space>

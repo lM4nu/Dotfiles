@@ -403,7 +403,7 @@ connected_message_on_startup = no
 #
 #cyclic_scrolling = no
 #
-lyrics_fetchers = azlyrics, musixmatch, sing365, metrolyrics, justsomelyrics, genius, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
+lyrics_fetchers = musixmatch, sing365, metrolyrics, justsomelyrics, genius, jahlyrics, plyrics, tekstowo, zeneszoveg, internet, azlyrics
 #
 follow_now_playing_lyrics = yes
 #

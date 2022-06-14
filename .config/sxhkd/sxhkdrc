@@ -113,11 +113,11 @@ super + shift + r
 	qrtoclipboard
 
 super + F5
-	sudo rc-service connmand restart
-	#sudo rc-service NetworkManager restart
+	sudo rc-service NetworkManager restart
+	#sudo rc-service connmand restart
 	#sudo systemctl restart NetworkManager
 super + shift + F5
-	sudo rc-service connmand stop
-	#sudo rc-service NetworkManager stop
+	sudo rc-service NetworkManager stop ; pkill nm-applet
+	#sudo rc-service connmand stop
 	#sudo systemctl stop NetworkManager
 

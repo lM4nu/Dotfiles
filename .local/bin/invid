@@ -26,9 +26,10 @@ clean(){
 }
 
 curl -s "$instance/search?q=$query" > "$html"
-sed -i "s/&#39;/'/g;s/&quot;/\"/g;s/&amp;/\&/g" "$html"
+#sed -i "s/&#39;/'/g;s/&quot;/\"/g;s/&amp;/\&/g" "$html"
+recode HTML_4.0 "$html"
 
-grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/<\/p>$//;s/.*<p class=\".*>/CHANNELNAME;/" > "$file"
+grep -A 14 -B 2 "<div class=\"thumbnail\">" "$html" | grep "href\|auto" | grep -v "\/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/.*<p class=\".*auto\">/CHANNELNAME;/;s/<\/p>$//;s/<i.*<\/i>$//" > "$file"
 
 grep "/watch?v=" "$file" > "$urls"
 grep "VIDEOTITLE" "$file" | cut -d';' -f2 > "$titles"

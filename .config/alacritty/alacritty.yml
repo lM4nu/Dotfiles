@@ -31,6 +31,9 @@ font:
     family: DejaVu Sans Mono
     style: Book
     
+    #family: Inconsolata
+    #style: Regular
+    
     #family: JetBrains Mono
     #style: Regular
     
@@ -40,6 +43,9 @@ font:
   bold:
     family: DejaVu Sans Mono
     style: Bold
+    
+    #family: Inconsolata
+    #style: Bold
     
     #family: JetBrains Mono
     #style: Bold
@@ -51,6 +57,9 @@ font:
     family: DejaVu Sans Mono
     style: Oblique
     
+    #family: Inconsolata
+    #style: Italic
+    
     #family: JetBrains Mono
     #style: Italic
     
@@ -61,13 +70,17 @@ font:
     family: DejaVu Sans Mono
     style: Bold Oblique
     
+    #family: Inconsolata
+    #style: Bold Italic
+    
     #family: JetBrains Mono
     #style: Bold Italic
     
     #family: Noto Sans Mono
     #style: Bold Italic
   
-  size: 8.0
+  size: 8.0 #dejavu
+  #size: 10.0 #Inconsolata
 
 schemes:
   custom: &custom
@@ -75,8 +88,8 @@ schemes:
       text:   '#000000'
       cursor: '#ff0000'
     primary:
-      #background: '#1a1a1a'
       background: '#0c0c0c'
+      #background: '#1c1c1c'
       foreground: '#ffffff'
 
     normal:

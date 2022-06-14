@@ -1,0 +1,5 @@
+#!/bin/sh
+
+msg="$(echo "$1" | grep -o "(.*)" | sed "s/(//;s/ total)//;")"
+
+notify-send -i rss "Newsboat" "$msg"

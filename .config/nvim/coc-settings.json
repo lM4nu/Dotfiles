@@ -1,3 +1,7 @@
 {
-	"eslint.enable" : true
+	"eslint.enable" : true,
+	"java.configuration.maven.userSettings" : "/home/m4nu/.config/maven/settings.xml",
+	"java.import.maven.enabled" : true,
+	"java.completion.enabled" : true
+
 }
