@@ -113,6 +113,36 @@ schemes:
       cyan:    '#00ee9e'
       white:   '#ffffff'
 
+  custom_light: &custom_light
+    cursor:
+      text:   '#000000'
+      cursor: '#ff0000'
+    primary:
+      foreground: '#0c0c0c'
+      #background: '#1c1c1c'
+      background: '#ffffff'
+
+    normal:
+      #black:   '#1d1f21'
+      black:   '#000000'
+      red:     '#EE0000'
+      green:   '#00ee00'
+      yellow:  '#fba922'
+      blue:    '#3971ed'
+      magenta: '#a36ac7'
+      cyan:    '#00ee9e'
+      white:   '#ffffff'
+
+    bright:
+      black:   '#969896'
+      red:     '#EE0000'
+      green:   '#00ee00'
+      yellow:  '#fba922'
+      blue:    '#3971ed'
+      magenta: '#a36ac7'
+      cyan:    '#00ee9e'
+      white:   '#ffffff'
+
   afterglow: &afterglow
     primary:
       background: '#2c2c2c'

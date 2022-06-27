@@ -16,21 +16,26 @@ Plug 'LexFrench/molokai-transparent'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdcommenter'
+Plug 'VebbNix/lf-vim'
 Plug 'baskerville/vim-sxhkdrc'
 
 call plug#end()
 
+"command Gcc :silent w | !set $1 `echo "%" | sed 's/\.c//g'` ; gcc -o $1 "%" && ./$1
+command Gcc :silent w | :terminal set $1 `echo "%" | sed 's/\.c//g'` ; gcc -o $1 "%" && ./$1
+
+
 "Basic config
 "set background=light
+let mapleader =","
 imap jj <Esc>
 syntax on
+set clipboard+=unnamedplus
 filetype plugin on
+set title
+set ignorecase
 set number rnu
 set splitright splitbelow
-"Spellchecking
-"setlocal spell spelllang=es
-"z=
-"set nospell
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
@@ -57,18 +62,24 @@ colorscheme gruvbox-material
 "let g:vscode_italic_comment = 1
 "let g:airline_theme='simple'
 "colorscheme vscode
-
+"
+"Mappings
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+map <leader>s :setlocal spell! spelllang=es<CR>
+map <leader>S :setlocal spell! spelllang=en_us<CR>
+map <leader>c :w! \| :silent !compiler "<c-r>%"<CR>
+map <leader>p :!opout <c-r>%<CR><CR>
+
 "Copy to sys Clipboard
-vnoremap <C-c> "+y
-map <C-y> "+P
+"vnoremap <C-c> "+y
+"map <C-y> "+P
 
 "NERDTREE 
-nnoremap <C-space> :NERDTreeToggle<CR>
+nnoremap <leader><space> :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeGitStatusUseNerdFonts = 1 
 " Exit Vim if NERDTree is the only window left.  
@@ -84,6 +95,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nmap <F2> <Plug>(coc-rename)
 
 let g:coc_global_extensions = [
+ \ 'coc-clangd',
  \ 'coc-html',
  \ 'coc-css',
  \ 'coc-tsserver',
@@ -103,21 +115,17 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
-autocmd BufEnter .aliases set filetype=sh
+autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
+
+autocmd BufEnter aliasrc set filetype=sh
 
 autocmd BufEnter icons set filetype=sh
-
-autocmd BufEnter mpv.conf set filetype=conf
-
-autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
 autocmd BufWritePost dunstrc :silent !pkill dunst && setsid -f dunst
 
 autocmd BufWritePost sxhkdrc :silent !pkill -10 sxhkd
 
 autocmd BufWritePost ~/.config/x11/Xresources !xrdb %
-
-autocmd BufWritePost *.tex :silent !pdflatex % 
 
 "Snippets
 autocmd FileType java inoremap psvm public static void main(String[] args) { <Enter><Enter> }<Esc>ki

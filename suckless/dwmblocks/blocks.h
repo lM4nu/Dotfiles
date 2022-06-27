@@ -11,10 +11,11 @@ static const Block blocks[] = {
 	{"",		"sb-battery",	       30,			8},
 	{"",		"sb-audio",		0,			9},
 	{"🪙",		"sb-bitcoin",	      300,		       10},
-	{"",		"sb-monero",	      300,		       11},
-	{"💵",		"sb-dolar",		0,		       12},
-	{"📅 ",		"sb-date",		0,	       	       13},
-	{"📶 ",		"sb-wifi",	       10,	               14},
+	{"♦️",		"sb-eth",	      300,		       11},
+	{"",		"sb-monero",	      300,		       12},
+	{"💵",		"sb-dolar",		0,		       13},
+	{"📅 ",		"sb-date",		0,	       	       14},
+	{"",		"sb-wifi",	       10,	               15},
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.

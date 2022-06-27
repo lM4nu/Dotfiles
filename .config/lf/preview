@@ -1,5 +1,5 @@
 #!/bin/sh
-alias bat='bat -pp --color=always'
+alias bat='bat -pp --color=always --theme=gruvbox-dark'
 
 image() {
 	if [ -n "$DISPLAY" ]; then
@@ -54,6 +54,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.doc) catdoc "$1" ;;
 	*.docx) docx2txt "$1" - ;;
 	*.html) bat "$1" ;;#lynx -display_charset=utf-8 -dump "$1";;
+	*.md) mdcat "$1" ;;
 	*.xls|*.xlsx)
 		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | bat --language=csv
 		;;
@@ -61,6 +62,8 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 		[ ! -f "${CACHE}.jpg" ] && \
 			pdftoppm -jpeg -f 1 -singlefile "$1" "$CACHE"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
+		;;
+	*.ps)
 		;;
 	*.epub)
 		[ ! -f "$CACHE" ] && \

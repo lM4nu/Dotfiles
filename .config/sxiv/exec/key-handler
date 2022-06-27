@@ -27,7 +27,8 @@ do
 		notify-send "$file";;
 
 	"y") 
-		cat "$file" | xclip -sel c -t $(file --mime-type -b "$file")
+		cat "$file" | xclip -sel c -t $(file --mime-type -b "$file");;
+	"i")	notify-send "$(mediainfo "$file")"
 
 	esac
 done

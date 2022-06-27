@@ -66,6 +66,7 @@ ffmpegthumbnailer \
 ueberzug \
 imagemagick \
 poppler \
+ghostscript \
 perl-image-exiftool \
 perl-file-mimeinfo \
 mediainfo \

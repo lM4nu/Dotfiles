@@ -40,7 +40,7 @@ do
   printf '%s;%s by %s\n' "$f1" "$f2" "$f3"
 done > "$menu"
 
-chosen="$(cut -d';' -f2 "$menu" | dmenu -i -l 30)"
+chosen="$(cut -d';' -f2- "$menu" | dmenu -i -l 30)"
 
 if [ -z "$chosen" ]
 then

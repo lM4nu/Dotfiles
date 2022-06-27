@@ -16,7 +16,7 @@ unsetopt beep
 
 HISTSIZE=10000
 SAVEHIST=10000
-source ~/.config/.aliases
+source ~/.config/aliasrc
 
 LFCD="$HOME/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then

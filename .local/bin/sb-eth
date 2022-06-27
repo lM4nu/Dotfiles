@@ -1,0 +1,26 @@
+#!/bin/sh
+
+file="${XDG_DATA_HOME:-$HOME/.local/share}/ethchart"
+
+show(){
+	ethprice="$(tail -n1 "$file")"
+	[ -z "$ethprice" ] && exit 1
+	printf " %0.2f" "$ethprice"
+}
+
+update(){
+	curl -sf rate.sx/eth@2w > "$file" || exit 1
+	curl -sf rate.sx/1eth >> "$file" || exit 1
+}
+
+case $BLOCK_BUTTON in
+	1) setsid "$TERMINAL" -e less -Srf "$file" && exit ;;
+	2) update ;;
+	3) "$TERMINAL" -e "$EDITOR" "$0"
+esac
+
+moddate="$(date -r "$file" '+%s')"
+actualdate="$(date '+%s')"
+diff="$(( (actualdate - moddate) / 60 ))"
+
+( [ "$diff" -lt 5 ] && show ) || (update && show)
