@@ -19,22 +19,20 @@ static const int topbar             = 1;     /* 0 means bottom bar */
 //static const char *fonts[]          = { "DejaVu Sans:size=10:antialias=true", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "Font Awesome 6 Brands Regular:style=Regular:pixelsize=16"};
 static const char *fonts[]          = { "monospace:size=10", "Noto Color Emoji:style=Regular:pixelsize=14:antialias=true", "Font Awesome 6 Brands Regular:style=Regular:pixelsize=16"};
 static const char dmenufont[]       = "monospace:size=11";
-static const char col_black[]       = "#101010";
+static const char col_black[]       = "#0C0C0C";
 static const char col_red[]         = "#C00000";
-static const char col_white[]       = "#FFFFFF";
-static const char col_gray[]        = "#e9e9e9";
-//static const char col_cyan[]        = "#3971ed";
-static const char col_cyan[]        = "#F00000";
+static const char col_white[]       = "#ebdbb2";
+static const char col_cyan[]        = "#3971ed";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_white, col_black, "#999999" },
 	[SchemeSel]  = { col_white, col_cyan,  col_red  },
-     [SchemeStatus]  = { col_gray, col_black,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-    [SchemeTagsSel]  = { col_black, col_gray,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-   [SchemeTagsNorm]  = { col_gray, col_black,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-    [SchemeInfoSel]  = { col_gray, col_black,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-   [SchemeInfoNorm]  = { col_gray, col_black,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+     [SchemeStatus]  = { col_white, col_black,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+    [SchemeTagsSel]  = { col_black, col_white,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+   [SchemeTagsNorm]  = { col_white, col_black,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]  = { col_white, col_black,  "#000000"  }, // infobar middle selected {text,background,not used but cannot be empty}
+   [SchemeInfoNorm]  = { col_white, col_black,  "#000000"  }, // infobar middle unselected {text,background,not used but cannot be empty}
 
 };
 
@@ -120,7 +118,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray, "-sb", col_gray, "-sf", col_black, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_white, "-sb", col_white, "-sf", col_black, NULL };
 //static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
