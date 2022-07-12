@@ -95,7 +95,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nmap <F2> <Plug>(coc-rename)
 
 let g:coc_global_extensions = [
- \ 'coc-clangd',
  \ 'coc-html',
  \ 'coc-css',
  \ 'coc-tsserver',
@@ -103,6 +102,7 @@ let g:coc_global_extensions = [
  \ 'coc-json', 
  \ 'coc-java'
  \ ]
+ "\ 'coc-clangd',
 
 
 "CtrlP

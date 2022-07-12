@@ -1,8 +1,12 @@
 #!/bin/sh
 
-basename="${1%.*}"
+file="$(readlink -f "$1")"
+dir=${file%/*}
+base="${file%.*}"
+
+cd "$dir" || exit 1
 
 case "${*}" in
-	*.tex|*.[rR]md|*.mom|*.[0-9]|*.md) setsid -f xdg-open "$basename".pdf >/dev/null 2>&1 ;;
-	*.html) setsid -f "$BROWSER" "$basename".html >/dev/null 2>&1 ;;
+	*.tex|*.[rR]md|*.mom|*.[0-9]|*.md) setsid -f xdg-open "$base".pdf >/dev/null 2>&1 ;;
+	*.html) setsid -f "$BROWSER" "$base".html >/dev/null 2>&1 ;;
 esac

@@ -9,7 +9,7 @@ show(){
 }
 
 update(){
-	curl -sf rate.sx/btc@2w > "$file" || exit 1
+	curl -sf rate.sx/btc@4w > "$file" || exit 1
 	curl -sf rate.sx/1btc >> "$file" || exit 1
 }
 
@@ -23,4 +23,5 @@ moddate="$(date -r "$file" '+%s')"
 actualdate="$(date '+%s')"
 diff="$(( (actualdate - moddate) / 60 ))"
 
-( [ "$diff" -lt 5 ] && show ) || (update && show)
+[ "$diff" -lt 20 ] || update
+show

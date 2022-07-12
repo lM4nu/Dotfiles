@@ -22,6 +22,7 @@
 	#upachapter && batdl
 
 file="$HOME/.local/chapter"
+[ ! -f "$file" ] && printf "0" > "$file"
 chapter="$(cat "$file")"
 
 upachapter(){

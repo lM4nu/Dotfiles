@@ -1,4 +1,7 @@
 #!/bin/sh
+
+[ "$(date '+%Y')" -eq 2018 ] && /home/m4nu/.local/bin/syncdate
+
 date="$(date '+%d/%m/%Y')"
 time="$(date '+%H:%M')"
 file="$(readlink -f "${XDG_DATA_HOME:-$HOME/.local/share}/todayusage")"
@@ -28,6 +31,5 @@ showusage(){
 	[ -z "$1" ] && grep "END" "$file" | sed "s/╚//;s/ END//" && exit
 	grep -h END "$logfile" "$file" | sed "s/╚//;s/ END//" | less
 }
-
 
 [ "$1" = "log" ] && logtime || showusage "$1"

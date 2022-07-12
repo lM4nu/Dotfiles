@@ -1,5 +1,10 @@
 #!/bin/sh
 time="$(date --date="$(curl --insecure -s -I google.com | grep Date | cut -d' ' -f2-)" '+%s')"
-sudo date -s "$(date --date=@$time '+%x %X')"
-sudo hwclock -w
 
+if [ "$USER" = 'root' ]; then
+	date -s "$(date --date=@$time '+%x %X')"
+	hwclock -w
+else
+	sudo date -s "$(date --date=@$time '+%x %X')"
+	sudo hwclock -w
+fi

@@ -36,5 +36,4 @@ export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
 
 eval $(dbus-launch --sh-syntax)
 
-[ -f $HOME/.config/lf/icons ] && source $HOME/.config/lf/icons
 #[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd
