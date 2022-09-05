@@ -90,8 +90,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 vmap / <plug>NERDCommenterToggle
 
 "CoC
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nmap <F2> <Plug>(coc-rename)
 
 let g:coc_global_extensions = [
@@ -116,6 +116,10 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 autocmd BufEnter blocks.h silent! lcd %:p:h 
 
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
+
+autocmd BufEnter user-overrides.js silent! lcd %:p:h 
+
+autocmd BufWritePost user-overrides.js !./updater.sh -s && ./prefsCleaner.sh -s
 
 autocmd BufEnter aliasrc set filetype=sh
 

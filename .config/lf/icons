@@ -297,6 +297,7 @@ Vagrantfile             
 *.tif   
 *.tiff  
 *.png   
+*.webp  
 *.svg   
 *.svgz  
 *.mng   

@@ -494,9 +494,9 @@ def_key "x"
 def_key "P"
   show_playlist
 
-def_key ">"
-  seek_forward
+#def_key ">"
+#  seek_forward
 
-def_key "<"
-  seek_backward
+#def_key "<"
+#  seek_backward
 

@@ -10,7 +10,7 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 alias ip='ip --color=auto'
-alias cat='bat -pp'
+alias cat='bat -pp --theme=gruvbox-dark'
 alias rsync='rsync --progress'
 alias pdfconvert='libreoffice --convert-to pdf'
 
@@ -35,7 +35,7 @@ alias nvimrc='nvim ~/.config/nvim/init.vim'
 alias yta='yt-dlp -f "ba" --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias ytc='youtube-viewer --comments "$(xclip -sel c -o)"'
 #alias yt='youtube-viewer'
-alias horario='cat ~/Documents/UTN/2doAno/horarios'
+alias horario='mdcat ~/Documents/UTN/2doAno/horarios.md'
 alias alc='nvim ~/.config/alacritty/alacritty.yml'
 alias nbu='nvim ~/.config/newsboat/urls'
 
@@ -53,3 +53,4 @@ alias mpull='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull 
 #clean home
 alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
 alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'
+alias irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi

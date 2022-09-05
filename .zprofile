@@ -1,5 +1,5 @@
 export PATH="$PATH:$HOME/.local/bin"
-export BROWSER=firefox
+export BROWSER=chromium
 export EDITOR=nvim
 export TERMINAL=alacritty
 
@@ -33,7 +33,5 @@ export FZF_DEFAULT_OPTS="--bind=alt-j:down,alt-k:up"
 
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
-
-eval $(dbus-launch --sh-syntax)
 
 #[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd

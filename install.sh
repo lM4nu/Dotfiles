@@ -1,7 +1,7 @@
 #!/bin/sh
 sudo pacman -Syu
 
-sudo ./artixrepos.sh
+#sudo ./artixrepos.sh
 
 sudo ./packages.sh
 

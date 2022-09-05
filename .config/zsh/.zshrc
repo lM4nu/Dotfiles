@@ -24,7 +24,6 @@ if [ -f "$LFCD" ]; then
 fi
 bindkey -s '^o' 'lfcd\n'  # zsh
 
-
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select

@@ -18,7 +18,7 @@ update(){
 }
 
 case $BLOCK_BUTTON in
-	1) setsid "$TERMINAL" -e less -Srf "$file" && exit ;;
+	1) setsid -f "$TERMINAL" -e less -Srf "$file" && exit ;;
 	2) update ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0"
 esac

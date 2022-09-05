@@ -13,7 +13,6 @@ xorg-xinit \
 network-manager-applet \
 mlocate \
 git \
-firefox \
 alacritty \
 dunst \
 pass \
@@ -25,7 +24,6 @@ noto-fonts-emoji \
 noto-fonts \
 ttf-dejavu \
 ttf-font-awesome \
-ttf-nerd-fonts-symbols \
 keepassxc \
 newsboat \
 zathura \
@@ -86,4 +84,4 @@ lynx \
 mesa \
 xf86-video-intel \
 vulkan-intel \
-libva-intel-driver
+intel-media-driver

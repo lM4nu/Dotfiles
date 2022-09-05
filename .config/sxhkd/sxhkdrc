@@ -39,13 +39,13 @@ super + e
 	emojis
 
 super + shift + d
-	discord
+	discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
 
 super + w
 	$BROWSER
 
 super + shift + w
-	$BROWSER --private-window
+	$BROWSER --incognito
 
 super + shift + b
 	bt-toggle
@@ -113,11 +113,11 @@ super + shift + r
 	qrtoclipboard
 
 super + F5
-	sudo rc-service NetworkManager restart
+	sudo systemctl restart NetworkManager
+	#sudo rc-service NetworkManager restart
 	#sudo rc-service connmand restart
-	#sudo systemctl restart NetworkManager
 super + shift + F5
-	sudo rc-service NetworkManager stop ; pkill nm-applet
+	sudo systemctl stop NetworkManager ; pkill nm-applet
+	#sudo rc-service NetworkManager stop ; pkill nm-applet
 	#sudo rc-service connmand stop
-	#sudo systemctl stop NetworkManager
 

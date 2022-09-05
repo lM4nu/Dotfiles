@@ -4,4 +4,4 @@ folder="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/manga"
 
 ( gallery-dl "$1" -D "$folder" > /dev/null 2>&1 &&
 	zip -j "$folder"/manga.cbz "$folder"/* > /dev/null 2>&1 &&
-	zathura -P 1 "$folder/manga.cbz" && rm -rf "$folder" ) || (rm -rf "$folder" && brave "$1" > /dev/null 2>&1)
+	zathura -P 1 "$folder/manga.cbz" && rm -rf "$folder" ) || (rm -rf "$folder" && "$BROWSER" "$1" > /dev/null 2>&1)
