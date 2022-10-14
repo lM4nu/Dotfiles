@@ -28,7 +28,7 @@ chapter="$(cat "$file")"
 upachapter(){
 	clear
 	printf "Next Chapter? [Y/n] "
-	read choice
+	read -r choice
 	[ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] && chapter=$((chapter + 1))
 	echo "$chapter" > "$file"
 }

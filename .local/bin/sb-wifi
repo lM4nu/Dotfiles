@@ -12,7 +12,7 @@ fi
 printf "%s%s%s\n" "$wifiicon" "$(sed "s/down/❎/;s/up/🌐/" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*/🔒/" /sys/class/net/tun*/operstate 2>/dev/null)"
 
 case $BLOCK_BUTTON in
-	1) notify-send "$(nmcli --fields ssid,mode,signal dev wifi list | sed "/^SSID\s*MODE\s*SIGNAL/ d;s/\s*Infra\s//;s/\s*$/%/")";;
+	1) notify-send "$(nmcli --fields ssid,mode,signal dev wifi list | sed -E "/^SSID\s*MODE\s*SIGNAL/ d;s/\s*(Infra|Ad-Hoc)\s//;s/\s*$/%/")";;
 	2) "$TERMINAL" -e nmtui ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac

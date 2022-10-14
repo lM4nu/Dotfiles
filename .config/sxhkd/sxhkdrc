@@ -19,6 +19,9 @@ super + shift + v
 super + i
 	invid
 
+super + shift + i
+	insomnia
+
 super + m
 	$TERMINAL -e ncmpcpp
 
@@ -45,7 +48,7 @@ super + w
 	$BROWSER
 
 super + shift + w
-	$BROWSER --incognito
+	dbrowser
 
 super + shift + b
 	bt-toggle
@@ -61,7 +64,7 @@ XF86MonBrightnessDown
 	#xbacklight -dec 5
 
 XF86MonBrightnessUp
-	brightctl -inc
+	brightctl
 	#xbacklight -inc 5
 
 XF86AudioMute

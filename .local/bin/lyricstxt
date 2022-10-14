@@ -1,0 +1,6 @@
+#!/bin/sh
+
+base="$(basename "$1" | sed "s/\.mp3$//")"
+lyrics="$HOME/.config/ncmpcpp/lyrics/$base.txt"
+
+mediainfo "$1" | grep Lyrics | sed "s/ desc: //;s/Lyrics\s*:\s*//;s/ \/ /^/g" | tr '^' '\n' > "$lyrics"

@@ -3,10 +3,15 @@ set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/cleaner
 set hiddenfiles ".*:!.config:!.local:!.bashrc:!.profile:!.aliases:*.log:*.aux:!.zprofile:!.zshrc:lost+found:*.srt"
 set icons
+#set promptfmt "\033[31;1m[\033[33;1m%u\033[32;1m@\033[34;1m%h\033[31;1m ]\033[0m:\033[35;1m%d\033[0m\033[1m%f\033[0m" 
+#set promptfmt "\033[31;1m[\033[33;1m%u\033[32;1m@\033[34;1m%h \033[35;1m%d\033[31;1m]\033[0m \033[1m%f\033[0m" 
+set promptfmt "\033[31;1m[\033[33;1m%u\033[32;1m@\033[34;1m%h \033[35;1m%d\033[0m\033[1m%f\033[0m\033[31;1m]" 
+#set promptfmt "\033[33;1m%u\033[32;1m@\033[34;1m%h \033[35;1m%d\033[0m\033[1m%f\033[0m" 
+
 cmd open ${{
     case $(file --mime-type "$(readlink -f "$f")" -b) in
 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
-        text/csv) sc-im "$f" ;;
+        text/csv|application/x-sc) sc-im "$f" ;;
         text/*) $EDITOR "$f" ;;
         inode/x-empty) $EDITOR "$f" ;;
         application/json) $EDITOR "$f" ;;
@@ -37,6 +42,7 @@ cmd bulkrename $vidir
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map x delete
+map i $bat --theme=gruvbox-dark -p --paging=always "$f"
 map E $setsid -f gimp "$f" > /dev/null 2>&1
 map w $setsid -f $BROWSER "$f" > /dev/null 2>&1
 map ` mark-load

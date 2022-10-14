@@ -12,3 +12,4 @@ reloadandnotify(){
 	echo "$unreads unread articles"
 }
 pgrep -u "$USER" newsboat > /dev/null && sendkey || reloadandnotify
+[ ! -z "$1" ] && newsboat

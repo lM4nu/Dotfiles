@@ -10,5 +10,5 @@ cd "$dir" || exit 1
 case "$ext" in
 	tex) pdflatex "$file" ;;
 	#md) lowdown "$file" -o "$base".html -t html;; HTML
-	md) (lowdown --parse-no-intraemph "$file" -Tms --nroff-no-numbered | groff -mpdfmark -ms -kept > "$base.ps" && ps2pdf "$base.ps" "$base.pdf" && rm "$base.ps") || rm "$base.ps" ;;
+	md) (lowdown "$file" -tms --nroff-no-numbered | groff -mpdfmark -ms -kept > "$base.ps" && ps2pdf "$base.ps" "$base.pdf" && rm "$base.ps") || rm "$base.ps" ;;
 esac

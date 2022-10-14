@@ -3,22 +3,22 @@
 bright="$(cat /sys/class/backlight/intel_backlight/actual_brightness)"
 
 decrease(){
-	[ $bright -ge 9600 ] && xbacklight -dec 5 && exit
-	[ $bright -gt 4800 ] && [ $bright -lt 9600 ] && xbacklight -set 5 && exit
-	[ $bright -eq 960 ] && xbacklight -set 0.001 && exit
-	[ $bright -eq 1 ] && xbacklight -set 0 && exit
-	[ $bright -eq 0 ] && xbacklight -set 0 && exit
-	[ $bright -le 4800 ] && xbacklight -set 1 && exit
+	[ "$bright" -ge 9600 ] && xbacklight -dec 5 && exit
+	[ "$bright" -gt 4800 ] && [ "$bright" -lt 9600 ] && xbacklight -set 5 && exit
+	[ "$bright" -eq 960 ] && xbacklight -set 0.001 && exit
+	[ "$bright" -eq 1 ] && xbacklight -set 0 && exit
+	[ "$bright" -eq 0 ] && xbacklight -set 0 && exit
+	[ "$bright" -le 4800 ] && xbacklight -set 1 && exit
 
 }
 
 increase(){
-	[ $bright -eq 0 ] && xbacklight -set 0.001 && exit
-	[ $bright -eq 1 ] && xbacklight -set 1 && exit
-	[ $bright -lt 4800 ] && xbacklight -set 5 && exit
-	[ $bright -ge 4800 ] && [ $bright -lt 9600 ] && xbacklight -set 10 && exit
-	[ $bright -ge 9600 ] && xbacklight -inc 5 && exit
+	[ "$bright" -eq 0 ] && xbacklight -set 0.001 && exit
+	[ "$bright" -eq 1 ] && xbacklight -set 1 && exit
+	[ "$bright" -lt 4800 ] && xbacklight -set 5 && exit
+	[ "$bright" -ge 4800 ] && [ "$bright" -lt 9600 ] && xbacklight -set 10 && exit
+	[ "$bright" -ge 9600 ] && xbacklight -inc 5 && exit
 
 }
 
-[ "$1" = "-inc" ] && increase || decrease
+[ -z "$1" ] && increase || decrease

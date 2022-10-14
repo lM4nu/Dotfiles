@@ -1,4 +1,6 @@
 set window-title-basename "true"
 set selection-clipboard "clipboard"
 set sandbox none
+#set highlight-transparency 1
+#set highlight-fg "9FBC00"
 

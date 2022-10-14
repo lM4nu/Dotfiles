@@ -55,6 +55,6 @@ printf "%s" "$url" | xsel -bi
 
 notify-send "Playing" "$chosen"
 
-setsid -f mpv --no-terminal "$yturl" 2> /dev/null || notify-send "Error"
+setsid -f mpv --no-terminal --player-operation-mode=pseudo-gui "$yturl" 2> /dev/null || notify-send "Error"
 
 clean

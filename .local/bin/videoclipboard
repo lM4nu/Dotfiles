@@ -2,4 +2,4 @@
 vidurl="$(xclip -selection clipboard -o | sed "s/&list=.*//")"
 
 notify-send "Playing" "$(yt-dlp -e "$vidurl")" &
-mpv "$vidurl" || notify-send "Error"
+mpv --player-operation-mode=pseudo-gui "$vidurl" || notify-send "Error"

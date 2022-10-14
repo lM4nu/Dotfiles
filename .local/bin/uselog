@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ "$(date '+%Y')" -eq 2018 ] && /home/m4nu/.local/bin/syncdate
+[ "$(date '+%x')" = "10/01/2022" ] && /home/m4nu/.local/bin/syncdate
 
 date="$(date '+%d/%m/%Y')"
 time="$(date '+%H:%M')"

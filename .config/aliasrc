@@ -10,9 +10,11 @@ alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 alias ip='ip --color=auto'
-alias cat='bat -pp --theme=gruvbox-dark'
+alias bat='bat --theme=gruvbox-dark'
+alias cat='bat -pp'
 alias rsync='rsync --progress'
 alias pdfconvert='libreoffice --convert-to pdf'
+alias bc='bc -ql'
 
 #shortened
 alias vim='nvim'

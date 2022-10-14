@@ -1,5 +1,6 @@
 #!/bin/sh
-input=$(echo "" | dmenu -p "Search: " | sed "s/ /+/g")
-search=$(echo "https://duckduckgo.com/?q=$input" | sed "/=$/ d")
+query=$(printf "" | dmenu -p "Search: " | sed "s/ /+/g")
+[ -z "$query" ] && exit 1
+search=$(echo "https://searx.tiekoetter.com/search?q=$query" | sed "/=$/ d")
 $BROWSER "$search"
 
