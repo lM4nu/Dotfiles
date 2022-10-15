@@ -34,6 +34,7 @@ $configpath/tmux \
 $configpath/transmission-daemon \
 $configpath/tremc \
 $configpath/urlview \
+$configpath/wget \
 $configpath/x11 \
 $configpath/zathura \
 $configpath/zsh \
