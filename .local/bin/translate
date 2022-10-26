@@ -4,5 +4,6 @@ from=$(echo "$1" | cut -d'-' -f1)
 to=$(echo "$1" | cut -d'-' -f2)
 
 search=$(echo "$2" | sed "s/ /%20/g")
+instance="https://translate.tiekoetter.com"
 
-curl -s "https://simplytranslate.org/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//"
+curl -s "$instance/?engine=google&text=$search%0D%0A&sl=$from&tl=$to" | grep readonly | grep -o ">.*<" | sed "s/>//;s/<//"

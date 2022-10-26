@@ -116,11 +116,12 @@ super + shift + r
 	qrtoclipboard
 
 super + F5
-	sudo systemctl restart NetworkManager
+	nmcli device wifi rescan ; pkill -RTMIN+15 dwmblocks
+	#sudo systemctl restart NetworkManager ; pkill -RTMIN+15 dwmblocks
 	#sudo rc-service NetworkManager restart
 	#sudo rc-service connmand restart
 super + shift + F5
-	sudo systemctl stop NetworkManager ; pkill nm-applet
+	sudo systemctl stop NetworkManager ; pkill nm-applet ; pkill -RTMIN+15 dwmblocks
 	#sudo rc-service NetworkManager stop ; pkill nm-applet
 	#sudo rc-service connmand stop
 

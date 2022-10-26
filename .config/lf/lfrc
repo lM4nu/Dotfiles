@@ -42,7 +42,7 @@ cmd bulkrename $vidir
 cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map x delete
-map i $bat --theme=gruvbox-dark -p --paging=always "$f"
+#map i $bat --theme=gruvbox-dark -p --paging=always "$f"
 map E $setsid -f gimp "$f" > /dev/null 2>&1
 map w $setsid -f $BROWSER "$f" > /dev/null 2>&1
 map ` mark-load

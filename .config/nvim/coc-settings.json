@@ -1,12 +1,27 @@
 {
-	"java.configuration.maven.userSettings" : "/home/m4nu/.config/maven/settings.xml",
-  	"java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:/usr/lib/lombok-common/lombok.jar -Xbootclasspath/a:/usr/lib/lombok-common/lombok.jar",
-	"java.completion.enabled" : true,
-	"java.import.maven.enabled" : true,
-  	"java.saveActions.organizeImports": true,
-  	"java.format.settings.url": "/home/m4nu/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "coc.preferences.rootPatterns": [
+    ".git",
+    ".hg",
+    ".projections.json",
+    "package.json"
+  ],
 
-	"eslint.autoFixOnSave": true
+  "java.configuration.maven.userSettings": "/home/m4nu/.config/maven/settings.xml",
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:/usr/lib/lombok-common/lombok.jar -Xbootclasspath/a:/usr/lib/lombok-common/lombok.jar",
+  "java.completion.enabled": true,
+  "java.import.maven.enabled": true,
+  "java.saveActions.organizeImports": true,
+  "java.format.settings.url": "/home/m4nu/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
 
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "json",
+    "typescript",
+    "javascript"
+  ],
 
+  "clangd.enabled": false,
+
+  "prettier.statusItemText": ""
 }

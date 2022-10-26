@@ -32,6 +32,9 @@ export XAUTHORITY="${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xauthority"
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 export FZF_DEFAULT_OPTS="--bind=alt-j:down,alt-k:up"
 
+export LESS="-i -R"
+export LESSOPEN="| bat --color=always --theme=gruvbox-dark -pp %s"
+
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
 
