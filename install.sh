@@ -1,4 +1,5 @@
 #!/bin/sh
+
 #sync
 sudo pacman -Syu
 
@@ -7,6 +8,14 @@ sudo pacman -Syu
 
 #install packages
 sudo ./packages.sh
+
+#install ungoogled chromium
+curl -s 'https://download.opensuse.org/repositories/home:/ungoogled_chromium/Arch/x86_64/home_ungoogled_chromium_Arch.key' | sudo pacman-key -a -
+echo '
+[home_ungoogled_chromium_Arch]
+SigLevel = Required TrustAll
+Server = https://download.opensuse.org/repositories/home:/ungoogled_chromium/Arch/$arch' | sudo tee --append /etc/pacman.conf
+sudo pacman -Sy ungoogled-chromium
 
 #compile paru
 git clone "https://aur.archlinux.org/paru.git"
