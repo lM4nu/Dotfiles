@@ -244,6 +244,10 @@ autocmd FileType java inoremap psvm public static void main(String[] args) { <En
 		
 autocmd FileType java inoremap sout System.out.println();<Esc>hi
 
+autocmd BufEnter *.js inoremap CL console.log();<Esc>hi
+
+autocmd BufEnter *.ts inoremap CL console.log();<Esc>hi
+
 "Terminal
 tnoremap <Esc> <C-\><C-n>
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif

@@ -1,25 +1,4 @@
 #!/bin/sh
-#file="$HOME/.local/chapter"
-#chapter="$(cat "$file")"
-#magnet=""
-#touch "$file"
-
-#upachapter(){
-	#moddate="$(date -r "$file" '+%s')"
-	#actualdate="$(date '+%s')"
-	#diff="$(echo "($actualdate - $moddate) / 60" | bc )"
-	#if [ "$diff" -lt "17" ] 
-	#then
-		#exit 0
-	#else
-	#chapter=$((chapter + 1))
-	#echo "$chapter" > "$file"
-	##rm -rf /tmp/webtorrent
-	#fi
-#}
-##peerflix "$magnet" --mpv -i "$chapter" "$@" &&
-#webtorrent "$magnet" --mpv -s "$chapter" -u 1 "$@" && 
-	#upachapter && batdl
 
 file="$HOME/.local/chapter"
 [ ! -f "$file" ] && printf "0" > "$file"

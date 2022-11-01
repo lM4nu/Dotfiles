@@ -40,6 +40,7 @@ $configpath/zathura \
 $configpath/zsh \
 $configpath/aliasrc \
 $configpath/mimeapps.list \
+$configpath/chromium-flags.conf \
 $dotfilespath/.config/
 
 cp -vr ~/.local/bin $dotfilespath/.local
