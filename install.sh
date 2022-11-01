@@ -41,6 +41,8 @@ sudo cp dash.hook dwmblocks.hook /etc/pacman.d/hooks/
 
 #link sh to dash
 sudo ln -sfT dash /usr/bin/sh
+#link vim to nvim
+sudo ln -sfT nvim /usr/bin/vim
 
 #set custom thubmnailers
 sudo cp thubmnailers/*.thumbnailer /usr/share/thumbnailers/
