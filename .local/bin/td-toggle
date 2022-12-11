@@ -1,3 +1,12 @@
 #!/bin/sh
 
-(pidof transmission-daemon >/dev/null && notify-send "Stopping transmission-daemon" && transmission-remote --exit >/dev/null && sleep 5 && pkill -RTMIN+3 dwmblocks) || (transmission-daemon && notify-send "Starting transmission daemon..." && sleep 3 && pkill -RTMIN+2 dwmblocks )
+file="$HOME/.local/state/transmission"
+
+signalbar(){
+	sleep 3
+	pidof dwmblocks && pkill -RTMIN+3 dwmblocks
+	printf ""
+}
+
+(pidof transmission-daemon >/dev/null && notify-send "Stopping transmission-daemon" && transmission-remote --exit >/dev/null && signalbar && printf "" > "$file") || 
+	(transmission-daemon && notify-send "Starting transmission daemon..." && signalbar && echo "something" > "$file")

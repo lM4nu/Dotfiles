@@ -8,4 +8,5 @@ urlview-xdg-git \
 gallery-dl \
 rar \
 tremc-git \
-simple-mtpfs
+simple-mtpfs \
+neovim-symlinks

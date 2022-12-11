@@ -31,6 +31,7 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export XAUTHORITY="${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xauthority"
 export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 export FZF_DEFAULT_OPTS="--bind=alt-j:down,alt-k:up"
+export JQ_COLORS="1;32:0;35:0;35:1;33:0;32:1;37:1;39"
 
 export LESS="-i -R"
 export LESSOPEN="| bat --color=always --theme=gruvbox-dark -pp %s"

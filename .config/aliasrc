@@ -15,7 +15,6 @@ alias ip='ip --color=auto'
 alias bat='bat --theme=gruvbox-dark'
 alias cat='bat -pp'
 alias rsync='rsync --progress'
-alias pdfconvert='libreoffice --convert-to pdf'
 alias bc='bc -ql'
 
 #shortened
@@ -35,6 +34,7 @@ alias ulog='uselog'
 
 #shortcuts
 alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias pdfconvert='libreoffice --convert-to pdf'
 #alias yta='youtube-dl -f bestaudio --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias yta='yt-dlp -f "ba" --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias ytc='youtube-viewer --comments "$(xclip -sel c -o)"'
@@ -48,13 +48,17 @@ alias g='git'
 alias gs='git status'
 alias ga='git add'
 alias gp='git push'
-alias gb='git branch'
+alias gbr='git branch'
 alias gch='git checkout'
 alias gc='git commit'
 alias graph='git log --all --decorate --oneline --graph'
 alias mpull='find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;'
 
 #clean home
+alias units='units --history "$XDG_CACHE_HOME"/units_history'
 alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
 alias code='code --extensions-dir "$XDG_DATA_HOME/vscode"'
 alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
+
+alias mycli='mycli --myclirc ~/.config/myclirc'
+alias qbittorrentui='qbittorrentui -c ~/.config/qbittorrent.ini'

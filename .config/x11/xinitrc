@@ -1,3 +1,5 @@
+#!/bin/sh
+
 pipewire &
 pipewire-pulse &
 wireplumber &
@@ -13,8 +15,10 @@ unclutter --timeout 1 --ignore-scrolling &
 touchpad &
 sxhkd &
 clipmenud & 
-blueman-applet &
+#blueman-applet &
 nm-applet &
+
+[ -s $HOME/.local/state/transmission ] && transmission-daemon
 
 dwmblocks &
 exec dwm

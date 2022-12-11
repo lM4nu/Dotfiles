@@ -1,0 +1,6 @@
+#!/bin/sh
+
+base="$(basename "$1" | sed "s/\.mp3$//")"
+lyrics="$HOME/.config/ncmpcpp/lyrics/$base.txt"
+eyeD3 --remove-all-lyrics "$1"
+eyeD3 --add-lyrics "$lyrics" "$1"

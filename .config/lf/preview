@@ -11,6 +11,7 @@ image() {
 	fi
 }
 cover() {
+	#mediainfo "$1"
 	if [ -n "$DISPLAY" ]; then
 		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2/2))" "$(($3/2))" "$1" > "$FIFO_UEBERZUG"
 		exit 1
@@ -20,15 +21,7 @@ cover() {
 }
 
 imageorexif(){
-	#notify-send "
-#width: $2 
-#height:$(($3/2))
-#horiz: $4 
-#vert:  $5"
-	#mediainfo "$1"
 	mediainfo "$1" | grep -E "Cover\s+:\sYes" > /dev/null && cover "${CACHE}.jpg" "$2" "$3" "$4" "$5" || mediainfo "$1"
-
-	#exiftool "$1" | grep "Picture" > /dev/null && image "${CACHE}.jpg" "$2" "$3" "$4" "$5" || exiftool "$1"
 }
 
 CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"

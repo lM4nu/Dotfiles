@@ -11,17 +11,17 @@
   "java.completion.enabled": true,
   "java.import.maven.enabled": true,
   "java.saveActions.organizeImports": true,
-  "java.format.settings.url": "/home/m4nu/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
 
   "coc.preferences.formatOnSaveFiletypes": [
     "html",
     "css",
     "json",
-    "typescript",
-    "javascript"
+    "javascript",
+    "typescript"
   ],
 
   "clangd.enabled": false,
 
-  "prettier.statusItemText": ""
+  "prettier.statusItemText": "",
+  "java.format.settings.url": "/home/m4nu/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
 }

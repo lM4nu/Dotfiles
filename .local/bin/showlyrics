@@ -1,0 +1,3 @@
+#!/bin/sh
+
+mediainfo --Inform="General;%Lyrics%" "$1" | sed "s/^desc: //;s/ \/ /\n/g"

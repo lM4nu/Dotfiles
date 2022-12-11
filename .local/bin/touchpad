@@ -2,10 +2,13 @@
 touchpadId=$(xinput -list | grep Touchpad | awk '{print substr($6,4)}')
 tappingId=$(xinput --list-props "$touchpadId" | grep -m 1 'Tapping Enabled' | awk '{print substr($4,2,3)}')
 accelerationId=$(xinput --list-props "$touchpadId" | grep -m 1 Accel | awk '{print substr($4,2,3)}' )
-leftId=$(xinput --list-props "$touchpadId" | grep -m 1 Left | awk '{print substr($5,2,3)}')
+middleEmulId=$(xinput --list-props "$touchpadId" | grep -m 1 Middle | awk '{print substr($5,2,3)}')
+dragLock=$(xinput --list-props "$touchpadId" | grep -m 1 "Drag Lock" | awk '{print substr($6,2,3)}')
 
 xinput -set-prop "$touchpadId" "$accelerationId" 0.25
-                             
+			     
 xinput -set-prop "$touchpadId" "$tappingId" 1
-                             
-xinput -set-prop "$touchpadId" "$leftId" 1
+			     
+xinput -set-prop "$touchpadId" "$middleEmulId" 1
+
+xinput -set-prop "$touchpadId" "$dragLock" 1

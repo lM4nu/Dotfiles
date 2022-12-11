@@ -46,6 +46,9 @@ bindkey -v '^?' backward-delete-char
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-se(){ find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR }
-sco() { find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||" | grep -v "lyrics/\|plugged\/" | fzf | xargs -r $EDITOR }
+se(){ 
+	[ ! -z "$1" ] && [ -f "$HOME/.local/bin/$1" ] && "$EDITOR" "$HOME/.local/bin/$1" ||
+		find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR 
+}
+sco() { find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||;/lyrics\|plugged/d" | fzf | xargs -r $EDITOR }
 resetbar() { seq 15 | while read -r n; do pkill -RTMIN+"$n" dwmblocks ; done }
