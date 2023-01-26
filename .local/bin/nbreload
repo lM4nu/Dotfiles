@@ -10,6 +10,6 @@ reloadandnotify(){
 	unreads="$(newsboat -x reload -x print-unread | cut -d' ' -f1)"
 	#[ "$unreads" -eq 0 ] || notify-send --icon rss "Newsboat" "$unreads unread articles"
 	echo "$unreads unread articles"
+	[ ! -z "$1" ] && newsboat
 }
-pgrep -u "$USER" newsboat > /dev/null && sendkey || reloadandnotify
-[ ! -z "$1" ] && newsboat
+pgrep -u "$USER" newsboat > /dev/null && sendkey || reloadandnotify "$@"

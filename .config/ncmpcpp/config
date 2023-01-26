@@ -310,7 +310,8 @@ browser_sort_mode = name
 ##
 #
 #song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
-song_columns_list_format = (20)[]{a} (6f)[cyan]{NrE} (30)[yellow]{t|f:Title} (40f)[cyan]{b} (7f)[blue]{lr}
+#song_columns_list_format = (20)[]{a} (6f)[cyan]{NrE} (30)[yellow]{t|f:Title} (40f)[cyan]{b} (7f)[blue]{lr}
+song_columns_list_format = (20)[]{a} (6f)[cyan]{NrE} (30)[yellow]{t|f:Title} (40f)[cyan]{b} (7f)[blue]{lr} (10)[magenta]{g}
 #
 ##### various settings #####
 #

@@ -26,6 +26,7 @@ $configpath/ncmpcpp \
 $configpath/newsboat \
 $configpath/npm \
 $configpath/nvim \
+$configpath/paru \
 $configpath/pinentry \
 $configpath/qt5ct \
 $configpath/sxhkd \

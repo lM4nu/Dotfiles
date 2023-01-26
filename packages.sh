@@ -1,6 +1,7 @@
 #!/bin/sh
 pacman -S \
 dash \
+lf \
 zsh \
 base-devel \
 man-db \
@@ -23,6 +24,7 @@ acpilight \
 noto-fonts-emoji \
 noto-fonts \
 ttf-dejavu \
+ttf-dejavu-nerd \
 ttf-font-awesome \
 keepassxc \
 newsboat \
@@ -44,6 +46,7 @@ pipewire \
 pipewire-alsa \
 pipewire-pulse \
 wireplumber \
+jq \
 yt-dlp \
 maim \
 xss-lock \

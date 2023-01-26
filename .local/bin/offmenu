@@ -13,7 +13,7 @@ case $choice in
 	"Power Off") sudo systemctl poweroff;;
 	"Reboot") sudo systemctl reboot;;
 	"Suspend") sudo systemctl suspend;;
-	"Suspend") sudo systemctl hibernate;;
+	"Hibernate") sudo systemctl hibernate;;
 	"Lock Screen") slock;;
 	"Turn off Screen") xset dpms force off;;
 	"Use Lid") sudo sed -i "s/^HandleLidSwitch=ignore/HandleLidSwitch=suspend/" "$logindconf" ; sudo systemctl kill -s HUP systemd-logind.service ;;#sudo loginctl reload ;;
