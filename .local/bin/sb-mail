@@ -13,4 +13,3 @@ unread="$(find "${XDG_DATA_HOME:-$HOME/.local/share}"/mail/ -regex ".*/new/.*" -
 pidof mbsync > /dev/null 2>&1 && icon="🔄"
 [ "$unread" = "0" ] && printf "%s" "$icon" && exit
 echo "$icon📧 $unread"
-

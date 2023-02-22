@@ -1,6 +1,7 @@
 #!/bin/bash
 
 file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
+nitter="nitter\.net"
 
 pgrep -fx "curl -sLo $file .*" > /dev/null && exit 1
 
@@ -12,7 +13,7 @@ then
 	url="$(yt-dlp --skip-download --get-thumbnail "$1")"
 elif [[ "$1" =~ .*nitter.*status ]]
 then
-	twitter="$(echo "$1" | sed "s/nitter\.pussthecat\.org/twitter\.com/;s/#m$//")"
+	twitter="$(echo "$1" | sed "s/$nitter/twitter\.com/;s/#m$//")"
 	url="$(gallery-dl -g "$twitter" | head -n1)"
 	echo "$url" | grep video > /dev/null && exec nbvid "$url"
 elif [[ "$1" =~ i..wp.com/stonetoss.com ]]

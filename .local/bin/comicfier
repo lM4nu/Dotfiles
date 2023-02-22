@@ -1,0 +1,11 @@
+#!/bin/sh
+
+makecbz(){
+	zip -j "$1/$1.cbz" "$1"/*
+	rm "$1"/*jpg
+}
+
+for i in "$@"; do
+	[ ! -f "$i/$i.cbz" ] && makecbz "$i"
+done
+

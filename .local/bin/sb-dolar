@@ -4,26 +4,41 @@ file="$HOME/.local/share/dolar"
 setvar(){
 	compra=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | head -n1)
 	venta=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | sed -n "2p")
+
 	bluecompra=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | sed -n "3p")
-	blueventa=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | tail -n1)
+	blueventa=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | sed -n "4p")
+
+	mepcompra=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | sed -n "5p")
+	mepventa=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | sed -n "6p")
+
+	solidario=$(grep -Eo "\"value\".{20}" "$file" | grep -Eo "[0-9]*\.[0-9]*" | tail -n1)
 }
 
 update(){
 	curl -s "https://dolarhoy.com/cotizaciondolaroficial" > "$file"
 	curl -s "https://dolarhoy.com/cotizaciondolarblue" >> "$file"
+	curl -s "https://dolarhoy.com/cotizaciondolarbolsa" >> "$file"
+	curl -s "https://dolarhoy.com/cotizaciondolarsolidario" >> "$file"
 	setvar
 }
 
 setvar
 
 case $BLOCK_BUTTON in
-	1) [ -z "$blueventa" ] || notify-send \
-"💵 Oficial 💵
-Compra: \$$compra
-Venta:  \$$venta
-💵 Blue 💵
-Compra: \$$bluecompra 
-Venta:  \$$blueventa" ;;
+	1) [ -z "$blueventa" ] || notify-send "💵 Oficial 💵" \
+"Compra: <b>\$</b><b><span fgcolor=\"yellow\">$compra</span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$venta</span></b>
+
+💵 <b>Blue</b> 💵
+Compra: <b>\$</b><b><span fgcolor=\"yellow\">$bluecompra </span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$blueventa</span></b>
+
+💵 <b>Mep</b> 💵
+Compra: <b>\$</b><b><span fgcolor=\"yellow\">$mepcompra </span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$mepventa</span></b>
+
+💵 <b>Solidario</b> 💵
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$solidario</span></b>" ;;
 	2) update ;;
 	3) "$TERMINAL" -e "$EDITOR" "$0";;
 esac

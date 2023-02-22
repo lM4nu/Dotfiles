@@ -17,6 +17,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'preservim/nerdcommenter'
 "Plug 'prettier/vim-prettier'
 " Syntax
+Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/ap/vim-css-color.git'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -180,11 +181,13 @@ let g:coc_global_extensions = [
  \ 'coc-java',
  \ 'coc-angular',
  \ 'coc-git',
- \ 'coc-prettier',
- \ 'coc-pairs'
+ \ 'coc-prettier'
  \ ]
+ "\ 'coc-pairs'
  "\ 'coc-clangd',
 
+"AutoPairs
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''", "<":">"}
 
 "CtrlP
 let g:ctrlp_working_path_mode = 'ra'

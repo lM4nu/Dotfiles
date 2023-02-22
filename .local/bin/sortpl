@@ -1,0 +1,17 @@
+#!/bin/sh
+
+playlist="$1"
+music="$HOME/Music"
+
+cat "$1" | sed "s|^|$music\/|g" | while read line
+do 
+	#artist="$(mediainfo --Inform="General;%Performer%" "$line")"
+	#artistalbum="$(mediainfo --Inform="General;%Album/Performer%" "$line")"
+	#album="$(mediainfo --Inform="General;%Album%" "$line")"
+	#disc="$(mediainfo --Inform="General;%Part/Position%" "$line")"
+	#track="$(mediainfo --Inform="General;%Track/Position%" "$line")"
+	#title="$(mediainfo --Inform="General;%Track%" "$line")"
+	#echo "$artist $artistalbum $album $disc $track $title |$line"
+
+	echo "$(mediainfo "$line" | grep -E "(Performer\s*: |Album\s*: |Album/Performer\s*: |Part/Position\s*: |Part/Position\s*: |Track name/Position\s*: |Track name\s*: )" | sed -E "s|^Performer\s*:|AA|;s|^Album/Performer\s*:|BB|;s|^Album\s*:|CC|;s|^Part/Position\s*:|DD|;s|^Track name/Position\s*:|EE|;s|^Track name\s*:|FF|" | sort | cut -d' ' -f2- | tr '\n' ' ') |$line"
+done | sort -f | cut -d'|' -f2 | sed "s|^$music\/||g" > "$1"

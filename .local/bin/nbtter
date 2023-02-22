@@ -1,3 +1,4 @@
 #!/bin/sh
-url="$(echo "$1" | sed "s/nitter\.pussthecat\.org/twitter\.com/;s/#m$//")"
+nitter="nitter\.net"
+url="$(echo "$1" | sed "s/$nitter/twitter\.com/;s/#m$//")"
 nbvid "$url"
