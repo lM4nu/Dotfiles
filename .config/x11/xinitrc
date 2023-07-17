@@ -1,13 +1,13 @@
 #!/bin/sh
 
-pipewire &
-pipewire-pulse &
-wireplumber &
+#pipewire &
+#pipewire-pulse &
+#wireplumber &
 xrandr --dpi 96 &
 xbacklight -set 5 &
 xrdb ~/.config/x11/Xresources &
 setxkbmap -option caps:escape &
-setbg &
+setbg ~/.local/wallpapers/custom &
 mailsync &
 xcompmgr &
 dunst &

@@ -2,6 +2,7 @@
 
 alias sudo='doas'
 alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias spah="TZ='Europe/Madrid' date '+%H:%M'"
 
 #default flags
 alias ls='ls --group-directories-first --color=auto'
@@ -17,6 +18,7 @@ alias bat='bat --theme=gruvbox-dark'
 alias cat='bat -pp'
 alias rsync='rsync --progress'
 alias bc='bc -ql'
+alias udict='udict 3'
 
 #shortened
 alias vim='nvim'

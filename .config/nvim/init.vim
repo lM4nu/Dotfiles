@@ -25,6 +25,7 @@ Plug 'uiiaoo/java-syntax.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'VebbNix/lf-vim'
 Plug 'baskerville/vim-sxhkdrc'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 
@@ -101,7 +102,7 @@ nmap r'N rÑ
 "map <C-y> "+P
 
 "NERDTREE 
-nnoremap <leader><space> :NERDTreeToggle<CR>
+nnoremap <leader><space> :silent! NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:NERDTreeGitStatusUseNerdFonts = 1 
 " Exit Vim if NERDTree is the only window left.  
@@ -230,6 +231,9 @@ autocmd BufEnter blocks.h silent! lcd %:p:h
 
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
+autocmd BufWritePost ~/.config/waybar/style.css :silent !killall -SIGUSR2 waybar
+autocmd BufWritePost ~/.config/waybar/config :silent !killall -SIGUSR2 waybar
+
 autocmd BufEnter user-overrides.js silent! lcd %:p:h 
 
 autocmd BufWritePost user-overrides.js !./updater.sh -s && ./prefsCleaner.sh -s
@@ -248,8 +252,10 @@ autocmd FileType java inoremap psvm public static void main(String[] args) { <En
 autocmd FileType java inoremap sout System.out.println();<Esc>hi
 
 autocmd BufEnter *.js inoremap CL console.log();<Esc>hi
+autocmd BufEnter *.js :set shiftwidth=2
 
 autocmd BufEnter *.ts inoremap CL console.log();<Esc>hi
+autocmd BufEnter *.ts :set shiftwidth=2
 
 "Terminal
 tnoremap <Esc> <C-\><C-n>

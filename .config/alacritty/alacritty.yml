@@ -2,7 +2,7 @@ window:
   padding:
     x: 2
     y: 5
-  opacity: 0.9
+  opacity: 0.95
 
 font:
   normal:
@@ -135,5 +135,5 @@ key_bindings:
   - { key: G,         mods: Alt,     mode: ~Alt,        action: ScrollToTop }
   - { key: G,         mods: Alt|Shift,     mode: ~Alt,        action: ScrollToBottom }
   - { key: A,         mods: Alt,     command:{ program: "alacrittyopacity", args: ["-inc"] }}
-  - { key: S,         mods: Alt,     command:{ program: "alacrittyopacity", args: ["-dec"] }}
+  - { key: S,         mods: Alt,     command:{ program: "alacrittyopacity" }}
   - { key: Return,    mods: Control|Shift, action: SpawnNewInstance }

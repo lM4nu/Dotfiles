@@ -14,7 +14,7 @@ cmd open ${{
         text/csv|application/x-sc) sc-im "$f" ;;
         text/*) $EDITOR "$f" ;;
         inode/x-empty) $EDITOR "$f" ;;
-        application/json) $EDITOR "$f" ;;
+        application/json|application/x-ndjson) $EDITOR "$f" ;;
 	audio/*) 
 artist="$(exiftool "$f" | grep -E "Artist\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Artist -b "$f" 2> /dev/null || echo null)"
 title="$(exiftool "$f" | grep -E "Title\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Title -b "$f" 2> /dev/null || echo null)"
@@ -55,3 +55,5 @@ map A chmod plus
 map o $setsid -f pcmanfm . > /dev/null 2>&1
 map V push :!nvim<space>
 map <c-n> push :mkdir<space>
+map <c-e> $unzip "$f"
+map <c-b> $urlview "$f"

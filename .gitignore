@@ -1,18 +1,28 @@
-lyrics
 *.log
 *.o
+# .config/ncmpcpp
+lyrics
+# .config/mpd
 mpdstate
 mpd.pid
 mpd.db
 playlists
+# .config/newsboat
 urls
+# .config/nvim
 plugged
+# .config/transmission-daemon
 blocklists
 resume
 torrents
+bandwidth-groups.json
 dht.dat
 stats.json
+# .config/zsh
 history
+# .config/mpv
 watch_later
+# .config/tremc
 history.json
+# .config/gtk-2.0
 gtkfilechooser.ini

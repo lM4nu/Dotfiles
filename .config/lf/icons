@@ -19,9 +19,11 @@
 ln             # LINK
 or             # ORPHAN
 tw      t       # STICKY_OTHER_WRITABLE
-ow             # OTHER_WRITABLE
+#ow             # OTHER_WRITABLE
+ow             # OTHER_WRITABLE
 st      t       # STICKY
-di             # DIR
+#di             # DIR
+di             # DIR
 pi      p       # FIFO
 so      s       # SOCK
 bd      b       # BLK
@@ -153,7 +155,7 @@ fi             # FILE
 *.rproj         鉶
 *.sol           ﲹ
 *.pem           
-*.kdbx          
+*.kdbx          
 
 # file names (vim-devicons) (case-insensitive not supported in lf)
 *gruntfile.coffee       
@@ -357,5 +359,5 @@ Vagrantfile             
 *.epub  
 *.cbr   
 *.cbz   
-*.iso   
-*.img   
+*.iso   󰗮
+*.img   󰗮

@@ -4,4 +4,5 @@ pidof transmission-daemon >/dev/null || td-toggle
 
 fileorlink="$(echo "$@" | sed "s/^file:\/\///" )"
 
-tremc "$fileorlink" && notify-send "🔽 Torrent added." && sleep 10 && pkill -RTMIN+3 dwmblocks
+tremc "$fileorlink" && notify-send "🔽 Torrent added." && sleep 10 && pkill -RTMIN+3 "${STATUSBAR:-dwmblocks}"
+#tranmission-remote -a "$fileorlink" && notify-send "🔽 Torrent added" && sleep 10 && pkill -RTMIN+3 dwmblocks

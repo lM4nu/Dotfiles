@@ -4,7 +4,7 @@ file="$HOME/.local/state/transmission"
 
 signalbar(){
 	sleep 3
-	pidof dwmblocks && pkill -RTMIN+3 dwmblocks
+	pidof dwmblocks && pkill -RTMIN+3 "${STATUSBAR:-dwmblocks}"
 	printf ""
 }
 

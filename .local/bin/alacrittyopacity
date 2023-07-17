@@ -1,29 +1,31 @@
 #!/bin/sh
 alacrittyconfig="$HOME/.config/alacritty/alacritty.yml"
-line="$(grep "  opacity: " "$alacrittyconfig")"
-value=$(echo "$line" | grep -Eo "[0-9]\.[0-9]$" )
+#line="$(grep "  opacity: " "$alacrittyconfig")"
+#value=$(echo "$line" | grep -Eo "[0-9]\.[0-9]*$" )
+value="$(grep -m1 -Eo "[0-9]\.[0-9]*$" "$alacrittyconfig")"
 
 increase(){
-	if [ "$1" = 1.0 ] || [ "$1" = 0.9 ]; then
+	if [ "$1" = 1.0 ] || [ "$1" = 0.95 ]; then
 		newvalue="1.0"
 	else
-		newvalue="0$(echo "$1" + 0.1 | bc )"
+		newvalue="0$(printf "%s+0.05\n" "$1" | bc )"
 	fi
 }
 
 decrease(){
-	if [ "$1" = 0.0 ] || [ "$1" = 0.1 ]; then
+	if [ "$1" = 0.0 ] || [ "$1" = 0.05 ]; then
 		newvalue="0.0"
 	else
-		newvalue="0$(echo "$1" - 0.1 | bc )"
+		newvalue="0$(printf  "%s-0.05\n" "$1" | bc )"
 	fi
 }
 
-if [ "$1" = "-inc" ]; then
-	increase "$value"
-else
+if [ -z "$1" ]; then
 	decrease "$value"
+else
+	increase "$value"
 fi
 
-newline="  opacity: $newvalue"
-sed -i "s/${line}/${newline}/" "$alacrittyconfig"
+#newline="  opacity: $newvalue"
+#sed -i "s/${line}/${newline}/" "$alacrittyconfig"
+sed -i "s/  opacity: $value/  opacity: $newvalue/" "$alacrittyconfig"

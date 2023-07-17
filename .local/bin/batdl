@@ -2,15 +2,15 @@
 
 file="$HOME/.local/chapter"
 [ ! -f "$file" ] && printf "0" > "$file"
-chapter="$(cat "$file")"
+read episode < "$file"
 
 upachapter(){
 	clear
-	printf "Next Chapter? [Y/n] "
+	printf "Next Episode? [Y/n] "
 	read -r choice
-	[ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] && chapter=$((chapter + 1))
-	echo "$chapter" > "$file"
+	[ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] && episode=$((episode + 1))
+	echo "$episode" > "$file"
 }
 
 magnet=""
-webtorrent "$magnet" --mpv --player-args="--save-position-on-quit" -s "$chapter" -u 1 "$@" ; upachapter ; batdl
+webtorrent "$magnet" --mpv --player-args="--save-position-on-quit --fs" -s "$episode" -u 1 "$@" ; upachapter ; batdl

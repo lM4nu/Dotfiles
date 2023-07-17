@@ -1,10 +1,11 @@
 #!/bin/sh
+CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' \
+	-- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
 alias bat='bat -pp --color=always --theme=gruvbox-dark'
 
 image() {
-	if [ -n "$DISPLAY" ]; then
-		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2-1))" "$(($3-1))" "$1" > "$FIFO_UEBERZUG"
-		#printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y": "%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2/2))" "$(($3/2))" "$1" > "$FIFO_UEBERZUG"
+	if [ -n "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+		printf '{"action": "add", "identifier": "PREVIEW", "x": "%s", "y":"%s", "width": "%s", "height": "%s", "scaler": "contain", "path": "%s"}\n' "$4" "$5" "$(($2-1))" "$(($3-1))" "$1" > "$FIFO_UEBERZUG"
 		exit 1
 	else
 		chafa "$1"
@@ -24,9 +25,7 @@ imageorexif(){
 	mediainfo "$1" | grep -E "Cover\s+:\sYes" > /dev/null && cover "${CACHE}.jpg" "$2" "$3" "$4" "$5" || mediainfo "$1"
 }
 
-CACHE="$HOME/.cache/lf/thumbnail.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | awk '{print $1}'))"
-
-case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
+case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 	*.wav|*.mp3|*.flac|*.m4a|*.wma|*.ape|*.ac3|*.og[agx]|*.spx|*.opus|*.as[fx]|*.mka)
 		[ ! -f "${CACHE}.jpg" ] && \
 			ffmpegthumbnailer -i "$1" -o "${CACHE}.jpg" -s 0 -q 5
@@ -37,7 +36,9 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.tar.txz|*.txz) xz --list "$1" ;;
 	*.tar) tar tf "$1" ;;
 	*.zip|*.jar|*.war|*.ear|*.oxt) unzip -l "$1" ;;
+	*.gz) gzip -l "$1" ;;
 	*.rar) unrar l "$1" ;;
+	*.md) mdcat -P "$1" ;;
 	*.7z) 7z l "$1" ;;
 	*.[1-8]) man "$1" | col -b ;;
 	*.o) nm "$1";;
@@ -47,7 +48,6 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.doc) catdoc "$1" ;;
 	*.docx) docx2txt "$1" - ;;
 	*.html) bat "$1" ;;#lynx -display_charset=utf-8 -dump "$1";;
-	*.md) mdcat -P "$1" ;;
 	*.xls|*.xlsx)
 		ssconvert --export-type=Gnumeric_stf:stf_csv "$1" "fd://1" | bat --language=csv
 		;;
@@ -76,9 +76,6 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 	*.bmp|*.jpg|*.jpeg|*.png|*.xpm|*.webp|*.gif|*.ico)
 		image "$1" "$2" "$3" "$4" "$5"
 		;;
-	*.ino)
-		bat --language=cpp "$1"
-		;;
 	*.cbr)
 		[ ! -f "${CACHE}.jpg" ] && \
 			unrar p -inul "$1" "$(unrar l "$1" | tail -n+9 | head -n-3 | sed -E "/^ d/d;s/.{41}//" | sort | head -n1)" > "${CACHE}.jpg"
@@ -89,8 +86,7 @@ case "$(printf "%s\n" "$1" | awk '{print tolower($0)}')" in
 			unzip -p "$1" "$(unzip -l "$1" | tail -n+4 | head -n-2 | sed -E "/\s*0\s+.*\/$/d;s/\s*[0-9]+\s+.{19}//" | sort | head -n1)" > "${CACHE}.jpg"
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
-	*)
-		bat "$1"
-		;;
+	*.ino) bat --language=cpp "$1" ;;
+	*) file -ibL "$1" | grep -q "text\|json" && bat "$1" || file -Lb "$1" ;;
 esac
 exit 0

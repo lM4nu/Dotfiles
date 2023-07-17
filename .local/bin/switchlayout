@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#Xorg
+
 layout="$(setxkbmap -print -verbose 10 | grep layout | sed "s/^layout:\s*//")" 
 #if [ "$layout" = 'us' ]
 #then
@@ -9,3 +11,9 @@ layout="$(setxkbmap -print -verbose 10 | grep layout | sed "s/^layout:\s*//")"
 #fi
 #setxkbmap -layout us -variant intl
 [ "$layout" = 'us' ] && (setxkbmap es && notify-send -t 900 "⌨️ ES 🇪🇸 " ) || (setxkbmap us && notify-send -t 900 "⌨️ US 🇬🇧 ")
+
+
+# Wayland (Hyprland)
+
+#hyprctl switchxkblayout at-translated-set-2-keyboard next
+#notify-send "Layout Changed"

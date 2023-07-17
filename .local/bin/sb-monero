@@ -11,7 +11,7 @@ show(){
 	
 	[ -z "$moneroprice" ] && exit 1
 	
-	printf " %0.2f(%0.2f)" "$personalmonerotrunc" "$moneroprice"
+	printf " %0.2f(%0.2f)" "$moneroprice" "$personalmonerotrunc"
 }
 
 update(){

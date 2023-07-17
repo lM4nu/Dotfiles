@@ -1,0 +1,27 @@
+#!/bin/sh
+
+music="$HOME/Music"
+target="$HOME/.config/mpd/playlists"
+
+cd $music
+
+ls eurobeat | sed "s/^/eurobeat\//g" > $target/euro.m3u
+
+ls si | sed "s/^/si\//g" > $target/si.m3u 
+
+echo "Led Zeppelin/Led Zeppelin/Led Zeppelin - Communication Breakdown.mp3
+Led Zeppelin/Led Zeppelin/Led Zeppelin - Good Times Bad Times.mp3
+Led Zeppelin/Led Zeppelin III/Led Zeppelin - Immigrant Song.mp3
+Led Zeppelin/Led Zeppelin IV/Led Zeppelin - Rock and Roll.mp3" >> $target/si.m3u
+
+ls sii | sed "s/^/sii\//g" > $target/sii.m3u 
+
+sortpl $target/si.m3u
+sortpl $target/sii.m3u
+sortpl $target/euro.m3u
+
+cat $target/si.m3u $target/sii.m3u > $target/All.m3u
+
+grep -v -f $HOME/.local/share/sidelete.txt $target/si.m3u > $target/rock.m3u
+grep -v -f $HOME/.local/share/siidelete.txt $target/sii.m3u > $target/rocksi.m3u
+

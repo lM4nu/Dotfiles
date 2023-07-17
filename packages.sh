@@ -11,11 +11,13 @@ unclutter \
 moreutils \
 xorg \
 xorg-xinit \
+xcompmgr \
 network-manager-applet \
 mlocate \
 git \
 alacritty \
 dunst \
+libnotify \
 pass \
 pass-otp \
 wget \

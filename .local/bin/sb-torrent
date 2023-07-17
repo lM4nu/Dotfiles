@@ -1,12 +1,16 @@
 #!/bin/sh
 pidof transmission-daemon >/dev/null || exit
-transmission-remote -l | grep % |
+transmission-remote -l | tail -n +2 | head -n -1 |
 	sed " # The letters are for sorting and will not appear.
 	s/.*Stopped.*/A 🛑/;
+	s/.*Verifying.*/D 🔍/;
+	s/.*Queued.*/F ⏭️/;
 	s/.*Seeding.*/Z 🌱/;
+	s/.*Up & Down.*/X ⬇️/;
 	s/.*100%.*/N ✅/;
 	s/.*Idle.*/B 🕰️/;
 	s/.*Uploading.*/L ⬆️/;
+	s/.*n\/a.*/O ❔/;
 	s/.*%.*/M ⬇️/" |
 		sort -h | uniq -c | awk '{print $3 $1}' | paste -sd ' ' - | sed "s/^$/✅0/"
 

@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+file="$HOME/.local/chapter"
+[ ! -f "$file" ] && printf "1" > "$file"
+read episode < "$file"
+season="5"
+
+upachapter(){
+	episode=$((episode + 1))
+	loop="1"
+	echo "$episode" > "$file"
+}
+
+prompt(){
+	printf "Next Episode? [Y/n] "
+	read -t 3 -r choice
+	if [ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] 
+	then
+		upachapter
+		loop="1"
+	fi
+}
+
+SeEp="$(printf "S%02dE%02d" "$season" "$episode")" #S0nE0n
+
+videosPath="$HOME/Downloads/Media/Series/Breaking.Bad.S0$season.1080p.BluRay.x265"
+
+mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua $videosPath/Breaking.Bad."$SeEp".1080p.BluRay.x265.mp4 || echo "1" > "$file"
+
+prompt
+
+[ ! -z "$loop" ] && bing

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+search="$(echo "$1" | sed "s/ /%/g")"
+rarbgDB="$HOME/Downloads/Media/rarbg_db.sqlite"
+
+sqlite3 "$rarbgDB" "select hash,title,size/1024/1024/1024 from items where title like '%$search%'  and cat like 'movies%' ;" | sed "s/^/magnet:?xt=urn:btih:/;s/$/GB/;s/|/ /g"

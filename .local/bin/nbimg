@@ -1,28 +1,29 @@
 #!/bin/bash
 
 file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
-nitter="nitter\.net"
+nitter="nitter\.1d4\.us"
 
 pgrep -fx "curl -sLo $file .*" > /dev/null && exit 1
+url="${1:-"$(xclip -sel c -o)"}"
 
-if [[ "$1" =~ https?://imgur.com/.* ]]
+if [[ "$url" =~ https?://imgur.com/.* ]]
 then
-	url="$(echo "$1.jpg" | sed "s/\/i/\/i\.i/")"
-elif [[ "$1" =~ .*watch\?v=.{11}$ ]] || [[ "$1" =~ .*youtu\.be/.* ]]
+	dlurl="$(echo "$url.jpg" | sed "s/\/i/\/i\.i/")"
+elif [[ "$url" =~ .*watch\?v=.{11}$ ]] || [[ "$url" =~ .*youtu\.be/.* ]]
 then
-	url="$(yt-dlp --skip-download --get-thumbnail "$1")"
-elif [[ "$1" =~ .*nitter.*status ]]
+	dlurl="$(yt-dlp --skip-download --get-thumbnail "$url")"
+elif [[ "$url" =~ .*nitter.*status ]]
 then
-	twitter="$(echo "$1" | sed "s/$nitter/twitter\.com/;s/#m$//")"
-	url="$(gallery-dl -g "$twitter" | head -n1)"
-	echo "$url" | grep video > /dev/null && exec nbvid "$url"
-elif [[ "$1" =~ i..wp.com/stonetoss.com ]]
+	twitter="$(echo "$url" | sed "s/$nitter/twitter\.com/;s/#m$//")"
+	dlurl="$(gallery-dl -g "$twitter" | head -n1)"
+	echo "$dlurl" | grep video > /dev/null && exec nbvid "$dlurl"
+elif [[ "$url" =~ i..wp.com/stonetoss.com ]]
 then
-	url="$(echo "$1" | sed "s/\?resize.*$//")"
+	dlurl="$(echo "$url" | sed "s/\?resize.*$//")"
 else
-	url="$1"
+	dlurl="$url"
 fi
 
-curl -sLo "$file" "$url" 2> /dev/null || (notify-send "Error" ; rm "$file" ; exit 1)
+curl -sLo "$file" "$dlurl" 2> /dev/null || (notify-send "Error" ; rm -f "$file" ; exit 1)
 
-(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab "$file" 2>/dev/null && rm "$file") || (notify-send "Error" ; rm "$file" ; exit 1)
+(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab "$file" 2>/dev/null && rm "$file") || (notify-send "Error" ; rm -f "$file" ; exit 1)

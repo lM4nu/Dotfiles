@@ -1,0 +1,41 @@
+#!/bin/sh
+
+dir="${XDG_DATA_HOME:-$HOME/.local/share}/doppler"
+[ ! -d $dir ] && mkdir "$dir"
+
+url="https://estaticos.smn.gob.ar/vmsr/radar"
+
+token="$(curl -s "https://www.smn.gob.ar/" | grep -Eo "setItem\('token', '.*'\)" | cut -d"'" -f4)"
+
+#loc="COMP_ARG" # Mosaico Argentina
+loc="COMP_CEN" # Mosaico Centro
+#loc="NOR" # Mosaico Norte
+#loc="ANG_240" # Anguil (La Pampa)
+#loc="RMA10_240" # Bahía Blanca (Buenos Aires)
+#loc="RMA5_240" # Bernardo de Irigoyen (Misiones)
+#loc="RMA1_240" # Córdoba (Córdoba)
+#loc="RMA2_240" # Ezeiza (Buenos Aires)
+#loc="RMA3_240" # Las Lomitas (Formosa)
+#loc="RMA6_240" # Mar del Plata (Buenos Aires)
+#loc="RMA8_240" # Mercedes (Corrientes)
+#loc="RMA7_240" # Neuquén (Neuquén)
+#loc="PAR_240" # Paraná (Entre Ríos)
+#loc="PER_240" # Pergamino (Buenos Aires)
+#loc="RMA4_240" # Resistencia (Chaco)
+#loc="RMA9_240" # Río Grande (Tierra del Fuego)
+#loc="RMA11_240" # Termas de Río Hondo (Santiago del Estero)
+
+
+#imgs="$(curl -s "https://ws1.smn.gob.ar/v1/images/radar/$loc" -H "Authorization: JWT $token" | jq .list[])"
+imgs="$(curl -s "https://ws1.smn.gob.ar/v1/images/radar/$loc" -H "Authorization: JWT $token"  | grep -o "\[.*\]" | sed "s/\[//;s/\]//;s/,/\n/g")"
+
+echo "$imgs" | sed "s/\"//g" | sort | nl -n 'rz' -w2 -s ' ' | while IFS=' ' read -r num img
+do 
+	curl -sLo "$dir/doppler-$num.png" "$url/$img"
+	#printf "curl -sLo \"%s/doppler-%s.png\" \"%s/%s\"\n" "$dir" "$num" "$url" "$img"
+done
+
+cd $dir
+convert *png x.gif
+rm *png
+mpv x.gif

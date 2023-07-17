@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#animeschedule.net
+animes=""
+
+echo "$animes" | tr ';' '\n' | while read -r anime
+do
+	curl -s "https://animeschedule.net/anime/$anime" | grep -E "(subs.*datetime.*\"|main-title\" itemprop)" | sed "s/&#43;/+/g" | tr '\n' '&' | sed "s/\&$/\n/" | while IFS="&" read -r titletext datetext
+	do
+		date="$(echo $datetext | grep -Eo "datetime.*\""  | sed "s/datetime=\"//;s/\"//g")"
+		title="$(echo $titletext | grep -Eo ">.*<" | tr -d '(>|<)')"
+		printf "%s - %s\n" "$title" "$(date --date="$date" '+%A %R')"
+	done
+done
