@@ -19,16 +19,17 @@ do
 		setbg "$file";;
 	"d")	
 		rm "$file" ;;
-	"C-c")
+	"c")
                 echo -n "$file" | xclip -selection clipboard ;;	
-        "C-r")
+        "r")
                 convert -rotate 90 "$file" "$file" ;;
 	"n") 
 		notify-send "$file";;
 
 	"y") 
 		cat "$file" | xclip -sel c -t $(file --mime-type -b "$file");;
-	"i")	notify-send "$(mediainfo "$file")"
+	"i")	notify-send "$(mediainfo "$file")";;
+	"space") path="$(readlink -f "$file")" ; lf -remote "send toggle '$path'" ;;
 
 	esac
 done

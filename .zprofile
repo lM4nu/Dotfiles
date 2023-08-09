@@ -39,4 +39,6 @@ export LESSOPEN="| bat --color=always --theme=gruvbox-dark -pp %s"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
 
+export WEBUI="--script=$HOME/.local/share/simple-mpv-webui/main.lua"
+
 #[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd

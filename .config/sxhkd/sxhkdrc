@@ -42,7 +42,7 @@ super + e
 	emojis
 
 super + shift + d
-	discord --ignore-gpu-blocklist --disable-features=UseOzonePlatform --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --use-gl=desktop --enable-gpu-rasterization --enable-zero-copy
+	discord --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --disable-gpu-driver-bug-workarounds --enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,VaapiVideoEncoder --disable-features=UseChromeOSDirectVideoDecoder --use-vulkan
 
 super + w
 	$BROWSER

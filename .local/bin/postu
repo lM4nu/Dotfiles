@@ -1,0 +1,15 @@
+#!/bin/sh
+
+subject="postulacion"
+msg="Vi la postulación asi que mando mi CV"
+
+while getopts "s:m:" o; do case "${o}" in
+	s) subject="$OPTARG"
+	;;
+	m) msg="$OPTARG"
+	;;
+esac
+done
+shift $((OPTIND - 1))
+
+echo "$msg" | neomutt -F "$HOME/.config/mutt/mailtorc-manusosa1.21@gmail.com" -s "$subject" -a "$HOME/Documents/cvdual.pdf" -- "$1"

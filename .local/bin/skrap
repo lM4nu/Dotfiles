@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#ComicK Scrapper
+
+id="$(echo "$1" | sed "s|^https://comick.app/comic/||")"
+#folder="$HOME/.cache/comick"
+folder="$(mktemp -d)"
+
+prefix="https://meo.comick.pictures/"
+ua="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+
+curl -s "https://comick.app/_next/data/N4PPC_-fkJHVAJdwRsif0/comic/$id.json" \
+  -H "User-Agent: $ua" --compressed \
+  | grep -Eo "[0-9]+-.{13}\.(jpe?g|png)" | sed -E "s|^|$prefix|;s|\.(jpe?g\|png)$|-m\.jpg|" \
+	  | nl -w2 -n 'rz' -s';' | while IFS=";" read -r num url
+    do
+	    curl -s "$url" > "$folder/$num.jpg"
+    done
+
+    (zip --quiet -j ./manga.cbz $folder/* && rm -rf $folder) && zathura ./manga.cbz

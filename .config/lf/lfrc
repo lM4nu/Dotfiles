@@ -54,6 +54,7 @@ map a chmod minus
 map A chmod plus
 map o $setsid -f pcmanfm . > /dev/null 2>&1
 map V push :!nvim<space>
+map D $setsid -f ripdrag -r $fx
 map <c-n> push :mkdir<space>
 map <c-e> $unzip "$f"
 map <c-b> $urlview "$f"

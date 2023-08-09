@@ -1,0 +1,25 @@
+#!/bin/sh
+
+file="${XDG_DATA_HOME:-$HOME/.local/share}/correohtml"
+link="https://www.correoargentino.com.ar/empresas/tyt/service.php?cliente=16276000&id=162764A3693GE81901"
+
+update(){
+	curl -s "$link" > "$file"
+}
+
+show(){
+	printf " %s\n" "$(grep -Eo "<table.*table\>" "$file"  | grep -Eo "Historia:\">.{0,40}<\/td><td data" | sed "s/Historia:\">//;s/<\/td>.*$//" | head -n1)"
+}
+
+case $BLOCK_BUTTON in
+	1) notify-send "$(grep -Eo "<table.*table\>" "$file"  | grep -Eo "Historia:\">.{0,40}<\/td><td data" | sed "s/Historia:\">//;s/<\/td>.*$//" | tac | nl -n 'rn' -s ' ' -w2 | tac)";;
+	2) setsid -f "$BROWSER" "$link" ;;
+	3) "$TERMINAL" -e "$EDITOR" "$0";;
+esac
+
+moddate="$(date -r "$file" '+%s')"
+actualdate="$(date '+%s')"
+diff="$(( (actualdate - moddate) / 60 ))"
+
+[ "$diff" -lt 30 ] || update 
+show

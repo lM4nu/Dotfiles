@@ -125,6 +125,29 @@ schemes:
       magenta: '#8f3f71'
       cyan:    '#427b58'
       white:   '#3c3836'
+  solarized_dark: &solarized_dark
+    primary:
+      background: '#0c0c0c'
+      foreground: '#93a1a1'
+    normal:
+      black:   '#002b36'
+      red:     '#dc322f'
+      green:   '#859900'
+      yellow:  '#b58900'
+      blue:    '#268bd2'
+      magenta: '#6c71c4'
+      cyan:    '#2aa198'
+      white:   '#93a1a1'
+    bright:
+      black:   '#657b83'
+      red:     '#dc322f'
+      green:   '#859900'
+      yellow:  '#b58900'
+      blue:    '#268bd2'
+      magenta: '#6c71c4'
+      cyan:    '#2aa198'
+      white:   '#fdf6e3'
+
 colors: *gruvbox_dark
 live_config_reload: true
 key_bindings:

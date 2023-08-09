@@ -1,0 +1,75 @@
+#!/bin/sh
+
+file="list.txt"
+html="$(mktemp)"
+token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTA0NjkyNDgsImV4cCI6MTY5MDU1NTY0OH0.H35sQHDeap61YcbA-yShCjFqvYNGMnufyJ0vGcSO1Uk"
+
+nl -w 3 -n 'rz' -s';' "$file" | while IFS=';' read -r number url
+do
+	curl -s "$url" > "$html"
+
+	#title
+	title="$(grep -Eo "titulo t t-3\".*<" "$html" | grep -Eo ">.*<" | sed "s/>//;s/<//")"
+	cleantitle="$(echo "$title" | tr "[:upper:]" "[:lower:]" | tr ' ' '_' | tr '/' '-' | sed "s/á/a/g;s/é/e/g;s/í/i/g;s/ó/o/g;s/ú/u/g;s/\"//g;s/'//g;s/ñ/n/g" | tr -cd '[:print:]')"
+
+	#price
+	usd="false"
+	if  grep -Eo "PREGUNTAR PRECIO" "$html" > /dev/null
+	then
+		price=0
+	else
+		price="$(grep -Eo "valor.*<" "$html" | grep -Eo ">.*<" | sed -E "s/(<|>)//g;s/^.*\s//;s/\.//g")"
+		grep -Eo "valor.*<" "$html" | grep -Eo ">.*<" | grep u\$s && usd="true"
+	fi
+
+	#image
+	mkdir -p "$number-$cleantitle/gal"
+	cd "$number-$cleantitle"
+
+	imageurl="$(grep -Eo "data-big.*>" "$html" | grep -Eo "https.*\" " | sed "s/\".*$//" | head -n1)"
+	[ -f "$cleantitle.jpg" ] || curl -sLo "$cleantitle.jpg" "$imageurl"
+
+	#images
+	cd gal
+	grep -Eo "data-big.*>" "$html" | grep -Eo "https.*\" " | sed "s/\".*$//" | sed 1d | nl -w2 -n 'rz' -s';' | while IFS=';' read -r number url
+	do
+		[ -f "$number-$cleantitle.jpg" ] || curl -sLo "$number-$cleantitle.jpg" "$url" 
+	done
+	cd ..
+
+	#description
+	if grep "grupo descripcion" "$html" > /dev/null
+	then
+		sed -n '/.*grupo descripcion.*/,/<\/dl>/p' "$html" | sed -n '/<dd>/,/<\/dd>/p' | sed '$d;1d' | sed "s/^.*<p>//g;s/<\/p>.*$//g;s/<br \/>/\n/g" > originaldesc.txt
+	else
+		echo "" > originaldesc.txt
+	fi
+
+	cp originaldesc.txt fixeddesc.txt
+	recode HTML4.0 fixeddesc.txt
+
+	#POST
+	curl -s 'https://marzomaquinarias.store/api/v1/products' \
+  		-H "Authorization: Bearer $token" \
+		-F "name=$title" \
+		-F "description=<fixeddesc.txt" \
+		-F "isFeatured=false" \
+		-F "usd=$usd" \
+		-F "price=$price" \
+		-F "brand=644191993c30c5df19cc7045" \
+		-F "category=64722b9715fea8c066bb45af" \
+		-F "image=@\"$cleantitle.jpg\"" | tee out.json
+	printf "\n"
+
+	id="$(cat out.json | jq -r '.added.id')"
+
+	if [ "$(ls gal | wc -l)" -gt 0 ]
+	then
+		printf "curl -s -X 'PUT' 'https://marzomaquinarias.store/api/v1/products/gallery-images/$id' -H \"Authorization: Bearer $token\" %s" "$(ls gal | while read -r line
+		do
+			printf " -F \"images=@\\\"gal/%s\\\"\" " "$line"
+		done)" | tee command.txt | sh
+		printf "\n"
+	fi
+	cd ..
+done

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "para imprimir" | neomutt -F "$HOME/.config/mutt/mailtorc-manusosa1.21@gmail.com" -s "imprimir" -a "$@" -- kosasvt@hotmail.com

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+setsid -f dex /home/m4nu/.gnome/apps/chrome-ilmgmogedobmcfegdjcibiiaodmdenpf-Default.desktop > /dev/null 2>&1
