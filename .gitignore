@@ -11,7 +11,7 @@ playlists
 urls
 # .config/nvim
 plugged
-lazy-log.json
+lazy-lock.json
 # .config/transmission-daemon
 blocklists
 resume
