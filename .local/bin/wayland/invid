@@ -1,0 +1,86 @@
+#!/bin/sh
+
+while getopts "t" o; do case "${o}" in
+	t) mpvarg="--no-video"
+	;;
+esac
+done
+shift $((OPTIND - 1))
+
+if [ -z "$1" ]
+then
+	if [ -z "$mpvarg" ]
+	then
+		query="$(printf "" | bemenu -p "Search: " | tr ' ' '+')"
+	else
+		printf "Query: "
+		read aux
+		query="$(echo "$aux" | tr ' ' '+')"
+	fi
+else
+	query="$(echo "$@" | tr ' ' '+')"
+fi
+
+if [ -z "$query" ]
+then
+	exit 1
+fi
+
+html="$(mktemp)" #"$HOME/html"
+file="$(mktemp)" #"$HOME/file"
+titles="$(mktemp)" #"$HOME/titles"
+urls="$(mktemp)" #"$HOME/urls"
+channels="$(mktemp)" #"$HOME/channels"
+menu="$(mktemp)" #"$HOME/menu"
+
+#instance="https://yewtu.be"
+instance="https://invidious.io.lol"
+
+clean(){
+	rm "$html" "$file" "$titles" "$urls" "$channels" "$menu"
+}
+
+curl -s "$instance/search?q=$query" > "$html"
+#sed -i "s/&#39;/'/g;s/&quot;/\"/g;s/&amp;/\&/g" "$html"
+recode HTML_4.0 "$html"
+
+grep -A 16 -B 2 "<div class=\"thumbnail\">" "$html" | grep -E "(href|auto)" | grep -v "/channel" | grep -v "class=\"length" | sed "/playlist?/,+2 d;s/.*href=\"/https:\/\/www\.youtube\.com/;s/\">$//;s/.*<p dir=\"auto\">/VIDEOTITLE;/;s/.*<p class=\".*auto\">/CHANNELNAME;/;s/<\/p>$//;s/<i.*<\/i>$//" > "$file"
+
+grep "/watch?v=" "$file" > "$urls"
+grep "VIDEOTITLE" "$file" | cut -d';' -f2 > "$titles"
+grep "CHANNELNAME" "$file" | cut -d';' -f2 > "$channels"
+
+paste -d@ "$urls" "$titles" "$channels" | while IFS="@" read -r f1 f2 f3
+do
+  printf '%s;%s by %s\n' "$f1" "$f2" "$f3"
+done > "$menu"
+
+if [ -z "$mpvarg" ]
+then
+chosen="$(cut -d';' -f2- "$menu" | bemenu -i -l 30)"
+else
+chosen="$(cut -d';' -f2- "$menu" | fzf)"
+fi
+
+if [ -z "$chosen" ]
+then
+	clean ; exit 1
+fi
+
+yturl="$(grep -F ";$chosen" "$menu" | cut -d';' -f1)"
+url="$(echo "$yturl" | sed "s|https://www.youtube.com|$instance|")"
+
+#printf "%s" "$yturl" | wl-copy
+printf "%s" "$url" | wl-copy
+
+notify-send "Playing" "$chosen"
+
+if [ -z "$mpvarg" ]
+then
+	setsid -f mpv --no-terminal --player-operation-mode=pseudo-gui "$yturl" 2> /dev/null || notify-send "Error"
+else
+	printf "YT Link: %s\nInvidious Link: %s\n" "$yturl" "$url"
+	mpv "$mpvarg" "$yturl" || notify-send "Error"
+fi
+
+clean

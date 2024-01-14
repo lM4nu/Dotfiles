@@ -1,0 +1,17 @@
+#!/bin/sh
+
+choice="$(printf "Clipboard\nBrowser\nBrowser Incognito" | bemenu -i -p "Send to: ")"
+
+case "$choice" in
+	Clipboard) printf "%s" "$1" | wl-copy ;;
+	Browser) setsid -f "$BROWSER" "$1" > /dev/null 2>&1 ;;
+	"Browser Incognito") 
+		if [ "$BROWSER" = "firefox" ];
+		then
+			setsid -f "$BROWSER" --private-window "$1"  > /dev/null 2>&1 
+		else
+			setsid -f "$BROWSER" "$1" --incognito > /dev/null 2>&1 
+		fi
+	;;
+	*) exit 0 ;;
+esac

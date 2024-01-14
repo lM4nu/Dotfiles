@@ -42,7 +42,7 @@ super + e
 	emojis
 
 super + shift + d
-	discord --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --disable-gpu-driver-bug-workarounds --enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,VaapiVideoEncoder --disable-features=UseChromeOSDirectVideoDecoder --use-vulkan
+	discord --ignore-gpu-blocklist --enable-gpu-rasterization --enable-zero-copy --disable-gpu-driver-bug-workarounds --enable-features=VaapiIgnoreDriverChecks,VaapiVideoDecoder,VaapiVideoEncoder --disable-features=UseChromeOSDirectVideoDecoder --use-vulkan --ozone-platform-hint=auto
 
 super + w
 	$BROWSER
@@ -95,6 +95,12 @@ super + x
 	maim | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + shift + x
+	maim -us | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+
+super + Print
+	maim | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
+
+super + shift + Print
 	maim -us | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + F3

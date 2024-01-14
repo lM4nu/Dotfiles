@@ -1,0 +1,12 @@
+#!/bin/sh
+chosen=$(cut -d ';' -f1 ~/.local/share/emoji | bemenu -i -l 30 | sed "s/ .*//")
+
+[ -z "$chosen" ] && exit
+
+if [ -n "$1" ]; then
+	ydotool type "$chosen"
+else
+	#printf "%s" "$chosen" | xclip -selection clipboard
+	wl-copy "$chosen"
+	notify-send "'$chosen' copied to clipboard." &
+fi

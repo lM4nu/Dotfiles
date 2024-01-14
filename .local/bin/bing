@@ -3,7 +3,7 @@
 file="$HOME/.local/chapter"
 [ ! -f "$file" ] && printf "1" > "$file"
 read episode < "$file"
-season="5"
+season="8"
 
 upachapter(){
 	episode=$((episode + 1))
@@ -23,9 +23,9 @@ prompt(){
 
 SeEp="$(printf "S%02dE%02d" "$season" "$episode")" #S0nE0n
 
-videosPath="$HOME/Downloads/Media/Series/Breaking.Bad.S0$season.1080p.BluRay.x265"
+videosPath="$HOME/Downloads/Media/Game.of.Thrones.S0$season.1080p.BluRay.x265-RARBG"
 
-mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua $videosPath/Breaking.Bad."$SeEp".1080p.BluRay.x265.mp4 || echo "1" > "$file"
+mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua --sid=28 $videosPath/Game.of.Thrones.$SeEp.1080p.BluRay.x265-RARBG.mp4 || echo "1" > "$file"
 
 prompt
 

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then
+	curl -s "https://somafm.com/listen/genre.html" | \
+		grep "Web Player\|GenreHeader" | sed "s/('/\n----/g" | sed "s/')/\n/g" | cut -d '>' -f3 | cut -d '<' -f1  | grep -v "StartPlayer" | sed "/^$/d"  | column
+	echo "No station chosen, pick one and try again."
+else
+	mpv --title="$1" "https://somafm.com/${1}.pls" #--force-window=yes 
+fi

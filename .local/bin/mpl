@@ -2,19 +2,18 @@
 
 music="$HOME/Music"
 target="$HOME/.config/mpd/playlists"
+#target="$HOME/playlists"
 
-cd $music
+ls $music/eurobeat | sed "s/^/eurobeat\//g" > $target/euro.m3u
 
-ls eurobeat | sed "s/^/eurobeat\//g" > $target/euro.m3u
-
-ls si | sed "s/^/si\//g" > $target/si.m3u 
+ls $music/si | sed "s/^/si\//g" > $target/si.m3u 
 
 echo "Led Zeppelin/Led Zeppelin/Led Zeppelin - Communication Breakdown.mp3
 Led Zeppelin/Led Zeppelin/Led Zeppelin - Good Times Bad Times.mp3
 Led Zeppelin/Led Zeppelin III/Led Zeppelin - Immigrant Song.mp3
 Led Zeppelin/Led Zeppelin IV/Led Zeppelin - Rock and Roll.mp3" >> $target/si.m3u
 
-ls sii | sed "s/^/sii\//g" > $target/sii.m3u 
+ls $music/sii | sed "s/^/sii\//g" > $target/sii.m3u 
 
 sortpl $target/si.m3u
 sortpl $target/sii.m3u

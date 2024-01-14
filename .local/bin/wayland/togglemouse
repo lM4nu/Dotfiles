@@ -1,0 +1,13 @@
+#!/bin/sh 
+touchpadId="$(hyprctl devices | grep "\-touchpad" | sed "s/\s*//g")"
+currentState="$HOME/.config/hypr/mouse.state"
+if [ -s "$currentState" ]
+then
+    hyprctl keyword "device:syna3602:00-093a:0255-touchpad:enabled" false
+    notify-send -t 900 "🖱️ DISABLED"
+    printf "" > "$currentState"
+else
+    hyprctl keyword "device:syna3602:00-093a:0255-touchpad:enabled" true
+    notify-send -t 900 "🖱️ ENABLED"
+    printf "1" > "$currentState"
+fi

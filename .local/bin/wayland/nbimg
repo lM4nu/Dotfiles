@@ -1,10 +1,10 @@
 #!/bin/bash
 
 file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
-nitter="nitter\.lacontrevoie\.fr"
+nitter="nitter\.poast\.org"
 
 pgrep -fx "curl -sLo $file .*" > /dev/null && exit 1
-url="${1:-"$(xclip -sel c -o)"}"
+url="${1:-"$(wl-paste)"}"
 
 if [[ "$url" =~ https?://imgur.com/.* ]]
 then

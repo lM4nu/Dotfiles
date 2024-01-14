@@ -1,0 +1,16 @@
+#!/bin/sh
+sendkey() {
+	#pid="$(pgrep -u "$USER" newsboat)"
+	#terminalid="$(xdotool search --pid "$(ps axjf | grep -v grep | grep -B 5 "$pid" | grep "$TERMINAL" | tail -n1 | awk '{print $2}')")"
+	#terminalid="$(xdotool search --pid "$(ps -o ppid= -p "$(ps -o ppid= -p "$(pidof newsboat)")")")"
+	#xdotool key --window "$terminalid" R
+	echo "ydotool command not capable of sending R to newsboat window on wayland."
+}
+
+reloadandnotify(){
+	unreads="$(newsboat -x reload -x print-unread | cut -d' ' -f1)"
+	#[ "$unreads" -eq 0 ] || notify-send --icon rss "Newsboat" "$unreads unread articles"
+	echo "$unreads unread articles"
+	[ ! -z "$1" ] && newsboat
+}
+pgrep -u "$USER" newsboat > /dev/null && sendkey || reloadandnotify "$@"

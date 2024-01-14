@@ -1,7 +1,8 @@
-export PATH="$PATH:$HOME/.local/bin"
-export BROWSER=chromium
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/status:$HOME/.local/bin/display"
+export BROWSER=firefox
 export EDITOR=nvim
 export TERMINAL=alacritty
+export STATUSBAR=dwmblocks
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -40,5 +41,6 @@ export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export HISTFILE="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/history"
 
 export WEBUI="--script=$HOME/.local/share/simple-mpv-webui/main.lua"
+export BEMENU_OPTS="-p \"\" --nb \"#000000\" --nf \"#ebdbb2\" --ab \"#000000\" --af \"#ebdbb2\" --hb \"#ebdbb2\" --hf \"#000000\" --fb \"#000000\" --ff \"#ebdbb2\" --tb \"#ebdbb2\" --tf \"#000000\" --cf \"#ebdbb2\" --fn \"DejaVu Sans Mono 11\" -H 24"
 
 #[ ! -s $HOME/.config/mpd/mpd.pid ] && mpd

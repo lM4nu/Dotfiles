@@ -1,0 +1,18 @@
+#!/bin/sh
+
+projectDir="$(pwd)"
+
+compile(){
+	javac -d "$projectDir/bin" $(find "$projectDir/src" -type f -printf '%p ') 
+}
+
+run(){
+	java -cp "$projectDir/bin" com.mart.tienda.App 
+}
+
+while getopts "crx" o; do case "${o}" in
+	c) compile ;;
+	r) run ;;
+	x) compile && run ;;
+esac
+done

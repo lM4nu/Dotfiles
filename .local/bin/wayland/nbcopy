@@ -1,0 +1,2 @@
+#!/bin/sh
+wl-copy "$1" && notify-send "Link copied to clipboard" 

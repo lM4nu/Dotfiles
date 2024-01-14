@@ -2,7 +2,9 @@
 
 makecbz(){
 	zip -j "$1/$1.cbz" "$1"/*
-	rm "$1"/*jpg
+	rm -f "$1"/*jpg
+	rm -f "$1"/*jpeg
+	rm -f "$1"/*png
 }
 
 for i in "$@"; do

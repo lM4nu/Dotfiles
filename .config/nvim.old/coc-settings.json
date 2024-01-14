@@ -1,0 +1,51 @@
+{
+  "coc.preferences.rootPatterns": [
+    ".git",
+    ".hg",
+    ".projections.json",
+    "pom.xml",
+    "package.json"
+  ],
+
+  "java.configuration.maven.userSettings": "/home/m4nu/.config/maven/settings.xml",
+  "java.jdt.ls.lombokSupport.enabled": false,
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:/usr/lib/lombok-common/lombok.jar",
+  "java.completion.enabled": true,
+  "java.import.maven.enabled": true,
+  "java.saveActions.organizeImports": true,
+  "java.format.settings.url": "/home/m4nu/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "json",
+    "javascript",
+    "typescript",
+    "java"
+  ],
+
+  "clangd.enabled": true,
+
+  "prettier.statusItemText": "",
+
+  "languageserver": {
+    "angular": {
+      "command": "ngserver",
+      "args": [
+        "--stdio",
+        "--tsProbeLocations",
+        "/usr/lib/node_modules/typescript/lib",
+        "--ngProbeLocations",
+        "/usr/lib/node_modules/@angular/language-server/lib"
+      ],
+      "filetypes": [
+        "ts",
+        "typescript",
+        "html",
+        "typescriptreact",
+        "typescript.tsx"
+      ],
+      "trace.server.verbosity": "verbose"
+    }
+  }
+}

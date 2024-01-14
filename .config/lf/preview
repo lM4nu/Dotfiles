@@ -10,6 +10,80 @@ image() {
 	else
 		chafa "$1"
 	fi
+	#elif [ -z "$WAYLAND_DISPLAY" ]; then
+		#image="$1"
+
+		#get_swayimg_positioning_left() {
+			## allows space for text
+			#y_gap=$((__text_line_count + 3)) #the plus 3 just seems to work better
+			#y_gap=$((line_px_height * y_gap))
+			##these are seperate because treesitter syntax highlighting dies when parentheses are inside of math
+		
+			## it's subtracting the gap between the border and the edge of terminal
+			#w_correct=$((max_width / 2 - 2 * col_px_width))
+			#h_correct=$((max_height - 3 * line_px_height - y_gap))
+		
+			## offset from the edge by half a column
+			#x=$((term_x + col_px_width / 2))
+			## move down to allow for text
+			#y=$((term_y + y_gap))
+			#[ "$img_w" -gt "$w_correct" ] && img_w=$((w_correct))
+			##-20 is to leave space for the text
+			#[ "$img_h" -gt "$h_correct" ] && img_h=$((h_correct))
+		#}
+
+		#get_swayimg_positioning_right() {
+			#get_swayimg_positioning_left "$@"
+			#x=$((term_x + max_width - w_correct))
+		#}
+
+		#get_swayimg_positioning() {
+			#max_width=$1
+			#max_height=$2
+			#term_x=$3
+			#term_y=$4
+			#col_px_width=$5
+			#line_px_height=$6
+		
+			#img_size="$(identify -format "%w %h" "$image")"
+			#img_w=${img_size% *}
+			#img_h=${img_size#* }
+		
+			#get_swayimg_positioning_right "${img_size% *}" "${img_size#* }" "$max_width" "$max_height" "$term_x" "$term_y" "$col_px_width" "$line_px_height"
+		#}
+		#TTY_COLS=$(tput cols 2>/dev/null)
+		#TTY_LINES=$(tput lines 2>/dev/null)
+		#_swayimg_pid_file="/tmp/lfpreveiw/_swayimg.pid"
+		#[ -f "$_swayimg_pid_file" ] && kill "$(cat "$_swayimg_pid_file")" 2>/dev/null
+
+		#window_data="$(hyprctl activewindow -j)"
+
+		#IFS=" " read -r x y w h <<-EOF
+				    #$(printf "%s" "$window_data" | jq -r '"\(.at[0]) \(.at[1]) \(.size[0]) \(.size[1])"')
+		#EOF
+		#read -r output_x output_y <<-EOF
+				    #$(hyprctl monitors -j | jq -r '.[]|select(.focused==true) as $mon | "\($mon.x) \($mon.y)"')
+		#EOF
+		#x=$((x - output_x))
+		#y=$((y - output_y))
+		## shellcheck disable=SC2034
+		#w_half=$((w / 2)) h_half=$((h / 2))
+		## how many pixels per col
+		#col_px_width=$((w / TTY_COLS))
+		## how many pixels per line
+		#line_px_height=$((h / TTY_LINES))
+		#get_swayimg_positioning "$((w))" "$((h))" "$x" "$y" "$col_px_width" "$line_px_height"
+		#hyprctl keyword windowrulev2 "move $((x)) $y,title:swayimg" >/dev/null 2>&1
+		#hyprctl keyword windowrulev2 float,title:swayimg >/dev/null 2>&1
+		#hyprctl keyword windowrulev2 nofocus,title:swayimg >/dev/null 2>&1
+		#hyprctl keyword windowrulev2 "noborder,title:swayimg" >/dev/null 2>&1
+		#swayimg -s fit -g $((x)),$y,$((img_w)),$((img_h)) "$1" &
+		##printf "%s" "$!" >"$_swayimg_pid_file"
+
+		#exit 1
+	#else
+		#chafa "$1"
+	#fi
 }
 cover() {
 	#mediainfo "$1"
@@ -87,6 +161,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
 		image "${CACHE}.jpg" "$2" "$3" "$4" "$5"
 		;;
 	*.ino) bat --language=cpp "$1" ;;
-	*) file -ibL "$1" | grep -q "text\|json" && bat "$1" || file -Lb "$1" ;;
+	#*) file -ibL "$1" | grep -q "text\|json" && bat "$1" || file -Lb "$1" ;;
+	*) file -ibL "$1" | grep -q "charset=binary" && file -Lb "$1" || bat "$1" ;;
 esac
 exit 0

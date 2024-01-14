@@ -1,0 +1,22 @@
+#!/bin/sh
+logindconf="/etc/systemd/logind.conf"
+#logindconf="/etc/elogind/logind.conf"
+
+lidswitchvalue="$(grep -E "^HandleLidSwitch=.*$" "$logindconf" | cut -d'=' -f2)"
+
+
+[ "$lidswitchvalue" = "ignore" ] && lidswitchopt="Use Lid" || lidswitchopt="Ignore Lid"
+
+choice=$(printf "Power Off\nReboot\nSuspend\nLock Screen\nTurn off Screen\nHibernate\n%s" "$lidswitchopt" | bemenu -i --hf '#ffffff' --hb '#fb4934')
+
+case $choice in
+	"Power Off") sudo systemctl poweroff;;
+	"Reboot") sudo systemctl reboot;;
+	"Suspend") sudo systemctl suspend;;
+	"Hibernate") sudo systemctl hibernate;;
+	"Lock Screen") slock;;
+	"Turn off Screen") hyprctl dispatch dpms off;;
+	"Use Lid") sudo sed -i "s/^HandleLidSwitch=ignore/HandleLidSwitch=suspend/" "$logindconf" ; sudo systemctl kill -s HUP systemd-logind.service ;;#sudo loginctl reload ;;
+	"Ignore Lid") sudo sed -i "s/^HandleLidSwitch=suspend/HandleLidSwitch=ignore/" "$logindconf" ; sudo systemctl kill -s HUP systemd-logind.service ;;# sudo loginctl reload ;;
+	*) exit ;;
+esac

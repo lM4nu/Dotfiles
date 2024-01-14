@@ -1,0 +1,9 @@
+#!/bin/sh
+
+tempimg="$(mktemp)"
+tempfile="$(mktemp)"
+maim -s > "$tempimg"
+
+tesseract "$tempimg" "$tempfile" -l eng || exit
+xclip -sel c -r -i < "$tempfile.txt"
+notify-send "Copied to clipboard" 

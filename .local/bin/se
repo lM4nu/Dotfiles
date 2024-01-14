@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+list="$(find -L $HOME/.local/bin $HOME/.local/bin/status $HOME/.local/bin/display -maxdepth 1 -type f)"
+
+if [ -n "$1" ] && echo "$list" | grep -q "$1$"
+then
+	"$EDITOR" "$(echo "$list" | grep "$1$")"
+else
+	echo "$list" | fzf | xargs -r "$EDITOR"
+fi

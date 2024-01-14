@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cbcontent="$(wl-paste)"
+#tempfile="${XDG_CACHE_HOME:-$HOME/.cache}/qrtemp.png"
+tempfile="$(mktemp)"
+
+qrencode -s 10 "$cbcontent" -o "$tempfile"
+sxiv -pbfz 200 "$tempfile" && rm "$tempfile"

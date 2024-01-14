@@ -1,0 +1,11 @@
+#!/bin/sh
+
+tempimg="$(mktemp)"
+tempfile="$(mktemp)"
+grim -g "$(slurp)" "$tempimg"
+
+tesseract "$tempimg" "$tempfile" -l eng || exit
+#xclip -sel c -r -i < "$tempfile.txt"
+# wl-copy command
+wl-copy < "$tempfile.txt"
+notify-send "Copied to clipboard" 

@@ -1,4 +1,4 @@
 #!/bin/sh
-nitter="nitter\.lacontrevoie\.fr"
+nitter="nitter\.poast\.org"
 url="$(echo "$1" | sed "s/$nitter/twitter\.com/;s/#m$//")"
 nbvid "$url"

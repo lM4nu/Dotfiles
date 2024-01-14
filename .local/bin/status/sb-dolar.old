@@ -1,15 +1,16 @@
 #!/bin/sh
+
 file="$HOME/.local/share/dolar"
 
 setvar(){
 	compra=$(head -n1 "$file")
-	venta=$(sed -n "2p" "$file")
+	venta=$(head -n2 "$file" | tail -n1)
 
-	bluecompra=$(sed -n "3p" "$file")
-	blueventa=$(sed -n "4p" "$file")
+	bluecompra=$(head -n3 "$file" | tail -n1)
+	blueventa=$(head -n4 "$file" | tail -n1)
 
-	mepcompra=$(sed -n "5p" "$file")
-	mepventa=$(sed -n "6p" "$file")
+	mepcompra=$(head -n5 "$file" | tail -n1)
+	mepventa=$(head -n6 "$file" | tail -n1)
 
 	solidario=$(tail -n1 "$file")
 }
@@ -50,10 +51,14 @@ esac
 
 #once per day
 #[ "$(stat -c %y "$file" | cut -d' ' -f1)" !=  "$(date -I)" ] && update
-# every 5 minutes
-moddate="$(date -r "$file" '+%s')"
-actualdate="$(date '+%s')"
-diff="$(( (actualdate - moddate) / 60 ))"
-[ "$diff" -lt 5 ] || update
 
-[ -z "$blueventa" ] || echo " $blueventa"
+# every 5 minutes
+#moddate="$(date -r "$file" '+%s')"
+#actualdate="$(date '+%s')"
+#diff="$((actualdate - moddate))"
+#[ "$diff" -lt 300 ] || update
+
+# every 5 minutes
+[ -n "$(find "$file" -mmin +5 )" ] && update
+
+[ -z "$blueventa" ] || echo "$blueventa"

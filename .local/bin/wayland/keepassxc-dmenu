@@ -1,0 +1,21 @@
+#!/bin/sh
+
+pw="$(pass keepass)"
+db="$HOME/.local/KeePass/Passwords.kdbx"
+path="/"
+
+while true 
+do
+	choice="$(echo "$pw" | keepassxc-cli ls -q -R -f "$db" "$path" | grep -v "^Enter password to unlock" | bemenu -i -l 30)"
+	[ -z "$choice" ] && exit
+	if  echo $choice | grep "/$" > /dev/null
+	then
+		path="$path$choice"
+	else
+		option="$(echo "$pw" | keepassxc-cli show -q "$db" "$path$choice" --all | grep -Ev "^Uuid|^Tags|^Title" | cut -d':' -f1  | bemenu -i -l 30)"
+		[ -z "$option" ] && exit
+		data="$(echo "$pw" | keepassxc-cli show -q "$db" "$path$choice" -a "$option")"
+		notify-send "Copied to Clipboard"
+		echo "$data" | wl-copy && exit
+	fi
+done

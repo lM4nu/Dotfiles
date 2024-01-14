@@ -1,0 +1,67 @@
+#!/bin/sh
+
+temp="$(mktemp)"
+cronsaved="${XDG_CONFIG_HOME:-$HOME/.config}/cronsaved"
+zprofile="$HOME/.zprofile"
+zshrc="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.zshrc"
+alc="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/alacritty.yml"
+hook="/etc/pacman.d/hooks/statusbar.hook"
+passmenu="/usr/bin/passmenu-otp"
+powerplug="/etc/udev/rules.d/powerplug"
+
+cronswitch(){
+	#user cron
+	if [ -f "$cronsaved" ]
+	then
+		sed -i "s/$1/$2/g" "$cronsaved"
+	else
+		crontab -l > "$temp"
+		crontab -r
+		sed -i "s/$1/$2/g" "$temp"
+		crontab - < "$temp"
+	fi
+	#root cron
+	sudo crontab -l > "$temp"
+	sudo crontab -r
+	sed -i "s/$1/$2/g" "$temp"
+	sudo crontab - < "$temp"
+	
+
+}
+
+if grep -q waybar "$zprofile"
+then
+	echo "Switching from Wayland to Xorg"
+	from="wayland"
+	to="xorg"
+
+	barFrom="waybar"
+	barTo="dwmblocks"
+
+	menuFrom="bemenu"
+	menuTo="dmenu"
+
+	sed -i "s/size: 11\.5/size: 7\.0/" "$alc"
+	sed -i "s|Hyprland|startx \"\${XDG_CONFIG_HOME}\"/x11/xinitrc|" "$zshrc"
+else
+	echo "Switching from Xorg to Wayland"
+	from="xorg"
+	to="wayland"
+
+	barFrom="dwmblocks"
+	barTo="waybar"
+
+	menuFrom="dmenu"
+	menuTo="bemenu"
+
+	sed -i "s/size: 7\.0/size: 11\.5/" "$alc"
+	sed -i "s|startx \"\${XDG_CONFIG_HOME}\"/x11/xinitrc|Hyprland|" "$zshrc"
+
+fi
+
+rm -rf ~/.local/bin/display ; ln -sfr "$HOME/.local/bin/$to" "$HOME/.local/bin/display" # PATH
+cronswitch "$barFrom" "$barTo" #crontab
+sed -i "s/$barFrom/$barTo/g" "$zprofile" #export STATUSBAR=
+sudo sed -i "s/$barFrom/$barTo/g" "$hook" #pacman hook
+sudo sed -i "s/$barFrom/$barTo/g" "$powerplug" #udev rule
+sudo sed -i "s/$menuFrom/$menuTo/g" "$passmenu" #passmenu

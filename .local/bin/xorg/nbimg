@@ -1,0 +1,29 @@
+#!/bin/bash
+
+file="${XDG_CACHE_HOME:-$HOME/.cache}/newsboat/nbimg.jpg"
+nitter="nitter\.poast\.org"
+
+pgrep -fx "curl -sLo $file .*" > /dev/null && exit 1
+url="${1:-"$(xclip -sel c -o)"}"
+
+if [[ "$url" =~ https?://imgur.com/.* ]]
+then
+	dlurl="$(echo "$url.jpg" | sed "s/\/i/\/i\.i/")"
+elif [[ "$url" =~ .*watch\?v=.{11}$ ]] || [[ "$url" =~ .*youtu\.be/.* ]]
+then
+	dlurl="$(yt-dlp --skip-download --get-thumbnail "$url")"
+elif [[ "$url" =~ .*nitter.*status ]]
+then
+	twitter="$(echo "$url" | sed "s/$nitter/twitter\.com/;s/#m$//")"
+	dlurl="$(gallery-dl -g "$twitter" | head -n1)"
+	echo "$dlurl" | grep video > /dev/null && exec nbvid "$dlurl"
+elif [[ "$url" =~ i..wp.com/stonetoss.com ]]
+then
+	dlurl="$(echo "$url" | sed "s/\?resize.*$//")"
+else
+	dlurl="$url"
+fi
+
+curl -sLo "$file" "$dlurl" 2> /dev/null || (notify-send "Error" ; rm -f "$file" ; exit 1)
+
+(pgrep -f "sxiv -pab $file" > /dev/null && exit) || (sxiv -pab "$file" 2>/dev/null && rm "$file") || (notify-send "Error" ; rm -f "$file" ; exit 1)

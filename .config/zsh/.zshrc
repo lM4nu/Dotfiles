@@ -1,12 +1,20 @@
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   acpi
-  #exec startx "${XDG_CONFIG_HOME}"/x11/xinitrc
+  exec startx "${XDG_CONFIG_HOME}"/x11/xinitrc
 fi
 
-[ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
 autoload -U colors && colors
 setopt PROMPT_SUBST
-export PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$fg[cyan]%}$(__git_ps1 " %s ")%{$reset_color%}$%b '
+#[ -f /usr/share/git/completion/git-prompt.sh ] && source /usr/share/git/completion/git-prompt.sh
+#export PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$fg[cyan]%}$(__git_ps1 " %s ")%{$reset_color%}$%b '
+if [ -f /usr/share/git/completion/git-prompt.sh ]
+then
+	source /usr/share/git/completion/git-prompt.sh
+	export PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$fg[cyan]%}$(__git_ps1 " %s ")%{$reset_color%}$%b '
+else
+	export PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$fg[cyan]%}%{$reset_color%}$%b '
+fi
+
 export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=31;42;01:st=37;44:ex=01;32:'
 # Disable % eof
 unsetopt prompt_cr prompt_sp
@@ -16,8 +24,8 @@ stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
 unsetopt beep
 
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 source ~/.config/aliasrc
 
 LFCD="$HOME/.config/lf/lfcd.sh"
@@ -48,9 +56,5 @@ bindkey -v '^?' backward-delete-char
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-se(){ 
-	[ ! -z "$1" ] && [ -f "$HOME/.local/bin/$1" ] && "$EDITOR" "$HOME/.local/bin/$1" ||
-		find $HOME/.local/bin -type f | fzf | xargs -r $EDITOR 
-}
 sco() { find $HOME/.config/dotfiles/.config -type f | sed "s|/dotfiles/.config||;/lyrics\|plugged/d" | fzf | xargs -r $EDITOR }
 resetbar() { seq 15 | while read -r n; do pkill -RTMIN+"$n" dwmblocks ; done }

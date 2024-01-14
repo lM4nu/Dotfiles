@@ -1,0 +1,22 @@
+#!/bin/sh
+camscan() {
+	notify-send "Scanning"
+	zbarcam -1 /dev/video0 | cut -d':' -f2-| wl-copy -n && notify-send "Copied to clipboard" || notify-send "Error"
+}
+
+screenscan() {
+	tempfile="$(mktemp)"
+	grim -g "$(slurp)" "$tempfile"
+	( zbarimg --quiet "$tempfile" > /dev/null 2>&1 && notify-send "Copied to clipboard" ) || ( notify-send "Error" ; rm "$tempfile" ; exit 1 )
+
+	zbarimg --quiet "$tempfile" | cut -d':' -f2- | wl-copy -n
+	rm "$tempfile"
+}
+
+choice="$(printf "Screenshot\nCamera" | bemenu -i -p "Scan from: ")"
+
+case "$choice" in
+	Camera) camscan ;;
+	Screenshot) screenscan ;;
+	*) exit ;;
+esac

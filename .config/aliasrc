@@ -36,7 +36,7 @@ alias esen='translate es-en'
 alias ulog='uselog'
 
 #shortcuts
-alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias nvimrc='nvim ~/.config/nvim/init.lua'
 alias pdfconvert='libreoffice --convert-to pdf'
 #alias yta='youtube-dl -f bestaudio --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
 alias yta='yt-dlp -f "ba" --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'

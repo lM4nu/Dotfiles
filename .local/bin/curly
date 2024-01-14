@@ -2,22 +2,31 @@
 
 #tempfile="$(mktemp)"
 tempfile="$XDG_CACHE_HOME/curly"
+headersfile="$(mktemp)"
+response="$(mktemp)"
 method="$1"
 endpoint="$2"
 JQ_COLORS="1;32:0;35:0;35:1;33:0;32:1;37:1;39"
+shift 2
 
 if [ "$method" = "get" ]; then
-	curl -s "$endpoint" "$@" | jq
+	curl -s -D "$headersfile" -X GET "$endpoint" "$@" > "$response"
+elif [ "$method" = "delete" ];then
+	curl -s -D "$headersfile" -X DELETE "$endpoint" "$@" > "$response" 
 else 
 	#nvim  -c 'set filetype=json' -c "startinsert" "$tempfile"
 	nvim  -c 'set filetype=json' "$tempfile"
 	case "$method" in
 		"post")
-			curl -s --json @"$tempfile" -X POST "$endpoint" "$@" | jq ;;
+			curl -s -D "$headersfile" --json @"$tempfile" -X POST "$endpoint" "$@" > "$response" ;;
 		"put")
-			curl -s --json @"$tempfile" -X PUT "$endpoint" "$@" | jq ;;
-		"delete")
-			curl -s -X DELETE "$endpoint" "$@" | jq ;;
+			curl -s -D "$headersfile" --json @"$tempfile" -X PUT "$endpoint" "$@" > "$response" ;;
 	esac
 	#rm "$tempfile"
 fi
+
+cat "$headersfile"
+
+jq < "$response" 2>/dev/null || cat "$response"
+
+rm -f "$headersfile" "$response"

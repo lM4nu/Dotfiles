@@ -10,11 +10,11 @@ set promptfmt "\033[31;1m[\033[33;1m%u\033[32;1m@\033[34;1m%h \033[35;1m%d\033[0
 
 cmd open ${{
     case $(file --mime-type "$(readlink -f "$f")" -b) in
-	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx ;;
+	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx > /dev/null 2>&1 ;;
         text/csv|application/x-sc) sc-im "$f" ;;
         text/*) $EDITOR "$f" ;;
         inode/x-empty) $EDITOR "$f" ;;
-        application/json|application/x-ndjson) $EDITOR "$f" ;;
+        application/json|application/x-ndjson|application/javascript) $EDITOR "$f" ;;
 	audio/*) 
 artist="$(exiftool "$f" | grep -E "Artist\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Artist -b "$f" 2> /dev/null || echo null)"
 title="$(exiftool "$f" | grep -E "Title\s+: [A-Za-z]" > /dev/null 2>&1 && exiftool -Title -b "$f" 2> /dev/null || echo null)"
@@ -43,7 +43,8 @@ cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
 
 map x delete
 #map i $bat --theme=gruvbox-dark -p --paging=always "$f"
-map E $setsid -f gimp "$f" > /dev/null 2>&1
+#map E $setsid -f gimp "$f" > /dev/null 2>&1
+map e $aunpack "$f"
 map w $setsid -f $BROWSER "$f" > /dev/null 2>&1
 map ` mark-load
 map b $setbg "$f"

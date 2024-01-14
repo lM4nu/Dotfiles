@@ -1,6 +1,6 @@
 #!/bin/sh
 file="$(basename "$1")"
-files=$(ls | grep -iE "\.(jpe?g|png|gif|webp|tiff|bmp|svg|ico)$")
+files=$(ls | grep -iE "\.(jpe?g|png|gif|webp|jxl|tiff|bmp|svg|ico)$")
 counter=0
 
 findindex(){

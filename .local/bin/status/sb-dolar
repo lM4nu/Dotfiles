@@ -1,0 +1,69 @@
+#!/bin/sh
+
+file="$HOME/.local/share/dolar"
+
+setvar(){
+	compra=$(head -n3 "$file" | tail -n1)
+	venta=$(head -n4 "$file" | tail -n1)
+
+	bluecompra=$(head -n1 "$file")
+	blueventa=$(head -n2 "$file" | tail -n1)
+
+	mepcompra=$(head -n5 "$file" | tail -n1)
+	mepventa=$(head -n6 "$file" | tail -n1)
+
+	cryptocompra=$(head -n9 "$file" | tail -n1)
+	cryptoventa=$(head -n10 "$file" | tail -n1)
+
+	solidario=$(tail -n1 "$file")
+}
+
+update(){
+	temp="$(mktemp)"
+
+	curl -s "https://dolarhoy.com" > "$temp"
+
+	grep -Eo "class=\"val\">\\\$[0-9]{,4}\.?[0-9]*" "$temp" | grep -Eo "[0-9]+\.*[0-9]*" | tail -n+3 > "$file" 
+
+	setvar
+}
+
+setvar
+
+case $BLOCK_BUTTON in
+	1) [ -z "$blueventa" ] || notify-send "💵 Blue 💵" \
+"Compra: <b>\$</b><b><span fgcolor=\"yellow\">$bluecompra </span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$blueventa</span></b>
+
+💵 <b>Mep</b> 💵
+Compra: <b>\$</b><b><span fgcolor=\"yellow\">$mepcompra </span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$mepventa</span></b>
+
+💵 <b>Crypto</b> 💵
+Compra: <b>\$</b><b><span fgcolor=\"yellow\">$cryptocompra </span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$cryptoventa</span></b>
+
+💵 <b>Solidario</b> 💵
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$solidario</span></b>
+
+💵 <b>Oficial</b> 💵
+Compra: <b>\$</b><b><span fgcolor=\"yellow\">$compra</span></b>
+Venta:  <b>\$</b><b><span fgcolor=\"yellow\">$venta</span></b>";;
+
+	2) update ;;
+	3) "$TERMINAL" -e "$EDITOR" "$0";;
+esac
+
+#once per day
+#[ "$(stat -c %y "$file" | cut -d' ' -f1)" !=  "$(date -I)" ] && update
+
+# every 5 minutes
+#moddate="$(date -r "$file" '+%s')"
+#actualdate="$(date '+%s')"
+#diff="$((actualdate - moddate))"
+#[ "$diff" -lt 300 ] || update
+
+# every 5 minutes
+[ -n "$(find "$file" -mmin +5 )" ] && update
+
+[ -z "$blueventa" ] || echo "\$$blueventa"

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+currentIn="$(hyprctl getoption general:gaps_in | awk 'FNR == 2 {print $2}')"
+currentOut="$(hyprctl getoption general:gaps_out | awk 'FNR == 2 {print $2}')"
+
+while getopts "i:o:a:rt" o; do case "${o}" in
+	i)
+		hyprctl keyword general:gaps_in $((currentIn +OPTARG)) ;;
+	o)
+		hyprctl keyword general:gaps_out $((currentOut +OPTARG)) ;;
+	a)
+		hyprctl keyword general:gaps_in $((currentIn +OPTARG))
+		hyprctl keyword general:gaps_out $((currentOut +OPTARG))
+	;;
+	r)
+		hyprctl keyword general:gaps_in 5
+		hyprctl keyword general:gaps_out 10
+	;;
+	t)
+		oldIn="$HOME/.local/state/in-gaps"
+		oldOut="$HOME/.local/state/out-gaps"
+		
+		if [ "$currentIn" -eq 0 ];
+		then
+			hyprctl keyword general:gaps_in "$(cat "$oldIn")"
+		else
+			hyprctl keyword general:gaps_in 0
+			echo "$currentIn" > "$oldIn"
+		fi
+		
+		if [ "$currentOut" -eq 0 ];
+		then
+			hyprctl keyword general:gaps_out $(cat "$oldOut")
+		else
+			hyprctl keyword general:gaps_out 0
+			echo "$currentOut" > "$oldOut"
+		fi
+
+	;;
+esac
+done

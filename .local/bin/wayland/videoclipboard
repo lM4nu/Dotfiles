@@ -1,0 +1,5 @@
+#!/bin/sh
+vidurl="$(wl-paste -n | sed "s/&list=.*//")"
+
+notify-send "Playing" "$(yt-dlp -e "$vidurl")" &
+mpv --player-operation-mode=pseudo-gui "$vidurl" || notify-send "Error"

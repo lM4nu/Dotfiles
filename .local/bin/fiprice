@@ -1,0 +1,10 @@
+#!/bin/sh
+file="$(mktemp)"
+curl -s "https://criptoya.com/api/fiwind/dai/ars/1" > "$file"
+jq < "$file" || cat "$file"
+
+price="$(jq '.totalBid' < "$file")"
+
+echo "$price * 45" | bc
+
+rm "$file"

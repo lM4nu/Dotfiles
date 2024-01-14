@@ -26,6 +26,10 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'VebbNix/lf-vim'
 Plug 'baskerville/vim-sxhkdrc'
 Plug 'digitaltoad/vim-pug'
+Plug 'theRealCarneiro/hyprland-vim-syntax'
+" .NET
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'jlcrochet/vim-razor'
 
 call plug#end()
 
@@ -45,6 +49,8 @@ set number rnu
 set splitright splitbelow
 set background=dark
 set termguicolors
+
+let g:netrw_browsex_viewer= "linkhandler"
 
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 
@@ -180,9 +186,9 @@ let g:coc_global_extensions = [
  \ 'coc-tsserver',
  \ 'coc-json', 
  \ 'coc-java',
- \ 'coc-angular',
  \ 'coc-git',
- \ 'coc-prettier'
+ \ 'coc-prettier',
+ \ 'coc-clangd'
  \ ]
  "\ 'coc-pairs'
  "\ 'coc-clangd',
@@ -232,7 +238,8 @@ autocmd BufEnter blocks.h silent! lcd %:p:h
 autocmd BufWritePost blocks.h !sudo make install && pkill dwmblocks && setsid -f dwmblocks
 
 autocmd BufWritePost ~/.config/waybar/style.css :silent !killall -SIGUSR2 waybar
-autocmd BufWritePost ~/.config/waybar/config :silent !killall -SIGUSR2 waybar
+autocmd BufWritePost ~/.config/waybar/config :silent !pkill waybar && setsid -f waybar &
+autocmd BufWritePost ~/.config/hypr/hyprland.conf :silent !hypctl reload
 
 autocmd BufEnter user-overrides.js silent! lcd %:p:h 
 
@@ -256,6 +263,8 @@ autocmd BufEnter *.js :set shiftwidth=2
 
 autocmd BufEnter *.ts inoremap CL console.log();<Esc>hi
 autocmd BufEnter *.ts :set shiftwidth=2
+
+autocmd BufEnter *.pug :set shiftwidth=2 expandtab
 
 "Terminal
 tnoremap <Esc> <C-\><C-n>

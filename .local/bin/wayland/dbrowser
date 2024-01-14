@@ -1,0 +1,6 @@
+#!/bin/sh
+query=$(printf "" | bemenu -p "Search: " | sed "s/ /+/g")
+[ -z "$query" ] && exit 1
+search=$(echo "https://search.smnz.de/search?q=$query" | sed "/=$/ d")
+$BROWSER "$search"
+

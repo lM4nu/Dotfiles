@@ -2,3 +2,4 @@
 
 xrandr --auto
 xrandr --output HDMI2 --mode 1920x1080 --rate 60 --left-of eDP1
+pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
