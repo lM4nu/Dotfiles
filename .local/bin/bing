@@ -3,7 +3,7 @@
 file="$HOME/.local/chapter"
 [ ! -f "$file" ] && printf "1" > "$file"
 read episode < "$file"
-season="8"
+season="2"
 
 upachapter(){
 	episode=$((episode + 1))
@@ -23,10 +23,20 @@ prompt(){
 
 SeEp="$(printf "S%02dE%02d" "$season" "$episode")" #S0nE0n
 
-videosPath="$HOME/Downloads/Media/Game.of.Thrones.S0$season.1080p.BluRay.x265-RARBG"
+videosPath="$HOME/Downloads/Media/El encargado 2022 Season 02 YG"
 
-mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua --sid=28 $videosPath/Game.of.Thrones.$SeEp.1080p.BluRay.x265-RARBG.mp4 || echo "1" > "$file"
+video="$(printf "%s/%s%s" "$videosPath" "$season" "$episode")"
+
+if [ -f "$video" ]; then
+
+	# mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua --sid=28 "$video" || echo "1" > "$file"
+	mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua --sid=28 "$video" || echo "1" > "$file"
+else
+	echo "1" > "$file"
+	printf "\nChapter unavailable.\n"
+	exit 1
+fi
 
 prompt
 
-[ ! -z "$loop" ] && bing
+[ ! -z "$loop" ] && $0

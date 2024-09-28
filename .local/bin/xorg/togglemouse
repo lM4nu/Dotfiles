@@ -1,5 +1,5 @@
 #!/bin/sh 
-touchpadId=$(xinput -list | grep Touchpad | awk '{print substr($6,4)}')
+touchpadId=$(xinput -list | grep Touchpad | sed "s/⎜   ↳ //;s/∼ //"| awk '{print substr($4,4)}')
 currentState=$(xinput --list-props "$touchpadId" | grep 'Device Enabled' | awk '{print $4}')
 #if [ $currentState -eq 1 ]
 #then

@@ -14,19 +14,19 @@ local assdraw = require 'mp.assdraw'
 
 local opts = {
     --key bindings
-    toggle_menu_binding = "ctrl+f",
-    up_binding = "k",
-    down_binding = "j",
-    select_binding = "ENTER",
+    toggle_menu_binding      = "ctrl+f",
+    up_binding               = "k",
+    down_binding             = "j",
+    select_binding           = "ENTER",
 
     --formatting / cursors
-    selected_and_active     = "▶ - ",
-    selected_and_inactive   = "● - ",
-    unselected_and_active   = "▷ - ",
-    unselected_and_inactive = "○ - ",
+    selected_and_active      = "▶ - ",
+    selected_and_inactive    = "● - ",
+    unselected_and_active    = "▷ - ",
+    unselected_and_inactive  = "○ - ",
 
-	--font size scales by window, if false requires larger font and padding sizes
-	scale_playlist_by_window=false,
+    --font size scales by window, if false requires larger font and padding sizes
+    scale_playlist_by_window = false,
 
     --playlist ass style overrides inside curly brackets, \keyvalue is one field, extra \ for escape in lua
     --example {\\fnUbuntu\\fs10\\b0\\bord1} equals: font=Ubuntu, size=10, bold=no, border=1
@@ -35,20 +35,20 @@ local opts = {
     --these styles will be used for the whole playlist. More specific styling will need to be hacked in
     --
     --(a monospaced font is recommended but not required)
-    style_ass_tags = "{\\fnmonospace\\fs20}",
+    style_ass_tags           = "{\\fnmonospace\\fs20}",
 
     --paddings for top left corner
-    text_padding_x = 5,
-    text_padding_y = 5,
+    text_padding_x           = 5,
+    text_padding_y           = 5,
 
     --other
-    menu_timeout = 10,
+    menu_timeout             = 10,
 
     --use youtube-dl to fetch a list of available formats (overrides quality_strings)
-    fetch_formats = true,
+    fetch_formats            = true,
 
     --default menu entries
-    quality_strings=[[
+    quality_strings          = [[
     [
     {"4320p" : "bestvideo[height<=?4320p]+bestaudio/best"},
     {"2160p" : "bestvideo[height<=?2160]+bestaudio/best"},
@@ -72,7 +72,7 @@ function show_menu()
     local selected = 1
     local active = 0
     local current_ytdl_format = mp.get_property("ytdl-format")
-    msg.verbose("current ytdl-format: "..current_ytdl_format)
+    msg.verbose("current ytdl-format: " .. current_ytdl_format)
     local num_options = 0
     local options = {}
 
@@ -82,10 +82,10 @@ function show_menu()
     end
 
     if next(options) == nil then
-        for i,v in ipairs(opts.quality_strings) do
+        for i, v in ipairs(opts.quality_strings) do
             num_options = num_options + 1
-            for k,v2 in pairs(v) do
-                options[i] = {label = k, format=v2}
+            for k, v2 in pairs(v) do
+                options[i] = { label = k, format = v2 }
                 if v2 == current_ytdl_format then
                     active = i
                     selected = active
@@ -95,7 +95,7 @@ function show_menu()
     end
 
     --set the cursor to the currently format
-    for i,v in ipairs(options) do
+    for i, v in ipairs(options) do
         if v.format == current_ytdl_format then
             active = i
             selected = active
@@ -105,18 +105,28 @@ function show_menu()
 
     function selected_move(amt)
         selected = selected + amt
-        if selected < 1 then selected = num_options
-        elseif selected > num_options then selected = 1 end
+        if selected < 1 then
+            selected = num_options
+        elseif selected > num_options then
+            selected = 1
+        end
         timeout:kill()
         timeout:resume()
         draw_menu()
     end
-    function choose_prefix(i)
-        if     i == selected and i == active then return opts.selected_and_active 
-        elseif i == selected then return opts.selected_and_inactive end
 
-        if     i ~= selected and i == active then return opts.unselected_and_active
-        elseif i ~= selected then return opts.unselected_and_inactive end
+    function choose_prefix(i)
+        if i == selected and i == active then
+            return opts.selected_and_active
+        elseif i == selected then
+            return opts.selected_and_inactive
+        end
+
+        if i ~= selected and i == active then
+            return opts.unselected_and_active
+        elseif i ~= selected then
+            return opts.unselected_and_inactive
+        end
         return "> " --shouldn't get here.
     end
 
@@ -126,30 +136,31 @@ function show_menu()
         ass:pos(opts.text_padding_x, opts.text_padding_y)
         ass:append(opts.style_ass_tags)
 
-        for i,v in ipairs(options) do
-            ass:append(choose_prefix(i)..v.label.."\\N")
+        for i, v in ipairs(options) do
+            ass:append(choose_prefix(i) .. v.label .. "\\N")
         end
 
-		local w, h = mp.get_osd_size()
-		if opts.scale_playlist_by_window then w,h = 0, 0 end
-		mp.set_osd_ass(w, h, ass.text)
+        local w, h = mp.get_osd_size()
+        if opts.scale_playlist_by_window then w, h = 0, 0 end
+        mp.set_osd_ass(w, h, ass.text)
     end
 
     function destroy()
         timeout:kill()
-        mp.set_osd_ass(0,0,"")
+        mp.set_osd_ass(0, 0, "")
         mp.remove_key_binding("move_up")
         mp.remove_key_binding("move_down")
         mp.remove_key_binding("select")
         mp.remove_key_binding("escape")
         destroyer = nil
     end
+
     timeout = mp.add_periodic_timer(opts.menu_timeout, destroy)
     destroyer = destroy
 
-    mp.add_forced_key_binding(opts.up_binding,     "move_up",   function() selected_move(-1) end, {repeatable=true})
-    mp.add_forced_key_binding(opts.down_binding,   "move_down", function() selected_move(1)  end, {repeatable=true})
-    mp.add_forced_key_binding(opts.select_binding, "select",    function()
+    mp.add_forced_key_binding(opts.up_binding, "move_up", function() selected_move(-1) end, { repeatable = true })
+    mp.add_forced_key_binding(opts.down_binding, "move_down", function() selected_move(1) end, { repeatable = true })
+    mp.add_forced_key_binding(opts.select_binding, "select", function()
         destroy()
         mp.set_property("ytdl-format", options[selected].format)
         reload_resume()
@@ -157,7 +168,7 @@ function show_menu()
     mp.add_forced_key_binding(opts.toggle_menu_binding, "escape", destroy)
 
     draw_menu()
-    return 
+    return
 end
 
 local ytdl = {
@@ -166,17 +177,17 @@ local ytdl = {
     blacklisted = {}
 }
 
-format_cache={}
+format_cache = {}
 function download_formats()
     local function exec(args)
-        local ret = utils.subprocess({args = args})
+        local ret = utils.subprocess({ args = args })
         return ret.status, ret.stdout, ret
     end
 
     local function table_size(t)
         s = 0
-        for i,v in ipairs(t) do
-            s = s+1
+        for i, v in ipairs(t) do
+            s = s + 1
         end
         return s
     end
@@ -186,7 +197,7 @@ function download_formats()
     url = string.gsub(url, "ytdl://", "") -- Strip possible ytdl:// prefix.
 
     -- don't fetch the format list if we already have it
-    if format_cache[url] ~= nil then 
+    if format_cache[url] ~= nil then
         local res = format_cache[url]
         return res, table_size(res)
     end
@@ -201,7 +212,7 @@ function download_formats()
         ytdl.searched = true
     end
 
-    local command = {ytdl.path, "--no-warnings", "--no-playlist", "-J"}
+    local command = { ytdl.path, "--no-warnings", "--no-playlist", "-J" }
     table.insert(command, url)
     local es, json, result = exec(command)
 
@@ -221,13 +232,13 @@ function download_formats()
 
     res = {}
     msg.verbose("youtube-dl succeeded!")
-    for i,v in ipairs(json.formats) do
+    for i, v in ipairs(json.formats) do
         if v.vcodec ~= "none" then
-            local fps = v.fps and v.fps.."fps" or ""
+            local fps = v.fps and v.fps .. "fps" or ""
             local resolution = string.format("%sx%s", v.width, v.height)
             local l = string.format("%-9s %-5s (%-4s / %s)", resolution, fps, v.ext, v.vcodec)
             local f = string.format("%s+bestaudio/best", v.format_id)
-            table.insert(res, {label=l, format=f, width=v.width })
+            table.insert(res, { label = l, format = f, width = v.width })
         end
     end
 
@@ -238,16 +249,15 @@ function download_formats()
     return res, table_size(res)
 end
 
-
 -- register script message to show menu
-mp.register_script_message("toggle-quality-menu", 
-function()
-    if destroyer ~= nil then
-        destroyer()
-    else
-        show_menu()
-    end
-end)
+mp.register_script_message("toggle-quality-menu",
+    function()
+        if destroyer ~= nil then
+            destroyer()
+        else
+            show_menu()
+        end
+    end)
 
 -- keybind to launch menu
 mp.add_key_binding(opts.toggle_menu_binding, "quality-menu", show_menu)
@@ -258,7 +268,8 @@ function reload_resume()
     local reload_duration = mp.get_property_native("duration")
     local time_pos = mp.get_property("time-pos")
 
-    mp.set_property_number("playlist-pos", playlist_pos)
+    -- mp.set_property_number("playlist-pos", playlist_pos)
+    mp.commandv("playlist-play-index", playlist_pos)
 
     -- Tries to determine live stream vs. pre-recordered VOD. VOD has non-zero
     -- duration property. When reloading VOD, to keep the current time position

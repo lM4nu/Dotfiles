@@ -3,7 +3,8 @@ weatherreport="${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport"
 currenttempfile="${XDG_DATA_HOME:-$HOME/.local/share}/currenttempfile"
 
 getforecast() { 
-	token="$(curl -s "https://www.smn.gob.ar/" | grep -Eo "setItem\('token', '.*'\)" | sed "s/setItem('token', '//;s/')$//")"
+	# token="$(curl -s "https://www.smn.gob.ar/" | grep -Eo "setItem\('token', '.*'\)" | sed "s/setItem('token', '//;s/')$//")"
+	token="$(smn | grep -Eo "setItem\('token', '.*'\)" | sed "s/setItem('token', '//;s/')$//")"
 	curl -sf "wttr.in/$LOCATION" > "$weatherreport"
 	#curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/" > "$currenttempfile"
 	curl -s 'https://ws1.smn.gob.ar/v1/weather/location/2317' -H "Authorization: JWT $token" | jq .temperature | sed "s/^/🌡️/;s/$/°/" > "$currenttempfile"

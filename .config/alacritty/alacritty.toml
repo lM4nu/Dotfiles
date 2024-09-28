@@ -100,6 +100,12 @@ action = "SpawnNewInstance"
 key = "Return"
 mods = "Control|Shift"
 
+[[keyboard.bindings]]
+command = "alacrittyopacit"
+key = "A"
+mods = "Alt|Shift"
+
+
 [window]
 opacity = 0.95
 

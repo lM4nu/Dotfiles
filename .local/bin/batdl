@@ -1,16 +1,32 @@
-#!/bin/sh
+#!/bin/zsh
 
 file="$HOME/.local/chapter"
 [ ! -f "$file" ] && printf "0" > "$file"
 read episode < "$file"
+ep=$((episode+1))
 
 upachapter(){
-	clear
-	printf "Next Episode? [Y/n] "
-	read -r choice
-	[ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] && episode=$((episode + 1))
+	episode=$((episode + 1))
+	loop="1"
 	echo "$episode" > "$file"
 }
 
+prompt(){
+	printf "Next Episode? [Y/n] "
+	read -t 3 -r choice
+	if [ -z "$choice" ] || [ "$choice" = "Y" ] || [ "$choice" = "y" ] 
+	then
+		upachapter
+		loop="1"
+	fi
+}
+
 magnet=""
-webtorrent "$magnet" --mpv --player-args="--save-position-on-quit --fs" -s "$episode" -u 1 "$@" ; upachapter ; batdl
+webtorrent "$magnet" \
+	--mpv \
+	--player-args="--sub-scale=0.6 --save-position-on-quit --fs --sub-file-paths=/home/m4nu/Downloads/Media/Title/Subs/TitleS01E$(printf '%02d' $ep).1080p.BluRay.x265" \
+	-s "$episode" -u 1 "$@" || echo "0" > "$file"
+
+prompt
+
+[ ! -z "$loop" ] && batdl

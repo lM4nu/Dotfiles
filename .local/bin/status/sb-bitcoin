@@ -6,8 +6,13 @@ file="${XDG_DATA_HOME:-$HOME/.local/share}/btcchart"
 
 show(){
 	btcprice="$(tail -n1 "$file")"
+	personalbtc="0.01" 
+	personalbtctrunc="$(echo "$btcprice" \* "$personalbtc" | bc -l)"
+
 	[ -z "$btcprice" ] && exit 1
-	printf " %0.2f" "$btcprice"
+
+	# printf " %0.2f" "$btcprice"
+	printf " %0.2f(%0.2f)" "$btcprice" "$personalbtctrunc"
 }
 
 update(){
