@@ -22,7 +22,7 @@ title="$(exiftool "$f" | grep -E "Title\s+: [A-Za-z]" > /dev/null 2>&1 && exifto
 mpc searchplay Artist "$artist" Title "$title" > /dev/null 2>&1 || mpc add "$(echo "$f" | sed "s/.*Music\\///")" > /dev/null 2>&1 && mpc searchplay Artist "$artist" Title "$title" > /dev/null 2>&1 || setsid -f mpv --player-operation-mode=pseudo-gui "$f"
 	;;
 	video/*) setsid -f mpv --no-terminal "$f" ;;
-	image/*) lfsxiv "$f" || sxiv -a "$f" ;;
+	image/*) setsid -f lfsxiv "$f" || setsid -f sxiv -a "$f" ;;
 	application/vnd.openxmlformats-officedocument*) setsid -f libreoffice "$f" ;;
         *) for f in $fx; do setsid -f $OPENER "$f" >/dev/null 2>&1; done;;
     esac

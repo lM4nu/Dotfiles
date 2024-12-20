@@ -17,6 +17,9 @@ then
 	twitter="$(echo "$url" | sed "s/$nitter/twitter\.com/;s/#m$//")"
 	dlurl="$(gallery-dl -g "$twitter" | head -n1)"
 	echo "$dlurl" | grep video > /dev/null && exec nbvid "$dlurl"
+elif [[ "$url" =~ x.com ]]
+then
+	dlurl="$(gallery-dl -g "$url" | head -n1)"
 elif [[ "$url" =~ i..wp.com/stonetoss.com ]]
 then
 	dlurl="$(echo "$url" | sed "s/\?resize.*$//")"

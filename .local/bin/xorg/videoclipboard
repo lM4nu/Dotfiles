@@ -1,5 +1,5 @@
 #!/bin/sh
-vidurl="$(xclip -selection clipboard -o | sed "s/&list=.*//")"
+vidurl="$(xclip -selection clipboard -o | sed "s/&list=.*//;s/piped.wireway.ch\|yewtu.be/youtube.com/")"
 
 notify-send "Playing" "$(yt-dlp -e "$vidurl")" &
 mpv --player-operation-mode=pseudo-gui "$vidurl" || notify-send "Error"

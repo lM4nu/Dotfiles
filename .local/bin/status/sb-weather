@@ -6,8 +6,8 @@ getforecast() {
 	# token="$(curl -s "https://www.smn.gob.ar/" | grep -Eo "setItem\('token', '.*'\)" | sed "s/setItem('token', '//;s/')$//")"
 	token="$(smn | grep -Eo "setItem\('token', '.*'\)" | sed "s/setItem('token', '//;s/')$//")"
 	curl -sf "wttr.in/$LOCATION" > "$weatherreport"
-	#curl -s "https://weather.com/weather/today/l/b135232a5fb85b7c1eb5d32a634c14a94cb0e7e9fc566bb8c8a8984a5fe5240f?unit=m" | grep -m 1 -Eo "[0-9]+°" | head -n1 | sed "s/^/🌡️/" > "$currenttempfile"
-	curl -s 'https://ws1.smn.gob.ar/v1/weather/location/2317' -H "Authorization: JWT $token" | jq .temperature | sed "s/^/🌡️/;s/$/°/" > "$currenttempfile"
+	curl -s "https://weather.com/weather/today/l/f73e476298d44391a84328fdc333db1856b48e467882081c72ebe868b76e484d?unit=m" | grep -Eo "tempValue.{0,20}ltr.{20}" | tr '>' '<' | cut -d'<' -f2 | sed "s/^/🌡️/;s/$/°/" > "$currenttempfile"
+	# curl -s 'https://ws1.smn.gob.ar/v1/weather/location/2317' -H "Authorization: JWT $token" | jq .temperature | sed "s/^/🌡️/;s/$/°/" > "$currenttempfile"
 }
 
 formatweather() { printf "%s" "$(sed '16q;d' "$weatherreport" |

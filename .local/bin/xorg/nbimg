@@ -20,6 +20,9 @@ then
 elif [[ "$url" =~ i..wp.com/stonetoss.com ]]
 then
 	dlurl="$(echo "$url" | sed "s/\?resize.*$//")"
+elif [[ "$url" =~ wallhaven.cc ]]
+then
+	dlurl="$(gallery-dl -g "$url" | head -n1)"
 else
 	dlurl="$url"
 fi

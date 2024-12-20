@@ -34,11 +34,11 @@ require('telescope-config')
 -- [[ Configure Treesitter ]]
 require('treesitter-config')
 
--- [[ Configure LSP ]]
-require('lsp-config')
-
 -- [[ Configure nvim-cmp ]]
 require('nvim-cmp-config')
+
+-- [[ Configure LSP ]]
+require('lsp-config')
 
 -- ibl
 require("ibl").setup({ enabled = true, indent = { char = '╏' } })

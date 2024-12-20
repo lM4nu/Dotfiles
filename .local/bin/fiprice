@@ -5,6 +5,6 @@ jq < "$file" || cat "$file"
 
 price="$(jq '.totalBid' < "$file")"
 
-echo "$price * 45" | bc
+echo "$price * 60" | bc
 
 rm "$file"

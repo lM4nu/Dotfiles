@@ -18,13 +18,13 @@ vim.api.nvim_create_autocmd("BufWritePost",
   { pattern = "blocks.h", command = "!sudo make install && pkill dwmblocks && setsid -f dwmblocks" })
 
 vim.api.nvim_create_autocmd("BufWritePost",
-  { pattern = "~/.config/waybar/style.css", command = ":silent !killall -SIGUSR2 waybar" })
+  { pattern = vim.fn.expand("~") .. "/.config/waybar/style.css", command = ":silent !killall -SIGUSR2 waybar" })
 
 vim.api.nvim_create_autocmd("BufWritePost",
-  { pattern = "~/.config/waybar/config", command = ":silent !pkill waybar && setsid -f waybar &" })
+  { pattern = vim.fn.expand("~") .. "/.config/waybar/config", command = ":silent !pkill waybar && setsid -f waybar &" })
 
 vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "~/.config/hypr/hyprland.conf",
+  pattern = vim.fn.expand("~") .. "/.config/hypr/hyprland.conf",
   command =
   ":silent !hypctl reload"
 })

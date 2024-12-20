@@ -1,6 +1,6 @@
 #!/bin/sh
 
 xrandr --auto
-xrandr --output HDMI2 --mode 1920x1080 --rate 60 --left-of eDP1
+xrandr --output HDMI1 --mode 1920x1080 --rate 60 --left-of eDP1
 setbg
 pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"

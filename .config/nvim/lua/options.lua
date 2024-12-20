@@ -7,7 +7,7 @@ vim.o.rnu = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.background = 'dark'
-vim.o.termguicolors = true
+-- vim.o.termguicolors = false
 
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
@@ -36,4 +36,3 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
-vim.o.termguicolors = true

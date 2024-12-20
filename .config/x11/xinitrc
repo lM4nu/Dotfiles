@@ -4,7 +4,7 @@
 #pipewire-pulse &
 #wireplumber &
 #xrandr --dpi 96 &
-xbacklight -set 5 &
+xbacklight -set 20 &
 xrdb ~/.config/x11/Xresources &
 setxkbmap -option caps:escape &
 setbg ~/.local/wallpapers/custom &

@@ -4,7 +4,8 @@ temp="$(mktemp)"
 cronsaved="${XDG_CONFIG_HOME:-$HOME/.config}/cronsaved"
 zprofile="$HOME/.zprofile"
 zshrc="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.zshrc"
-alc="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/alacritty.yml"
+alc="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/alacritty.toml"
+dunstrc="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/dunstrc"
 hook="/etc/pacman.d/hooks/statusbar.hook"
 passmenu="/usr/bin/passmenu-otp"
 powerplug="/etc/udev/rules.d/powerplug"
@@ -41,7 +42,8 @@ then
 	menuFrom="bemenu"
 	menuTo="dmenu"
 
-	sed -i "s/size: 11\.5/size: 7\.0/" "$alc"
+	sed -i "s/size = 11\.0/size = 8\.0/" "$alc"
+	sed -i "s/font = Monospace 10/font = Monospace 8/" "$dunstrc"
 	sed -i "s|Hyprland|startx \"\${XDG_CONFIG_HOME}\"/x11/xinitrc|" "$zshrc"
 else
 	echo "Switching from Xorg to Wayland"
@@ -54,7 +56,8 @@ else
 	menuFrom="dmenu"
 	menuTo="bemenu"
 
-	sed -i "s/size: 7\.0/size: 11\.5/" "$alc"
+	sed -i "s/size = 8\.0/size = 11\.0/" "$alc"
+	sed -i "s/font = Monospace 8/font = Monospace 10/" "$dunstrc"
 	sed -i "s|startx \"\${XDG_CONFIG_HOME}\"/x11/xinitrc|Hyprland|" "$zshrc"
 
 fi
@@ -64,4 +67,5 @@ cronswitch "$barFrom" "$barTo" #crontab
 sed -i "s/$barFrom/$barTo/g" "$zprofile" #export STATUSBAR=
 sudo sed -i "s/$barFrom/$barTo/g" "$hook" #pacman hook
 sudo sed -i "s/$barFrom/$barTo/g" "$powerplug" #udev rule
+sudo sed -i "s/$barFrom/$barTo/g" "$zshrc" #zshrc 
 sudo sed -i "s/$menuFrom/$menuTo/g" "$passmenu" #passmenu

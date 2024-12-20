@@ -1,11 +1,11 @@
 #!/bin/sh
-touchpadId=$(xinput -list | grep Touchpad | awk '{print substr($6,4)}')
+touchpadId=$(xinput -list | grep "Synaptics TM2749-001\| Synaptics TouchPad" | grep -Eo "id=[0-9]*" | cut -d'=' -f2)
 tappingId=$(xinput --list-props "$touchpadId" | grep -m 1 'Tapping Enabled' | awk '{print substr($4,2,3)}')
 accelerationId=$(xinput --list-props "$touchpadId" | grep -m 1 Accel | awk '{print substr($4,2,3)}' )
 middleEmulId=$(xinput --list-props "$touchpadId" | grep -m 1 Middle | awk '{print substr($5,2,3)}')
 dragLock=$(xinput --list-props "$touchpadId" | grep -m 1 "Drag Lock" | awk '{print substr($6,2,3)}')
 
-xinput -set-prop "$touchpadId" "$accelerationId" 0.25
+xinput -set-prop "$touchpadId" "$accelerationId" 0.1
 			     
 xinput -set-prop "$touchpadId" "$tappingId" 1
 			     

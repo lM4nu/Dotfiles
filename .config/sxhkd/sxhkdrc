@@ -48,7 +48,8 @@ super + w
 	$BROWSER
 
 super + shift + w
-	dbrowser
+	whatsapp-accel
+	#dbrowser
 
 super + shift + b
 	bt-toggle
@@ -76,25 +77,25 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
 	pamixer -i 5 & pkill -RTMIN+9 dwmblocks
 
-XF86AudioPrev
-	mpc prev
+{XF86AudioPrev, XF86Search}
+	MPD_HOST="192.168.0.110" mpc prev
 
-XF86AudioPlay
-	mpc toggle
+{XF86AudioPlay, XF86Tools}
+	MPD_HOST="192.168.0.110" mpc toggle
 
-XF86AudioNext
-	mpc next
+{XF86AudioNext, XF86LaunchA}
+	MPD_HOST="192.168.0.110" mpc next
 
 super + minus
-	mpc volume -5 
+	MPD_HOST="192.168.0.110" mpc volume -5 
 
 super + equal
-	mpc volume +5 
+	MPD_HOST="192.168.0.110" mpc volume +5 
 
-super + x
+{Print, super + x}
 	maim | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
-super + shift + x
+{super + Print, super + shift + x}
 	maim -us | tee ~/.local/screenshots/$(date +%Y-%m-%d-%H:%M:%S).png | xclip -selection clipboard -t image/png	
 
 super + Print

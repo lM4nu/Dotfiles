@@ -1,12 +1,16 @@
 -- [[ Configure plugins ]]
 require('lazy').setup({
   'VebbNix/lf-vim',
+  'kovetskiy/sxhkd-vim',
   'sainnhe/gruvbox-material',
+  'tomasiser/vim-code-dark',
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+  -- Save workspaces
+  'tpope/vim-obsession',
   {
     'crispgm/nvim-tabline',
     dependencies = { 'nvim-tree/nvim-web-devicons' }, -- optional
@@ -46,7 +50,13 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
+      {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        -- version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        -- build = "make install_jsregexp"
+      },
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
@@ -130,13 +140,8 @@ require('lazy').setup({
       -- requirements installed.
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
+        build = 'make'
+      }
     },
   },
   {

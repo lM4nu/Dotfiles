@@ -17,7 +17,7 @@ lyrics_directory = ~/.config/ncmpcpp/lyrics
 #
 ##### connection settings #####
 #
-mpd_host = localhost
+mpd_host = 192.168.0.110
 #
 mpd_port = 6600
 #

@@ -6,6 +6,9 @@ confirm-mark-feed-read no
 
 notify-program "nbnotify"
 
+ignore-mode download
+ignore-article "http://vamosacinema.com/feed/" "content =~ \"Cinema Pergamino\""
+
 color listnormal cyan default
 color listnormal_unread blue default bold
 color listfocus black yellow standout bold

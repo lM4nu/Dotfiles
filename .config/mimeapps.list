@@ -11,28 +11,28 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
-
-
 inode/directory=lf.desktop
-
 x-scheme-handler/magnet=torrent.desktop
 application/x-bittorrent=torrent.desktop
-
 text/plain=editor.desktop
 application/x-subrip=editor.desktop
-
 x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
-
 image/jpeg=sxiv.desktop
 image/jpg=sxiv.desktop
 image/png=sxiv.desktop
 image/gif=sxiv.desktop
-
+image/vnd.microsoft.icon=sxiv.desktop
+image/svg+xml=sxiv.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/zip=org.pwmt.zathura.desktop
-
 x-scheme-handler/mailto=neomutt.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
+audio/mpeg=mpv.desktop
+audio/mp3=mpv.desktop
 
 [Removed Applications]
 text/plain=code-oss.dekstop
 text/plain=code-oss-url-handler.dekstop
+
+[Added Associations]
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;

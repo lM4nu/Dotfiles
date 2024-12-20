@@ -1,0 +1,12 @@
+#!/bin/sh
+link="${1:-"$(xclip -sel c -o)"}"
+
+if  echo "$link" | grep "^magnet:" > /dev/null 2>&1 ;then
+	sudo mount -o remount,size=5G /tmp/
+	webtorrent "$1" \
+		--mpv \
+		--player-args="--sub-scale=0.6 --save-position-on-quit --fs --script=~/.local/share/simple-mpv-webui/main.lua"
+else
+	mpv --fs --sub-scale=0.6 --script=~/.local/share/simple-mpv-webui/main.lua "$1"
+fi
+

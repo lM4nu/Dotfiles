@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 [colors]
@@ -41,7 +42,7 @@ cursor = "CellForeground"
 text = "CellBackground"
 
 [font]
-size = 7.0
+size = 8.0
 
 [font.bold]
 family = "DejaVu Sans Mono"

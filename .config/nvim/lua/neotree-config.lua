@@ -3,7 +3,7 @@ require("neo-tree").setup({
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
-  enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
+  -- enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
   open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
   sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
   sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
@@ -179,7 +179,7 @@ require("neo-tree").setup({
     follow_current_file = {
       enabled = false,                      -- This will find and focus the file in the active buffer every time
       --               -- the current file is changed while the tree is open.
-      leave_dirs_open = false,              -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+      leave_dirs_open = true,               -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
     },
     group_empty_dirs = false,               -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -212,12 +212,12 @@ require("neo-tree").setup({
         ["ot"] = { "order_by_type", nowait = false },
         ["oo"] = {
           function(state)
-            print(state.tree:get_node().path)
-            os.execute("setsid -f xdg-open " .. state.tree:get_node().path)
+            local node = state.tree:get_node().path
+            io.popen("setsid -f xdg-open " .. "\"" .. node .. "\"")
           end,
-          desc = "Open file",
-          nowait = false
-        }
+          desc = "open_file",
+          nowait = true
+        },
       },
       fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
         ["<down>"] = "move_cursor_down",
@@ -276,3 +276,4 @@ require("neo-tree").setup({
 })
 
 vim.keymap.set({ "n" }, "<leader><space>", ":Neotree toggle<cr>", {});
+vim.keymap.set({ "n" }, "<leader>f", ":Neotree reveal<cr>", {});
